@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>天猫navigator2</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        /* 给整个导航条设置样式 */
+        #navigator {
+            background: #f2f2f2;
+            height: 32px;
+            padding: 0px 60px;
+        }
+
+        /* 给menue-login的li选项列表设置浮动 */
+        #navigator .menue-login>li {
+            float: left;
+        }
+
+        /* 设置每一个列表项的具体样式 */
+        #navigator .menue-login>li a,
+        #navigator .menue-login>li span,
+        #navigator .menue-nav>li a {
+            color: #999;
+            font-size: 12px;
+            line-height: 32px;
+            display: block;
+            height: 32px;
+            margin: 0px 10px;
+        }
+
+        /* 给menue-nav的li选项列表设置浮动 */
+        #navigator .menue-nav>li {
+            float: right;
+        }
+
+        /* 给所有的列表项设置悬浮的颜色 */
+        #navigator .menue-login li a:hover,#navigator .menue-nav >li:hover >a,#navigator .menue-nav >li .submenue >li:hover >a{
+            color: #ff0036;
+        }
+
+        /* 当鼠标浮动在导航列表的时候，显示下划线 */
+        #navigator .menue-nav .item a:hover{
+            text-decoration: underline;
+        }
+
+        /* 为子列表设置边框 */
+        #navigator .menue-nav >li .submenue{
+            /* height: 32px; */
+            /* background: pink; */
+            border: 1px solid #eee;
+        } 
+
+        /* 为子列表设置外边距 */
+        #navigator .menue-nav >li .submenue li a{
+            margin: 0px 6px; 
+        }
+
+        /* 设置默认子列表是不显示的 */
+        #navigator .menue-nav >li .submenue{
+            display: none;
+        }
+
+        /* 设置当鼠标划过子列表上的选项卡的时候，子列表显示 */
+        #navigator .menue-nav >li:hover .submenue{
+            display: block;
+        }
+
+        /* 设置当鼠标划过导航列表的选项卡的时候，设置背景颜色 */
+        #navigator .menue-nav .item:hover{
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navigator">
+        <ul class="menue-login">
+            <li><span>喵，欢迎来天猫</span></li>
+            <li><a href="">请登录</a></li>
+            <li><a href="">免费注册</a></li>
+        </ul>
+        <ul class="menue-nav">
+            <li><a href="">网站导航</a></li>
+            <li><a href="">商家支持</a></li>
+            <li><a href="">淘宝网</a></li>
+            <li><a href="">手机版</a></li>
+            <li class="item">
+                <a href="">收藏夹</a>
+                <ul class="submenue">
+                    <li><a href="">收藏的寶貝</a></li>
+                    <li><a href="">收藏的店鋪</a></li>
+                </ul>
+            </li>
+            <li><a href="">购物车0件</a></li>
+            <li class="item">
+                <a href="">我的淘宝</a>
+                <ul class="submenue">
+                    <li><a href="">已买到的宝贝</a></li>
+                    <li><a href="">已卖出的宝贝</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
