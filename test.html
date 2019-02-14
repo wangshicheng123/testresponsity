@@ -4,7 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="这是一个鲜花">
+    <link rel="shortcut icon" href="favicon.ico">
     <title>Document</title>
+    <style>
+        #div1{
+            background: red;
+        }
+        #div2{
+            background: blue;
+        }
+        #div3{
+            background: green;
+        }
+        #ul-one{
+            color: pink;
+        }
+        #ul-two{
+            color: yellow;
+        }
+        
+        /* 后代选择器 */
+        /* #ul-one li{
+            background: green;
+        } */
+
+        /* 子代选择器 */
+        #ul-one > li{
+            background: green
+        }
+
+        .box{
+            /* width: 80px; */
+            /* height: 50px; */
+            /* display: inline-block; */
+            display: inline;
+            /* text-align: center; */
+            /* vertical-align: center; */
+            /* line-height: 50px; */
+            /* margin: 20px; */
+            padding: 20px;
+        }
+        .box1{
+            background: red;
+        }
+        .box2{
+            background: green;
+        }
+        .box3{
+            background: blue;
+        }
+        #mydiv{
+            border: 50px solid yellow;
+        }
+    </style>
 </head>
 <body>
     <!-- 
@@ -18,7 +71,60 @@
         --------------------
         7:git branch //查看当前所有的分支
         8:git checkout branchname
-        
+        git merge <branch> #合并指定分支到当前分支
+        git remote -v #查看远程版本库信息
+        git remote show <remote> #查看指定远程版本库信息
+        git remote add <remote> <url> #添加远程版本库
+        git fetch <remote> #从远程库获取代码
+        git pull <remote> <branch> #下载代码及快速合并
+        git push <remote> <branch> #上传代码及快速合并
+        git push <remote> : <branch>/<tagname> #删除远程分支或标签
      -->
+
+     <!--img标签
+     <img src="./favicon.ico" alt="这是一个小图标" title="擦汗看小图白哦"><img src="./favicon.ico" alt="">
+     <img src="./favicon.ico" alt="">-->
+     <!--<table border="1">
+         <th>
+             <td>人物</td>
+             <td>技能</td>
+         </th>
+         <tr>
+             <td>人物一</td>
+             <td>黄忠</td>
+             <td>烈弓</td>
+         </tr>
+         <tr>
+             <td>人物二</td>
+             <td>张飞</td>
+             <td>无限出杀</td>
+         </tr>
+     </table>
+
+     <div id="div1">div1</div>
+     <div id="div2">div1</div>
+     <div id="div3">div3</div>
+     <hr>
+
+     <ul id="ul-one">
+         <li>1111</li>
+         <li>2222</li>
+         <div>
+             <ul id="ul-two">
+                <li>11</li>
+                <li>22</li>
+            </ul>
+        </div>
+     </ul>
+      ul>li*4 一次性生成一个含有四个无序列表项的列表快捷键
+     <ul>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+     </ul>
+    -->
+    <!-- <div class="box box1">box1</div><div class="box box2">box2</div><div class="box box3">box3</div> -->
+    <div id="mydiv"></div>
 </body>
 </html>

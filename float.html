@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>导航菜单栏</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #menue .item{
+            /* width: 100px;
+            height: 50px; */
+            background: pink;
+            float: left;
+            list-style: none;
+            margin-right: 5px;
+            line-height: 50px;
+            text-align: center;
+            /* color: #fff; */
+            /* cursor: pointer; */
+        }
+
+        #menue .item >a{
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            width: 100px;
+            height: 50px;
+        }
+
+        #menue >.item:hover{
+            background: red;
+            
+        }
+
+        #submenue >li{
+            list-style: none; 
+            color:#fff;
+        }
+
+        #submenue{
+           display: none;
+        } 
+
+        #submenue >li:hover{
+            background: paleturquoise;
+        }
+
+        #menue >.item:hover >#submenue{
+            display: block;
+        } 
+
+    </style>
+</head>
+<body>
+    <ul id="menue">
+        <li class="item"><a href="http://www.baidu.com">百度</a></li>
+        <li class="item">
+            <a href="http://www.taobao.com">淘宝</a>
+            <ul id="submenue">
+                <li>商品1</li>
+                <li>商品2</li>
+                <li>商品3</li>
+            </ul>
+        </li>
+        <li class="item"><a href="#">item3</a></li>
+        <li class="item"><a href="#">item4</a></li>
+    </ul>
+</body>
+</html>
