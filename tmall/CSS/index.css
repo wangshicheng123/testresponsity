@@ -61,7 +61,10 @@ body{
 #navigator .menue-nav>li .submenue {
     /* height: 32px; */
     /* background: pink; */
-    border: 1px solid #eee;
+    /* border: 1px solid #eee; */
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent #eee #eee #eee;
 }
 
 /* 为子列表设置外边距 */
@@ -108,4 +111,29 @@ body{
     position: absolute;
     top: 50%;
     right: 4px;
+}
+
+#navigator .menue-nav >li .two-dimensional-barcode {
+    display: none;
+}
+
+#navigator .menue-nav >li:hover .two-dimensional-barcode{
+    display: block;
+    position: absolute;
+    left: -60px;
+    top: 26px;
+    border-width:1px;
+    border-style: solid;
+    border-color: #eee #eee transparent #eee;
+}
+
+#navigator .menue-nav >li:hover .arrow1{
+    height: 0px;
+    width: 0px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent green transparent;
+    position: absolute;
+    top: 17px;
+    left: 50%;
 }
