@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        /*#list,#sublist{
+            margin: 0px;
+            padding: 0px;
+        }*/
+
+        #list >.item{
+            list-style: none;
+            background: pink;
+            line-height: 50px;
+            text-align: center;
+            float: left;
+            margin-right: 5px;
+        }
+
+        #list >.item >a{
+            color:#fff;
+            width: 100px;
+            height: 50px;
+            text-decoration: none;
+            display: block;
+        } 
+
+        #list >.item:hover{
+            background: yellowgreen;
+        }
+
+        #list .item #sublist >li{
+            list-style: none;
+        }
+
+        #list .item #sublist >li a{
+            color: #fff;
+            text-align: center;
+            text-decoration: none
+        }
+
+        #list .item #sublist{
+            display: none;
+        }
+
+        #list .item:hover #sublist{
+            display: block;
+        }
+
+        #list .item #sublist >li a{
+            width: 100px;
+            height:50px;
+            display: block;    
+        }
+
+        #list .item #sublist >li a:hover{
+            background: #999;
+        }
+    </style>
+</head>
+<body>
+    <ul id="list">
+        <li class="item">
+            <a href="#">item-one</a>
+            <ul id="sublist">
+                <li><a href="">sub-one</a></li>
+                <li><a href="">sub-two</a></li>
+                <li><a href="">sub-three</a></li>
+            </ul>
+        </li>
+        <li class="item"><a href="#">item-two</a></li>
+        <li class="item"><a href="#">item-three</a></li>
+        <li class="item"><a href="#">item-four</a></li>
+    </ul>
+</body>
+</html>

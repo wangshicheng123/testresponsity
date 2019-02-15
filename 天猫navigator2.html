@@ -20,11 +20,15 @@
             list-style: none;
         }
 
+        #container{
+            height: 2000px;
+        }
+
         /* 给整个导航条设置样式 */
         #navigator {
             background: #f2f2f2;
             height: 32px;
-            padding: 0px 60px;
+            padding: 0px 75px 0px 35px;
         }
 
         /* 给menue-login的li选项列表设置浮动 */
@@ -50,72 +54,110 @@
         }
 
         /* 给所有的列表项设置悬浮的颜色 */
-        #navigator .menue-login li a:hover,#navigator .menue-nav >li:hover >a,#navigator .menue-nav >li .submenue >li:hover >a{
+        #navigator .menue-login li a:hover,
+        #navigator .menue-nav>li:hover>a,
+        #navigator .menue-nav>li .submenue>li:hover>a {
             color: #ff0036;
         }
 
         /* 当鼠标浮动在导航列表的时候，显示下划线 */
-        #navigator .menue-nav .item a:hover{
+        #navigator .menue-nav .item a:hover {
             text-decoration: underline;
         }
 
+        #navigator .menue-nav .item {
+            position: relative;
+        }
+
+        #navigator .menue-nav .item:hover .submenue {
+            position: absolute;
+        }
+
         /* 为子列表设置边框 */
-        #navigator .menue-nav >li .submenue{
+        #navigator .menue-nav>li .submenue {
             /* height: 32px; */
             /* background: pink; */
             border: 1px solid #eee;
-        } 
+        }
 
         /* 为子列表设置外边距 */
-        #navigator .menue-nav >li .submenue li a{
-            margin: 0px 6px; 
+        #navigator .menue-nav>li .submenue li a {
+            margin: 0px 6px;
+            /* height: 32px; */
+            width: 75px;
         }
 
         /* 设置默认子列表是不显示的 */
-        #navigator .menue-nav >li .submenue{
+        #navigator .menue-nav>li .submenue {
             display: none;
         }
 
         /* 设置当鼠标划过子列表上的选项卡的时候，子列表显示 */
-        #navigator .menue-nav >li:hover .submenue{
+        #navigator .menue-nav>li:hover .submenue {
             display: block;
         }
 
         /* 设置当鼠标划过导航列表的选项卡的时候，设置背景颜色 */
-        #navigator .menue-nav .item:hover{
+        #navigator .menue-nav .item:hover {
             background: #fff;
+        }
+
+        #toolbar{
+            background: #000;
+            color: #fff;
+            position: fixed;
+            right:0px;
+            width: 35px;
+            top: 0px;
+            bottom: 0px;
+        }
+
+        #testspan{
+            position: fixed;
+            background: pink;
+            /* top:20px; */
         }
     </style>
 </head>
 
 <body>
-    <div id="navigator">
-        <ul class="menue-login">
-            <li><span>喵，欢迎来天猫</span></li>
-            <li><a href="">请登录</a></li>
-            <li><a href="">免费注册</a></li>
-        </ul>
-        <ul class="menue-nav">
-            <li><a href="">网站导航</a></li>
-            <li><a href="">商家支持</a></li>
-            <li><a href="">淘宝网</a></li>
-            <li><a href="">手机版</a></li>
-            <li class="item">
-                <a href="">收藏夹</a>
-                <ul class="submenue">
-                    <li><a href="">收藏的寶貝</a></li>
-                    <li><a href="">收藏的店鋪</a></li>
-                </ul>
-            </li>
-            <li><a href="">购物车0件</a></li>
-            <li class="item">
-                <a href="">我的淘宝</a>
-                <ul class="submenue">
-                    <li><a href="">已买到的宝贝</a></li>
-                    <li><a href="">已卖出的宝贝</a></li>
-                </ul>
-            </li>
-        </ul>
+    <div id="container">
+
+        <div id="navigator">
+            <ul class="menue-login">
+                <li><span>喵，欢迎来天猫</span></li>
+                <li><a href="">请登录</a></li>
+                <li><a href="">免费注册</a></li>
+            </ul>
+            <ul class="menue-nav">
+                <li><a href="">网站导航</a></li>
+                <li><a href="">商家支持</a></li>
+                <li><a href="">淘宝网</a></li>
+                <li><a href="">手机版</a></li>
+                <li class="item">
+                    <a href="">收藏夹</a>
+                    <ul class="submenue">
+                        <li><a href="">收藏的宝贝</a></li>
+                        <li><a href="">收藏的店铺</a></li>
+                    </ul>
+                </li>
+                <li><a href="">购物车0件</a></li>
+                <li class="item">
+                    <a href="">我的淘宝</a>
+                    <ul class="submenue">
+                        <li><a href="">已买到的宝贝</a></li>
+                        <li><a href="">已卖出的宝贝</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div id="toolbar">
+            <center>工具栏</center>
+        </div>
+        <!-- <span id="testspan">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span> -->
+
+
     </div>
 </body>
 

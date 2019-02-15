@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>沾性定位sticky测试</title>
+    <style>
+        body{
+            margin: 0px;
+            height: 2000px;
+        }
+
+        .box1{
+            width: 100%;
+            margin-top: 100px;
+            height: 30px;
+            background: red;
+            /* 注意如何设置阈值 */
+            position: sticky;
+            /* 把阈值设为0，当距离浏览器上边界为0px时候，搜索栏固定 */
+            top: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"><center>搜索栏</center></div>
+    <h1>这是一个标题</h1>
+</body>
+</html>
