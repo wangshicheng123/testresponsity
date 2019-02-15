@@ -22,7 +22,7 @@ body{
 /* 设置每一个列表项的具体样式 */
 #navigator .menue-login>li a,
 #navigator .menue-login>li span,
-#navigator .menue-nav>li a {
+#navigator .menue-nav>li >a {
     color: #999;
     font-size: 12px;
     line-height: 32px;
@@ -40,7 +40,8 @@ body{
 /* 给所有的列表项设置悬浮的颜色 */
 #navigator .menue-login li a:hover,
 #navigator .menue-nav>li:hover>a,
-#navigator .menue-nav>li .submenue>li:hover>a {
+#navigator .menue-nav >li .submenue >li:hover>a ,
+#navigator .menue-nav >li .bussi-suppor-menue .submenue >li:hover >a{
     color: #ff0036;
 }
 
@@ -53,12 +54,12 @@ body{
     position: relative;
 }
 
-#navigator .menue-nav .item:hover .submenue {
+#navigator .menue-nav .item:hover >.submenue {
     position: absolute;
 }
 
 /* 为子列表设置边框 */
-#navigator .menue-nav>li .submenue {
+#navigator .menue-nav>li >.submenue {
     /* height: 32px; */
     /* background: pink; */
     /* border: 1px solid #eee; */
@@ -68,19 +69,34 @@ body{
 }
 
 /* 为子列表设置外边距 */
-#navigator .menue-nav>li .submenue li a {
-    margin: 0px 6px;
-    /* height: 32px; */
-    width: 75px;
+#navigator .menue-nav>li >.submenue >li >a {
+    width: 72px;
+    color: #999;
+    font-size: 12px;
+    line-height: 32px;
+    display: block;
+    height: 32px;
+    text-align: center;
+    /* margin:0px 10px; */
+}
+
+#navigator .menue-nav >li .bussi-suppor-menue .submenue >li >a {
+    width: 60px;
+    color: #999;
+    font-size: 12px;
+    line-height: 20px;
+    display: block;
+    height: 20px;
+    text-align: center;
 }
 
 /* 设置默认子列表是不显示的 */
-#navigator .menue-nav>li .submenue {
+#navigator .menue-nav>li .submenue ,#navigator .menue-nav >li .bussi-suppor-menue {
     display: none;
 }
 
 /* 设置当鼠标划过子列表上的选项卡的时候，子列表显示 */
-#navigator .menue-nav>li:hover .submenue {
+#navigator .menue-nav>li:hover .submenue ,#navigator .menue-nav >li:hover .bussi-suppor-menue {
     display: block;
 }
 
@@ -136,4 +152,30 @@ body{
     position: absolute;
     top: 15px;
     left: 50%;
+}
+
+#navigator .menue-nav .item .bussi-suppor-menue{
+    position: absolute;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent #eee #eee #eee;
+    padding-bottom: 5px;
+    left: -73px;
+}
+
+#navigator .menue-nav .item .bussi-suppor-menue .submenue{
+    width: 140px;
+    /* background:#ccc; */
+    border-bottom: 1px dotted #999;
+}
+
+#navigator .menue-nav .item .bussi-suppor-menue .submenue li{
+    float: left;
+    height: 20px;
+    margin: 0px 5px;
+}
+
+#navigator .menue-nav .item .bussi-suppor-menue span{
+    font-size: 12px;
+    margin-left: 10px;
 }
