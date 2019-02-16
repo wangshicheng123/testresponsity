@@ -4,7 +4,6 @@ body{
 
 #container{
     background: #f2f2f2;
-    height: 32px;
 }
 
 /* 给整个导航条设置样式 */
@@ -20,56 +19,25 @@ body{
 }
 
 /* 设置每一个列表项的具体样式 */
-#navigator .menue-login>li a,
-#navigator .menue-login>li span,
-#navigator .menue-nav>li >a {
+#navigator .menue-login >li a,
+#navigator .menue-login >li span,
+#navigator .menue-nav >li >a {
     color: #999;
     font-size: 12px;
     line-height: 32px;
     display: block;
     height: 32px;
-    margin:0px 10px;
-}
-
-/* 给menue-nav的li选项列表设置浮动 */
-#navigator .menue-nav>li {
-    float: right;
-    margin: 0px 6px;
+    padding:0px 10px;
+    /* background: red; */
 }
 
 /* 给所有的列表项设置悬浮的颜色 */
-#navigator .menue-login li a:hover,
-#navigator .menue-nav>li:hover>a,
-#navigator .menue-nav >li .submenue >li:hover>a ,
-#navigator .menue-nav >li .bussi-suppor-menue .submenue >li:hover >a{
+#navigator .menue-login >li:hover >a,#navigator .menue-nav >li:hover a , #navigator .menue-nav .item .submenue li:hover a{
     color: #ff0036;
 }
 
-/* 当鼠标浮动在导航列表的时候，显示下划线 */
-#navigator .menue-nav .item a:hover {
-    text-decoration: underline;
-}
-
-#navigator .menue-nav .item {
-    position: relative;
-}
-
-#navigator .menue-nav .item:hover >.submenue {
-    position: absolute;
-}
-
-/* 为子列表设置边框 */
-#navigator .menue-nav>li >.submenue {
-    /* height: 32px; */
-    /* background: pink; */
-    /* border: 1px solid #eee; */
-    border-width: 1px;
-    border-style: solid;
-    border-color: transparent #eee #eee #eee;
-}
-
 /* 为子列表设置外边距 */
-#navigator .menue-nav>li >.submenue >li >a {
+#navigator .menue-nav .item .submenue li a {
     width: 72px;
     color: #999;
     font-size: 12px;
@@ -80,44 +48,55 @@ body{
     /* margin:0px 10px; */
 }
 
-#navigator .menue-nav >li .bussi-suppor-menue .submenue >li >a {
+#navigator .menue-nav .item .submenue .submenue-bussi-help li a {
     width: 60px;
-    color: #999;
-    font-size: 12px;
-    line-height: 20px;
-    display: block;
     height: 20px;
-    text-align: center;
 }
 
-/* 设置默认子列表是不显示的 */
-#navigator .menue-nav>li .submenue ,#navigator .menue-nav >li .bussi-suppor-menue {
-    display: none;
+
+
+
+/* 为所有的导航项设置相对定位, 并且设置向右浮动*/
+#navigator .menue-nav >li {
+    position: relative;
+    float: right;
+    margin: 0px 6px;
 }
 
-/* 设置当鼠标划过子列表上的选项卡的时候，子列表显示 */
-#navigator .menue-nav>li:hover .submenue ,#navigator .menue-nav >li:hover .bussi-suppor-menue {
-    display: block;
-}
+/* 可以在此处设置导航项右侧的小三角形的动画 */
 
-/* 设置当鼠标划过导航列表的选项卡的时候，设置背景颜色 */
+/* 设置当鼠标划过导航列表的选项卡的时候，设置背景颜色，显示下划线*/
 #navigator .menue-nav .item:hover {
     background: #fff;
+    text-decoration: underline;
 }
 
-#navigator .menue-nav >li{
-    position: relative;
+/* 设置默认子列表是不显示的且为绝对定位 ，同时为子列表设置边框*/
+#navigator .menue-nav .item .submenue {
+    display: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent #eee #eee #eee;
+    position: absolute;
 }
 
+/* 设置当鼠标划过子列表上的选项卡的时候，子列表显示 ，#navigator .menue-nav >li:hover .bussi-suppor-menue*/
+#navigator .menue-nav .item:hover .submenue {
+    display: block;
+}
+
+/* 使用绝对定位设置小图标的位置 */
 #navigator .menue-nav >li .iconfont{
     position: absolute;
-    top: 9px;
+    top: 10px;
     left:-5px;
     font-size:12px;
     color: #ff0036;
     font-family: "Microsoft YaHei",tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;
 }
 
+
+/* 设置小箭头 */
 #navigator .menue-nav .tringle .arrow{
     height: 0px;
     width: 0px;
@@ -129,12 +108,10 @@ body{
     right: 4px;
 }
 
-#navigator .menue-nav >li .two-dimensional-barcode {
-    display: none;
-}
 
-#navigator .menue-nav >li:hover .two-dimensional-barcode{
-    display: block;
+/* 设置二维码图片默认是隐藏的并且使用绝对定位使其脱离文档流 */
+#navigator .menue-nav .toggle-phone .two-dimensional-barcode {
+    display: none;
     position: absolute;
     left: -60px;
     top: 28px;
@@ -143,7 +120,14 @@ body{
     border-color: #eee #eee transparent #eee;
 }
 
-#navigator .menue-nav >li:hover .arrow1{
+/* 设置二维码在鼠标移过的时候显示 */
+#navigator .menue-nav .toggle-phone:hover .two-dimensional-barcode{
+    display: block;
+}
+
+
+/* 设置手机版导航条的小箭头 */
+#navigator .menue-nav .toggle-phone:hover .tringle-self{
     height: 0px;
     width: 0px;
     border-width: 7px;
@@ -154,22 +138,20 @@ body{
     left: 50%;
 }
 
+
+/* 一下是商家支持部分样式 */
 #navigator .menue-nav .item .bussi-suppor-menue{
-    position: absolute;
-    border-width: 1px;
-    border-style: solid;
-    border-color: transparent #eee #eee #eee;
+    /* position: absolute; */
     padding-bottom: 5px;
     left: -73px;
 }
 
-#navigator .menue-nav .item .bussi-suppor-menue .submenue{
+#navigator .menue-nav .item .bussi-suppor-menue .submenue-bussi-help{
     width: 140px;
-    /* background:#ccc; */
     border-bottom: 1px dotted #999;
 }
 
-#navigator .menue-nav .item .bussi-suppor-menue .submenue li{
+#navigator .menue-nav .item .bussi-suppor-menue .submenue-bussi-help li{
     float: left;
     height: 20px;
     margin: 0px 5px;

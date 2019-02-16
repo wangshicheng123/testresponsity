@@ -20,12 +20,6 @@
             top: 0px;
             bottom: 0px;
         }
-
-        #testspan{
-            position: fixed;
-            background: pink;
-            /* top:20px; */
-        }
     </style>
 </head>
 
@@ -38,7 +32,7 @@
                 <li><a href="">免费注册</a></li>
             </ul>
             <ul class="menue-nav">
-                <li class="tringle">
+                <li class="tringle item">
                     <i class="iconfont icon-daohang"></i>
                     <a href="">网站导航</a>
                     <div class="arrow"></div>
@@ -46,9 +40,9 @@
                 <li class="tringle item">
                     <a href="">商家支持</a>
                     <div class="arrow"></div>
-                    <div class="bussi-suppor-menue">
+                    <div class="bussi-suppor-menue submenue">
                         <span>商家：</span>
-                        <ul class="submenue" style="height: 85px;">
+                        <ul class="submenue-bussi-help" style="height: 85px;">
                             <li><a href="">商家中心</a></li>
                             <li><a href="">天猫规则</a></li>
                             <li><a href="">商家入驻</a></li>
@@ -59,17 +53,17 @@
                             <li><a href="">喵言喵语</a></li>
                         </ul>
                         <span>帮助：</span>
-                        <ul class="submenue" style="height:25px">
+                        <ul class="submenue-bussi-help" style="height:25px">
                             <li><a href="">帮助中心</a></li>
                             <li><a href="">问商友</a></li>
                         </ul>
                     </div>
                 </li>
                 <li><a href="">淘宝网</a></li>
-                <li>
+                <li class="toggle-phone">
                     <i class="iconfont icon-shouji"></i>
                     <a href="">手机版</a>
-                    <div class="arrow1"></div>
+                    <div class="tringle-self"></div>
                     <div class="two-dimensional-barcode">
                         <img src="./images/erweima.png" alt="淘宝手机版二维码">
                     </div>
@@ -77,7 +71,7 @@
                 <li class="item tringle">
                     <a href="">收藏夹</a>
                     <div class="arrow"></div>
-                    <ul class="submenue">
+                    <ul class="submenue-collect submenue">
                         <li><a href="">收藏的宝贝</a></li>
                         <li><a href="">收藏的店铺</a></li>
                     </ul>
@@ -89,7 +83,7 @@
                 <li class="item tringle">
                     <a href="">我的淘宝</a>
                     <div class="arrow"></div>
-                    <ul class="submenue">
+                    <ul class="submenue-mine submenue">
                         <li><a href="">已买到的宝贝</a></li>
                         <li><a href="">已卖出的宝贝</a></li>
                     </ul>
