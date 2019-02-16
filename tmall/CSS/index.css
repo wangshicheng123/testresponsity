@@ -108,7 +108,7 @@ body{
     border-color: #999 transparent transparent transparent;
     position: absolute;
     top: 50%;
-    right: 4px;
+    right: 2px;
 }
 
 
@@ -138,7 +138,7 @@ body{
     border-color: transparent transparent #fff transparent;
     position: absolute;
     top: 15px;
-    left: 50%;
+    left: 20px;
 }
 
 
