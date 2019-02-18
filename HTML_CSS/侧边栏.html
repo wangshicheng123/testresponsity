@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>侧边栏</title>
+    <link rel="stylesheet" href="../tmall/font/iconfont.css">
+    <style>
+        #side-bar {
+            position: fixed;
+            width: 30px;
+            top: 0px;
+            bottom: 0px;
+            right: 0px;
+            background: #000;
+        }
+
+        #side-bar .icon-shouji{
+            color: red;
+            font-size: 22px;
+            position: absolute;
+            top: 200px;
+            left: 5px;
+        }
+
+        #side-bar .phone{
+            width: 90px;
+            height: 30px;
+            background: #ccc;
+            position: absolute;
+            top: 198px;
+            right: 90px;
+            line-height: 30px;
+            text-align: center;
+
+            opacity: 0;
+            visibility: hidden;
+            transition: all 1s ease;
+        }
+
+        #side-bar .vip:hover .phone{
+            opacity: 1;
+            right: 30px;
+            visibility: visible;
+            transition: all 1s ease;
+        }
+
+        #side-bar .arrow{
+            width: 10px;
+            height: 10px;
+            background: #ccc;
+            position: absolute;
+            top: 10px;
+            right: -5px;
+            transform:rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <div id="side-bar">
+        <div class="vip">
+            <i class="iconfont icon-shouji"></i>
+            <div class="phone">
+                会员权益
+                <div class="arrow"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

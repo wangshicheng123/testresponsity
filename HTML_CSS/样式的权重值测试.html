@@ -6,27 +6,53 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        div{
-            width: 50px;
-            height: 50px;
-            background: red!important;
-        }
-        .box1{
-            width: 50px;
-            height: 50px;
-            background: green;
-        }
-        #box2{
-            width: 50px;
-            height: 50px;
+        #box1 .box3{
             background: yellow;
+        }
+
+        .box4 #box2{
+            background: pink;
+        }
+
+        .a .b .c .d .e .f .g .h .i .j .k .l .m {
+            color: yellowgreen;
+        }
+        #a2bc{
+            color: red;
         }
     </style>
 </head>
 <body>
-    <div id="box2" class="box1"></div>
-    <!-- <div id="box2">
-        !important>id选择器>class选择器>标签选择器
-    </div> -->
+    <div id="box1" class="box4">
+        <div id="box2" class="box3">div,测试选择器的权重值是不可以叠加的，因为上面两个组合选择器的权重值
+            是一样的，所以下面覆盖了上面的样式；
+        </div>
+
+        <div class="a">
+            <div class="b">
+                <div class="c">
+                    <div class="d">
+                        <div class="e">
+                            <div class="f">
+                                <div class="g">
+                                    <div class="h">
+                                        <div class="i">
+                                            <div class="j">
+                                                <div class="k">
+                                                    <div class="l">
+                                                        <div id="abc" class="m">测试选择器的权重值</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

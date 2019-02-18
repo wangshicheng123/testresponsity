@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        .box1{
+            width: 450px;
+            height:450px;
+            background: red;
+            border: 1px solid #000000;
+            margin: 100px auto;
+            transform: rotate(45deg);
+            position: relative;
+        }
+
+        .box2{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* margin-left: */
+            /* background: pink; */
+            font-size: 300px;
+            margin-left: -150px;
+            margin-top: -198px;
+            transform: rotate(-45deg);
+        }
+
+        .box1:hover{
+            transform: rotate(135deg);
+            transition: transform 1s linear;
+        }
+
+        .box1:hover .box2{
+            transform: rotate(45deg); 
+            transition: transform 1s linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2">福</div>
+    </div>
+</body>
+</html>
