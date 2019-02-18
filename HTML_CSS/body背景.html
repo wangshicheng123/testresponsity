@@ -33,20 +33,43 @@
             background: #ccc;
         } */
 
-        .box{
+        /* .box{
             position: absolute;
             top: 0px;
             bottom: 0px;
             right: 0px;
             left: 0px;
             background: #cccccc;
+        } */
+
+        body{
+            margin: 0px;
+        }
+
+        .box1{
+            width: 500px;
+            height: 250px;
+            background: pink;
+            margin: 100px auto;
+        }
+
+        .box2{
+            width: 50%;
+            height: 50%;
+            background: red;
+            /* margin-top: 100px; */
+            float: right;
+            margin-top: 30px;
         }
 
     </style>
 </head>
 <body>
-    <div class="box">宽高的百分比是相对于父元素而言的</div>
+    <div class="box1">
+        <div class="box2">box</div>
+    </div>
 
+    <!-- <div class="box">宽高的百分比是相对于父元素而言的</div> -->
     <!-- <div class="box1">这是box1</div>
     <h2>这是小标题</h2> -->
 </body>

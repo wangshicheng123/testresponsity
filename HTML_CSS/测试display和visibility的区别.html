@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试display和visibility的区别</title>
+    <style>
+        
+        body{
+            margin: 0px;
+        }
+
+        .box{
+            width: 200px;
+            height: 200px;
+        }
+
+        .box1{
+            background: red;
+        }
+        .box2{
+            background: yellow;
+            /* display: none; */
+            visibility: hidden;
+        }
+        .box3{
+            background: green;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box box1">1</div>
+    <div class="box box2">2</div>
+    <div class="box box3">3</div>
+    <div>对于display:none;来说当前元素脱离了文档流不占据原有的物理空间，
+        而对于visibility:hidden;来说，当前元素也是脱离了文档流但是仍然保留其原有的物理空间；
+    </div>
+</body>
+</html>
