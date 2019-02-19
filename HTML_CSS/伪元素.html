@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>伪元素</title>
     <style>
-        .box1{
+        /*.box1{
             width: 200px;
             height: 200px;
             background: pink;
@@ -16,13 +16,42 @@
             content: "这是一段文字";
             height: 40px;
             width: 40px;
-            background: red;/*伪元素是一个行级元素*/
+            background: red;/*伪元素是一个行级元素
+        }*/
+        body{
+            margin: 0px;
+            padding: 0px;
         }
+
+        .ul::after{
+            /* overflow: hidden; */
+            /* float: left; */
+            /* position: absolute; */
+            /* position: fixed; */
+            /* height: 50px; */
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .ul li{    
+            float: left;
+            width: 50px;
+            height: 50px;
+        }
+
     </style>
 </head>
 <body>
-    <div class="box1">
+    <ul class="ul">
+        <li>01</li>
+        <li>02</li>
+        <li>03</li>
+    </ul>
+    <h3>标题</h3>
+
+    <!-- <div class="box1">
         <div>div</div>
-    </div>
+    </div> -->
 </body>
 </html>
