@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试z-index属性</title>
+    <style>
+
+        body{
+            margin: 0px;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            /* float: left; */
+        }
+
+        .box1{
+            background: red;
+            z-index: -1;
+        }
+        .box2{
+            background:yellow;
+            z-index: -2;
+        }
+        .box3{
+            background: green;
+            z-index: -3;
+        }
+    </style>
+</head>
+<body>
+    <div class="box box1">1为我国Greg</div>
+    <div class="box box2">2</div>
+    <div class="box box3">3</div>
+    <div>z-index可用于调整元素的垂直及z轴方向上的上下位置，
+        并且必须在已经定位的元素上使用z0-index属性，否则无效</div>
+</body>
+</html>
