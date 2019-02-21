@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>五环</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        .circle ,.circle::after{
+            width: 200px;
+            height: 200px;
+            border-width: 10px;
+            border-style: solid;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .circle::after{
+            content:'';
+            top: -10px;
+            left: -10px;
+        }
+        .circle1{
+            border-color: blue;
+            top: 0px;
+            left: 0px;
+        }
+        .circle1::after{
+            border-color: blue;
+            z-index: 1;
+            border-bottom-color: transparent;
+        }
+
+        .circle2{
+            border-color: yellow;
+            top: 0px;
+            left: 230px;
+        }
+        .circle2::after{
+            border-color: yellow;
+            z-index: 1;
+            border-bottom-color: transparent;
+        }
+        .circle3{
+            border-color: #000;
+            top: 0px;
+            left: 460px;
+        }
+        .circle3::after{
+            border-color: #000;
+            z-index: 1;
+            border-bottom-color: transparent;
+        }
+        .circle4{
+            border-color: green;
+            top: 110px;
+            left: 110px;
+        }
+        .circle4::after{
+            border-color: green;
+        }
+        .circle5{
+            border-color: red;
+            top: 110px;
+            left: 340px;
+        }
+        .circle5::after{
+            border-color: red;
+            /* z-index: 1; */
+            /* border-bottom-color: transparent; */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+    <div class="circle circle4"></div>
+    <div class="circle circle5"></div>
+</body>
+</html>
