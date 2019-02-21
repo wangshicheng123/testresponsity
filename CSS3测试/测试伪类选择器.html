@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试伪类选择器</title>
+    <style>
+        a[href]:link{
+            color: red;
+        }
+        a[href]:visited{
+            color: green;
+        }
+        a[href]:hover{
+            color: yellow;
+        }
+        a[href]:active{
+            color: blue;
+        }
+        .input[placeholder]:focus{
+            /* content: "已经获取焦点"; */
+            /* color: red; */
+            background: red;
+        }
+        .list li[class="item"]{
+            float: left;
+            list-style: none;
+            padding: 0px;
+            background: red;
+            margin-left: 10px;
+            height: 30px;
+            line-height: 30px;
+            width: 50px;
+            text-align: center;
+        }
+        .list li[class="item"]:not(.item1){
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: blue;
+        }
+    </style>
+</head>
+<body id="container">
+
+    <ul class="list">
+        <li class="item item1">item1</li>
+        <li class="item">item2</li>
+        <li class="item">item3</li>
+        <li class="item">item4</li>
+        <li class="item">item5</li>
+    </ul>
+    <!-- name: <input class="input" autofocus="autofocus" type="text" placeholder="请输入姓名"> -->
+    <!-- <a href="">link</a>
+    <a href="">visited</a>
+    <a href="">hover</a>
+    <a href="">active</a>
+    <a href="http://www.baidu.com" target="_blank">为访问</a> -->
+</body>
+</html>
