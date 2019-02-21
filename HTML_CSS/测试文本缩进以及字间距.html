@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试首行缩进以及字间距，单词间距</title>
+    <style>
+    .box{
+        width: 150px;
+        height: 50px;
+        background: #999;
+        /* overflow: hidden;overflow:hidden的使用可以使子元素超出父元素的宽高的时候
+        内容进行隐藏，不会超出父元素的外面；
+         */
+         white-space: nowrap;
+         /* white-space: nowrap; */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <!-- 这是一些文字这是一些文字这是一些文字这是一些文字这是一些文字 -->
+        aaa aa aa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    </div>
+</body>
+</html>
