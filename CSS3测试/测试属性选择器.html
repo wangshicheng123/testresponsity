@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试属性选择器</title>
+    <style>
+        .form input[type]{
+            background: red;
+            /* border: none; */
+            outline: none;
+        }
+        .form input[type="password"] {
+            background: green;
+        }
+        .form input[type="text"]{
+            border: none;
+        }
+
+        .box{
+            width: 200px;
+            height: 200px;
+        }
+
+        #container div[class^="c"]{
+            background: red;
+        }
+        #container div[class$="box4"]{
+            background: green;
+        }
+        #container div[class*="o"]{
+            text-align:center;
+        }
+        #container div[class|="e"]{
+            background: yellow;
+        }
+        #container div[class|="f"]{
+            font-size: 24px;
+        }
+        #container div[title^="这是"]{
+            color: #fff;
+        }
+        #container .cbox3[title$="包子"]{
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+    <form action="" class="form">
+        name: <input type="text" name="name">
+        password: <input type="password">
+    </form>
+
+    <div id="container">
+        <div class="abc">1</div>
+        <div class="box2">2</div>
+        <div class="cbox3" title="这是一个盒子">3</div>
+        <div class="dbox4">4</div>
+        <div class="cbox3" title="这是一个包子">5</div>
+        <div class="f-boxee">6</div>
+    </div>
+</body>
+</html>
