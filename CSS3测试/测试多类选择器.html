@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试多类选择器</title>
+    <style>
+        .item{
+            background: pink;
+        }
+        .item.item2::after{
+            content: '这是一行文字'
+        }
+    </style>
+</head>
+<body>
+    <ul class="list">
+        <li class="item item2"></li>
+        <li class="item"></li>
+        <li class="item item2"></li>
+    </ul>
+</body>
+</html>
