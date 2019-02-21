@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>田字格</title>
+    <style>
+        #container{
+            width: 405px;
+            height: 405px;
+            background: #eee;
+        }
+        #container .box{
+            /* background: #; */
+            border: 1px solid #999;
+            width: 200px;
+            height: 200px;
+            float: left;
+            position: relative;
+        }
+        #container .box2{
+            left: -1px;
+        }
+        #container .box3{
+            top: -1px;
+        }
+        #container .box4{
+            left: -1px;
+            top: -1px;
+        }
+
+        #container .box1:hover{
+            border-color: red;
+            z-index: 999;
+        }
+        #container .box2:hover{
+            border-color: yellow;
+            z-index: 999;
+        }
+        #container .box3:hover{
+            border-color: green;
+            z-index: 999;
+        }
+        #container .box4:hover{
+            border-color: blue;
+            z-index: 999;
+        }
+    </style>    
+</head>
+<body>
+    <div id="container">
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+        <div class="box box3"></div>
+        <div class="box box4"></div>
+    </div>
+</body>
+</html>
