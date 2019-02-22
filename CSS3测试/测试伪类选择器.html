@@ -23,7 +23,12 @@
             /* color: red; */
             background: red;
         }
-        .list li[class="item"]{
+        .list li[class="item"]:not(.item1){
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: blue;
+        }
+        .list li{
             float: left;
             list-style: none;
             padding: 0px;
@@ -34,11 +39,7 @@
             width: 50px;
             text-align: center;
         }
-        .list li[class="item"]:not(.item1){
-            border-left-width: 1px;
-            border-left-style: solid;
-            border-left-color: blue;
-        }
+    
     </style>
 </head>
 <body id="container">
