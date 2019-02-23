@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js基础语法测试</title>
+</head>
+<body>
+    
+
+    <script>
+        // document.write("<h2>这是一'个'二级标题</h2>");
+        // function getMax(){
+        //     var x=Math.random();
+        //     var y=Math.random();
+        //     var max=x>y?x:y;
+        //     return max;
+        // }
+        // var max=getMax();
+        // console.log(max);
+        function isRunyear(){
+            var today=new Date();
+            var year= today.getFullYear();
+            if((year%4==0)&&(year%100!=0)||(year%400==0)){
+                document.write("今年是闰年");
+            }else{
+                document.write("今年不是闰年");
+            }
+        }
+        isRunyear();
+    </script>
+</body>
+</html>
