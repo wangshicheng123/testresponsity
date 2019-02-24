@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简单测试一下三行布局</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        html,body{
+            height: 100%;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .header{
+            width: 100%;
+            background: red;
+            flex-grow: 1;
+            /* 只要注释flex-grow的时候，header的高度就会变成0px; */
+            /* height: 0px; */
+        }
+        .content{
+            width: 100%;
+            background:green;
+            flex-grow: 1;
+            /* 高度是相对于内容的高度，只要设置了当前元素的flex-grow，无论其高度是多少都不起作用，
+            但是如果不控制弹性盒子的内容高度，内容高度过大，会影响整个布局 */
+            height: 0px;
+
+        }
+        .footer{
+            width: 100%;
+            background: blue;
+            flex-grow: 1;
+            /* height: 0px; */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+        <div class="content">
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+            <h1>标题</h1>
+
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>
