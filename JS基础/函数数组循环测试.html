@@ -10,7 +10,128 @@
     
 
     <script>
+
         
+
+
+        // 斐波那契数列
+        /*function fibo(n){
+            if(n==1||n==2){
+                return 1;
+            }
+            return fibo(n-2)+fibo(n-1);
+        }
+        console.log(fibo(5));
+        */
+        
+        /*function fibo2(n){
+            if(n==1||n==2){
+                return 1;
+            }
+            var result1=1,result2=1,result3;
+            for(var i=3;i<=n;++i){
+                result3=result1+result2;
+                result1=result2;
+                result2=result3; 
+            }
+            return result3;
+        }
+        console.log(fibo2(8));
+        */
+
+        /*
+        function triangle(n){
+            for(var i=1;i<=n;++i){
+                for(var z=1;z<=n-i;++z){
+                    document.write("&nbsp");
+                }
+                for(var j=1;j<=i;++j){
+                    document.write("*"+"&nbsp");
+                }
+                document.write("<br>");
+            }
+        }
+        triangle(20);
+        */
+        // 编写一个非递归函数factorial(n)，计算12!-10!的结果
+        /*function unfac(x,y){
+            var result1=1;
+            for(var i=1;i<=x;++i){
+                result1=result1*i;
+            }
+            var result2=1;
+            for(var j=1;j<=y;++j){
+                result2=result2*j;
+            }
+            return result1-result2;
+        }
+        console.log(unfac(3,1));
+        */
+
+        //寻找100到1000之间的素数
+
+        /*for(var i=100,count2=0;i<=1000;++i){
+            var count=0;
+            for(var j=2;j<i;++j){
+                if(i%j==0){
+                    break;
+                }else{
+                    count++;
+                }
+            }
+            if(i-2==count){
+                ++count2;
+                document.write(i+'&nbsp');
+                if(count2%6==0){
+                    document.write("<br>");
+                }
+            }
+
+        }*/
+
+        //使用递归的方法来实现阶乘
+        /*function fac(n){
+            if(n==1){
+                return 1;
+            }
+            return n*fac(n-1);
+        }
+        console.log(fac(3));
+        */
+        /*
+        var x=prompt("请输入一个数字：");
+        function getResult(x){
+            if(x%3==0&&x%5==0&&x%7==0){
+                console.log("该数字能够被3，5，7整除");
+            }else{
+                console.log("该数字不能够被3,5,7整除");
+            }
+
+            for(var i=1,count=1; i<1000;++i){
+                if((i%3==0)&&(i%5==0)&&(i%7==0)){
+                    document.write(i+" ");
+                    if(count!=1&&count%6==0){
+                        document.write("<br>");
+                    }
+                    ++count;
+                }
+            }
+        }
+        getResult(x);
+        */
+        /*
+        var x=prompt("请输入第一个数：");
+        var y=prompt("请输入第二个数：");
+        function getMin(x,y){
+            return x>y?y:x;
+        }
+        console.log(getMin(x,y));
+        */
+        /*function getResult(x){
+            return 4*x*x+3*x+2;
+        }
+        console.log(getResult(1));
+        */
         /*
         for(var i=1000; i<9999;++i){
             var a=Math.floor(i%1000%100%10);
