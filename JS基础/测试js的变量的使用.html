@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试js的变量的使用</title>
+    <style>
+    </style>
+</head>
+<body>
+    <script>
+        var x=10;
+        var y=23.234;
+        document.write("整数的类型："+typeof(x)+"<br>");
+        document.write("小数的类型："+typeof(y)+"<br>");
+        var a = "";
+        var b= "abcs";
+        document.write("空字符串的类型："+typeof(a)+"<br>");
+        document.write("字符串的类型："+typeof(b)+"<br>");
+        var c;
+        document.write("未进行赋值的变量的类型："+typeof(c)+"<br>");
+        document.write(c+"<br>");
+        var d=true;
+        document.write("true的类型："+typeof(d)+"<br>");
+        // var 2dd=100;不能使用数字开头定义变量
+        // console.log(2dd);
+        // var ?ads=100;只能使用字母下划线，$作为变量的开头；
+        // var -acd=100px;错误
+        // window.prompt();//注意这二个参数可选
+        console.log(5+"abc");
+        console.log(4-"ajac");
+        //false相当于0,true相当于1去使用，如果表达式中存在乘号或者➗，结果的类型一定是number
+        //如果表达式中存在减号，也会隐式转换为number类型，（null-34,''-34）为-34，（undefined-34）为NaN;
+        //如果表达式中存在加号，同时存在字符串的话，会进行隐式转换成为字符串 
+        //（1321+undefined）为NaN,（1321+null）为1321；
+
+        //逻辑与：（123&&undefined===undefined）,(134&&null===null),(123&&''==='')
+        //逻辑或：（null||undefined===undefined）,(undefined||null===null),(null||''==='')
+        //逻辑非：只要使用逻辑非这个运算符结果就是布尔类型的值，(!''===true)，(!undefined===true),(!null===true)
+    </script>
+</body>
+</html>

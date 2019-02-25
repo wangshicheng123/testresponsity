@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>函数数组循环</title>
+</head>
+<body>
+    
+
+    <script>
+        // var arr = new Array(10);
+        // var arr = new Array(13,4,5,634);//注意区别
+        // console.log(arr);
+        var person =[{
+            name: 'zhangsan',
+            age: 20
+        },{
+            name: 'lisi',
+            age: 22
+        },{
+            name: 'wngwu',
+            age: 33
+        }];
+        for(var i=0; i<person.length;++i){
+            // console.log(person[i]);
+            for(var j in person[i]){
+                console.log(person[i][j]);
+            }
+            console.log('------------');
+        }
+    </script>
+</body>
+</html>
