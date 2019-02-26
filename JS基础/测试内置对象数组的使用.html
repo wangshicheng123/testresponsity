@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试内置对象数组的使用</title>
+</head>
+<body>
+    
+
+    <script>
+
+        //测试splice方法
+        // var arr =[34,534,63,24,85];
+        // arr.splice(2,1,0);//在原数组上进行修改,没有生成新的数组
+        // console.log(arr.splice(2,1,0));//注意被返回的是删除的项目
+
+
+        //测试shift方法
+        // var arr=[234,45,2,346,354];
+        // arr.shift();//删除头部的第一个元素
+        // console.log(arr.shift());//返回的是删除的头部的第一个元素
+
+        //测试unshift方法
+        // var arr =[34,63,73,252,584];
+        // arr.unshift(8);//在数组的头部位置插入一个元素，返回改变了的数组的长度；
+        // console.log(arr.unshift(34));//注意也可以插入多个元素
+
+        //测试pop方法
+        // var arr =[13,35,25,73,362];
+        // console.log(arr.pop());//返回的是删除的最后一个元素,在原数组上进行修改，没有重新生成一个数组
+        // arr.pop();
+        // console.log(arr);
+
+        /*
+        //测试push方法
+        var arr=[36,33,74,322,3,7];
+        var arr2=[34,63,25,74];
+        arr.push(arr2);//可以push整个数组，形成一个二维数组，
+        // console.log(arr);
+        // console.log(arr[6][1]);
+        console.log(arr2.length);
+        arr2.push('wangshicheng','ahfkjdahfkj');//在数组的结尾插入一个元素，形成一个新的数组；
+        console.log(arr2.length);//push元素之后数组的长度会发生改变
+        */
+
+        /*
+        var arr =[1,4,7,9,23,6,35];
+        //console.log(arr);
+        console.log(arr.sort(function(a,b){
+            // console.log(a,b);
+            return 0;//返回数组
+            return a-b;//返回从小到大的顺序的数组
+            return b-a;//返回从大到小的顺序的数组 
+        }));
+        */
+
+        //测试sort方法：显示问题
+        /*
+        var arr =[2,4,7,3,1,7,0];
+        console.log(arr);
+        console.log(arr.sort());
+        */
+
+        // var arr=new Array;//注意在定义数组的时候，Array后面 可以没有括号；
+        // console.log(arr);
+        // var arr =new Array('cds',34,'dsvsdv',656);
+        // console.log(arr);
+
+        // var arr =new Array(3);//只有一个number类型的参数时，相当于数组的初始长度；
+        // arr[60]=3240;//数组的前六十项都是空的，没有内容
+        // console.log(arr);
+        // var arr =new Array("abcsd");
+        // console.log(arr);
+    </script>
+</body>
+</html>
