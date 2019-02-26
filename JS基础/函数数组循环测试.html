@@ -11,7 +11,47 @@
 
     <script>
 
+        
 
+        //5.	编制一个将两个字符串交叉合并的函数Merge(s1,s2)，
+        //  例如Merge("123","abc"）的返回结果是"1a2b3c"
+        /*function merge(str1,str2){
+            var result='';
+            var length=str1.length>str2.length?str1.length:str2.length;
+            for(var i=0;i<length;++i){
+                result=result+str1.charAt(i)+str2.charAt(i);
+            }
+            return result;
+        }
+        console.log(merge('12345','kcjhdkhsk'));
+        */
+        
+        /*
+        function collectDigits(str){
+            var result='';
+            for(var i=0;i<str.length;++i){
+                if(str.charAt(i)>='0'&&str.charAt(i)<='9'){
+                    result+=str.charAt(i);
+                }
+            }
+            return result;
+        }
+        console.log(collectDigits("3jkhk234kh42khb4hkh2hb4kh2b4k3099999"));
+        */
+        /*function collectDigits(str){
+            var result='';
+            for(var i=0; i<str.length;++i){
+                if(str[i]>='0'&&str[i]<='9'){
+                    result=result+str[i];
+                }
+            }
+            return result;
+        }
+        console.log(collectDigits("3hj2j3hjhjh342hj42jh4jh"));
+        */
+        // var str="a,jdf,jf";
+        // console.log(str.charAt(10));//当使用charAt()时，索引超出字符串最大长度的时候，返回的是一个空值；
+        // console.log(str[10]);//当使用中括号访问时，返回的是一个undefined;
 
 
         //逆序在页面中显示斐波纳契数列前40项的值（即，如果计算出来的数列是1,1,2,3,5,8…，
