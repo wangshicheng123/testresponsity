@@ -11,10 +11,69 @@
 
     <script>
 
-        
+        // function myfun();
+        // console.log(myfun());
 
+        //3.	设计一个页面，在页面上显示信息“现在是XXXX年XX月XX日Xx点XX分XX秒（星期X)，欢迎您的到访！
+        /*function showTime(){
+            var time=new Date();   
+            document.write();
+        }*/
+
+        //2.	使用Math对象的random()方法编制一个产生0~100之间（含0,100）的随机整数的函数
+        /*function random(){
+            return Math.floor(Math.random()*100);
+        }
+        console.log(random());
+        */
+        //1.	编写程序，根据用户1输入的数值，计算其平方、平方根和自然对数
+        /*var number=prompt("请输入一个数字：");
+        function computedResult(n){
+            document.write("平方数："+Math.pow(n,2)+"<br>");
+            document.write("平方根："+Math.sqrt(n)+"<br>");
+            document.write("自然对数："+Math.log(n));
+        }
+        computedResult(number);
+        */
+
+        //n为随机一次产生三个随机数的次数
+        /*function luckyNumerRate(n){
+            for(var i=1,count=0;i<=n;++i){
+                for(var j=1;j<=3;++j){
+                    var random=Math.floor((Math.random()*8+1));
+                    if(random==8){
+                        ++count;
+                        break;
+                    }
+                }
+            }
+            return count/n;
+        }
+
+        console.log(luckyNumerRate(100));
+        */
+
+        /*function myPi(n){
+            var result=0;
+            for(var i=1;i<=n;++i){
+                result=result+(Math.pow(-1,i-1))/(2*i-1);
+            }
+            return result*4;   
+        }
+        console.log(myPi(10000));
+        */
 
         // 斐波那契数列
+        /*
+        function fibo(n){
+            var arr=[1,1];
+            for(var i=2; i<n;++i){
+                arr[i]=arr[i-1]+arr[i-2];
+            }
+            return arr[n-1];
+        }
+        console.log(fibo(8));
+        */
         /*function fibo(n){
             if(n==1||n==2){
                 return 1;
@@ -69,7 +128,27 @@
         */
 
         //寻找100到1000之间的素数
+        /*
+        for(var i=100,count=0; i<=1000; ++i){
+            var myFlag=false;
+            for(var j=2;j<=Math.sqrt(i);++j){
+                if(i%j==0){
+                    myFlag=false;
+                    break;
+                }else{
+                    myFlag=true;
 
+                }
+            }
+            if(myFlag){
+                count++;
+                document.write(i+"&nbsp");
+                if(count%6==0){
+                    document.write("<br>");
+                }
+            }
+        }
+        */
         /*for(var i=100,count2=0;i<=1000;++i){
             var count=0;
             for(var j=2;j<i;++j){
