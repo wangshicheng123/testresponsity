@@ -11,15 +11,59 @@
 
     <script>
 
+
+
+
+        //逆序在页面中显示斐波纳契数列前40项的值（即，如果计算出来的数列是1,1,2,3,5,8…，
+        //那么显示的顺序是…，8,5,3,2,1,1），并要求每行显示6个数
+        /*function reverseFibo(n){
+            // document.write("afhshfk")
+            var arr=[1,1];
+            for(var i=2;i<n;++i){
+                arr[i]=arr[i-1]+arr[i-2];
+            }
+            // console.log(arr);
+            for(var j=arr.length,z=1;j>0;--j,++z){
+                document.write(arr[j-1]+"&nbsp;&nbsp");
+                if(z%6==0){
+                    document.write("<br>");
+                }
+            }
+        }
+        reverseFibo(40);
+        */
+
+        // /6.	设计一个程序，它（使用一个数组）接收用户输入的7门课程的成绩，
+        //      然后在页面上显示其总成绩和平均分，并列出小于60的成绩
+        /*var gradeArr=[];
+        for(var i=0;i<7;++i){
+            gradeArr[i]=parseInt(prompt("请输入成绩："));
+        }
+        function getSumAndAve(gradeArr){
+            var sum=0;
+            for(var i=0;i<gradeArr.length;++i){
+                sum=sum+gradeArr[i];
+            }
+            document.write("总成绩是："+sum+"<br>");
+            var average=sum/gradeArr.length;
+            document.write("平均成绩是："+average);
+        }
+        getSumAndAve(gradeArr);
+        */
+
         // function myfun();
         // console.log(myfun());
+
+
+
 
         //3.	设计一个页面，在页面上显示信息“现在是XXXX年XX月XX日Xx点XX分XX秒（星期X)，欢迎您的到访！
         /*function showTime(){
             var time=new Date();   
-            document.write();
-        }*/
-
+            document.write(time.getFullYear()+"年"+(time.getMonth()+1)+"月"+(time.getDate()+1)+"日"+(time.getHours()+1)+"点"+(time.getMinutes()+1)+"分"+(time.getSeconds()+1)+"秒（星期"+(time.getDay()+1)+"）,欢迎您的到访！");
+        }
+        showTime();
+        */
         //2.	使用Math对象的random()方法编制一个产生0~100之间（含0,100）的随机整数的函数
         /*function random(){
             return Math.floor(Math.random()*100);
@@ -40,7 +84,7 @@
         /*function luckyNumerRate(n){
             for(var i=1,count=0;i<=n;++i){
                 for(var j=1;j<=3;++j){
-                    var random=Math.floor((Math.random()*8+1));
+                    var random=Math.ceil((Math.random()*8+1));
                     if(random==8){
                         ++count;
                         break;
