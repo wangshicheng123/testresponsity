@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>右键菜单</title>
+    <style>
+        body,ul{
+            margin: 0px;
+        }
+        #menue{
+            border: 1px solid #eee;
+            border-radius: 5px;
+            width: 120px;
+            /* margin-left: 200px; */
+            padding: 0px;
+            background-color: rgba(255,255,255,.5);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        #menue li{
+            list-style: none;
+            width: 120px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+        }
+        #menue li:not(.item){
+            border-bottom: 1px dotted #eee;
+        }
+
+
+        #menue li:hover{
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+    <ul id="menue">
+        <li>菜单一</li>
+        <li>菜单二</li>
+        <li>菜单三</li>
+        <li>菜单四</li>
+        <li class="item">菜单五</li>
+    </ul>
+
+    <script>
+        var oMenue=document.getElementById('menue');
+        var aList=oMenue.getElementsByTagName("li");
+        oMenue.style.display="none";
+        document.oncontextmenu=function(e){
+            // console.log(e);
+            e=e||window.event;
+            oMenue.style.display="block";
+            oMenue.style.top=e.clientY+"px";
+            oMenue.style.left=e.clientX+"px";
+            return false;
+        }
+        document.onclick=function(){
+            oMenue.style.display="none";
+        }
+        // console.log(aList);
+        for(var i=0; i<aList.length;++i){
+            aList[i].onclick=function(){
+                alert(this.innerHTML);
+            }
+        }
+
+    </script>
+</body>
+</html>
