@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选项卡</title>
+    <style>
+        body,ul{
+            margin: 0px;
+        }
+        #tabs{
+            border: 1px solid #eee;
+            border-radius: 5px;
+            height: 35px;
+            width: 366px;
+            background-color: rgba(255,255,255,.5);
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translatex(-50%);
+        }
+        #tabs .tab-item{
+            padding: 0px;
+        }
+        #tabs .tab-item li{
+            height: 35px;
+            width: 120px;
+            line-height: 35px;
+            float: left;
+            list-style: none;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #tabs .tab-item li:hover{
+            background: #eee;
+        }
+        #tabs .content{
+            height: 200px;
+            width: 366px;
+            /* background: #aaa; */
+            /* display: none; */
+            padding-top: 50px;
+            border: 1px solid #eee;
+        }
+        #tabs .ability{
+            text-align: center;
+        }
+        #tabs .detail{
+            text-indent: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="tabs">
+        <ul class="tab-item">
+            <li>大乔</li>
+            <li>小乔</li>
+            <li>孙尚香</li>
+        </ul>
+        <div class="content">
+            <h3 class="ability">大桥的技能：</h3>
+            <p class="detail">弃之一张手牌可以把受到的敌人的伤害在有限的范围内转移给其他人。</p>
+        </div>
+        <div class="content" style="display:none;">
+            <h3 class="ability">小乔的技能：</h3>
+            <p class="detail">把一张红色的手牌当乐不思蜀进行使用。</p>
+        </div>
+        <div class="content" style="display:none;">
+            <h3 class="ability">孙尚香的技能：</h3>
+            <p class="detail">弃两张手牌并选择一名受伤的男性角色:和目标角色各回复1点体力。</p>
+        </div>
+    </div>
+
+    <script>
+        var oContent=document.getElementsByClassName("content");
+        // console.log(oContent);
+        var oUl=document.getElementsByClassName("tab-item");
+        var aLi=oUl[0].getElementsByTagName("li");
+        for(var i=0; i<aLi.length;++i){
+            aLi[i].onclick=function(){
+
+            }
+        }
+    </script>
+</body>
+</html>
