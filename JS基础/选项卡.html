@@ -10,11 +10,9 @@
             margin: 0px;
         }
         #tabs{
-            border: 1px solid #eee;
-            border-radius: 5px;
             height: 35px;
-            width: 366px;
-            background-color: rgba(255,255,255,.5);
+            /* width: 366px; */
+            background-color: rgba(255,255,255,.6);
             position: absolute;
             top: 100px;
             left: 50%;
@@ -22,28 +20,37 @@
         }
         #tabs .tab-item{
             padding: 0px;
+            border: 1px solid #eee;
+            /* border-bottom: none; */
+            border-radius: 5px;
+            height: 35px;
         }
         #tabs .tab-item li{
             height: 35px;
-            width: 120px;
+            width: 129px;
             line-height: 35px;
             float: left;
             list-style: none;
-            border: 1px solid transparent;
-            border-radius: 5px;
             text-align: center;
             cursor: pointer;
         }
-        #tabs .tab-item li:hover{
-            background: #eee;
+        #tabs .tab-item li:not(:first-child){
+            border-left-style: solid;
+            border-left-color: #eee;
+            border-left-width: 1px;
+            border-radius: 5px;
         }
         #tabs .content{
             height: 200px;
-            width: 366px;
+            width: 369px;
             /* background: #aaa; */
-            /* display: none; */
-            padding-top: 50px;
+            padding: 30px 10px 0px 10px;
             border: 1px solid #eee;
+            border-top: none;
+            display: none;
+        }
+        #tabs .selected{
+            display: block;
         }
         #tabs .ability{
             text-align: center;
@@ -51,6 +58,10 @@
         #tabs .detail{
             text-indent: 30px;
         }
+        .active{
+            background: #eee;
+        }
+
     </style>
 </head>
 <body>
@@ -60,29 +71,72 @@
             <li>小乔</li>
             <li>孙尚香</li>
         </ul>
-        <div class="content">
+        <div class="content selected" id="content1">
             <h3 class="ability">大桥的技能：</h3>
             <p class="detail">弃之一张手牌可以把受到的敌人的伤害在有限的范围内转移给其他人。</p>
         </div>
-        <div class="content" style="display:none;">
+        <div class="content" id="content2">
             <h3 class="ability">小乔的技能：</h3>
             <p class="detail">把一张红色的手牌当乐不思蜀进行使用。</p>
         </div>
-        <div class="content" style="display:none;">
+        <div class="content" id="content3">
             <h3 class="ability">孙尚香的技能：</h3>
             <p class="detail">弃两张手牌并选择一名受伤的男性角色:和目标角色各回复1点体力。</p>
         </div>
     </div>
 
     <script>
-        var oContent=document.getElementsByClassName("content");
-        // console.log(oContent);
-        var oUl=document.getElementsByClassName("tab-item");
-        var aLi=oUl[0].getElementsByTagName("li");
-        for(var i=0; i<aLi.length;++i){
-            aLi[i].onclick=function(){
+        //var oContent=document.getElementsByClassName("content");//oContent[0],oContent[1],oContent[1]
+        var oUl=document.getElementsByClassName("tab-item");//获取菜单列表
+        var aLi=oUl[0].getElementsByTagName("li"); //获取菜单列表下的li元素
+        // oContent[0].style.color="red"
+        //遇到的问题，如何确定我获取的是哪一个li元素
+        // for(let i=0; i<aLi.length;++i){
+        //     aLi[i].onmouseove=function(){
+        //         oContent[i].className="show";
+        //     }
+        //     aLi[i].onmouseleave=function(){
+        //         oContent[i].className="";
+        //     }
+        //     // (function(){
+        //     //     aLi[i].onclick=function(){
+        //     //         oContent[i].className='show';
+        //     //     }
+        //     // })();
+        // }
 
-            }
+        // oContent[1].className="hidden";
+        aLi[0].onmouseover=function(){
+            // this.style.display="block";
+            document.getElementById("content1").style.display="block";
+            this.className="active";
+        };
+        aLi[0].onmouseleave=function(){
+            // this.style.display="none";
+            // document.getElementById("content1").style.display="none";
+            this.className="";
+        }
+        aLi[1].onmouseover=function(){
+            document.getElementById("content1").style.display="none";
+            document.getElementById("content2").style.display="block";
+            this.className="active";
+        };
+        aLi[1].onmouseleave=function(){
+            document.getElementById("content2").style.display="none";
+            document.getElementById("content1").style.display="block";
+            // document.getElementById("content1").className="active";
+            this.className="";
+        }
+        aLi[2].onmouseover=function(){
+            document.getElementById("content1").style.display="none";
+            document.getElementById("content3").style.display="block";
+            this.className="active";
+        };
+        aLi[2].onmouseleave=function(){
+            document.getElementById("content3").style.display="none";
+            document.getElementById("content1").style.display="block";
+            // document.getElementById("content1").className="active";
+            this.className="";
         }
     </script>
 </body>
