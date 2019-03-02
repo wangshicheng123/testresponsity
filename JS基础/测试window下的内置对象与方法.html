@@ -7,14 +7,33 @@
     <title>测试window对象的内置的对象与方法</title>
 </head>
 <body>
-    
+    <a href="https://www.baidu.com">百度</a><br>
 
+    <button onclick="go()">下一页</button>
+    <button onclick="back()">上一页</button>
+
+    <a href="https://www.hao123.com" onclick="redireced()">好123</a>
     <script>
         //返回的是一个boolean类型的值
         // var bIsAgree=confirm("请选择是否同意");
         // console.log(bIsAgree);
 
-        
+        function redireced(){
+            console.log('132');
+            //如何解除浏览器的默认行为;
+            return false;
+        }
+
+        function forward(){
+            history.forward();
+        }
+        function back(){
+            history.back();
+        }
+        function go(){
+            //可以指定跳转的页数
+            history.go(1);
+        }
     </script>
 </body>
 </html>
