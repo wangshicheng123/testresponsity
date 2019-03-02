@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试String的一些基本方法</title>
+</head>
+<body>
+    
+
+    <script>
+        //charAt方法
+        var sStr="abcdefgh";
+        var x=sStr.charAt(0);
+        // console.log(x);
+        
+        //测试indexOf()方法
+        var m= sStr.indexOf("rt");
+        // console.log(m);
+
+        //测试slice(start,end)方法,注意包含start,不包含end;
+        var n=sStr.slice(3,5);
+        // console.log(n);
+
+        //测试subStr()方法,第一个参数是起始位置，第二个参数是取到字符串的长度
+        //注意包含start位置的字符
+        var a=sStr.substr(1,4);
+        // console.log(a);
+
+        //测试substring()方法,注意第一个参数是起始位置,第二个参数是结束为止
+        //和substr的区别是参数的正负问题
+        var b=sStr.substring(3,6);
+        // console.log(b);
+
+        //测试split()方法,是把一个字符串按照给定的字符串拆成一个数组;
+        var sStr2="afaf-sdff-vssdv-vf-svvs";
+        var aArr=sStr2.split('-');
+        // console.log(aArr);
+        //注意数组的方法join()的使用,如果想要是数组变成一个整体的话,
+        //参数是一个空字符串,
+        //如果不加任何参数,默认用逗号隔开;
+        // console.log(aArr.join(''));
+    </script>
+</body>
+</html>
