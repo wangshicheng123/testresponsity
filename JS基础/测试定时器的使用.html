@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试定时器的使用</title>
+</head>
+<body>
+    
+
+    <script>
+        function myFun(){
+            console.log("王者荣耀很好玩");
+        }
+
+        //setTimeout是一个异步操作
+        /*setTimeout(() => {
+            console.log("王者荣耀很好玩");
+        }, 1000);
+        */
+
+        //注意参数的写法,每隔一秒就会执行这个函数
+        //var x=setInterval(myFun,1000);
+
+        //clearInterval(x);
+
+        console.log('1');
+        //注意一部操作会放置于任务队列中,知道主队列完成任务,
+        //才会执行任务队列里面的代码
+        setTimeout(function(){
+            console.log('2');
+        });
+        console.log('3');
+    </script>
+</body>
+</html>
