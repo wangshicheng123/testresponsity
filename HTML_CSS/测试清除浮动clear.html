@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试清除浮动clear</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        .box{
+            width: 500px;
+            /* height: 500px; */
+            background: #eee;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .box2{
+            width: 100px;
+            height: 100px;
+            background: red;
+            /* 注意text-align是对行级元素而言的 */
+            text-align: center;
+            /* vertical-align:middle; 不起作用*/
+            line-height: 100px;
+            float: left;
+
+        }
+        .box3{
+            width: 150px;
+            height: 150px;
+            background: green;
+            clear: left;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box">
+        <div class="box2">box2</div>
+        <div class="box3">box3</div>
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>
