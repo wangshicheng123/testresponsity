@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试文本装饰</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background: #eee;
+            /* border: 1px solid red; */
+            /* text-decoration: blue underline dotted; */
+            text-decoration-line: underline;
+            text-decoration-color: red;
+            text-decoration-style: dashed;
+            color: red;
+            /* text-underline-position: right; 没作用*/
+            text-shadow: 10px 10px 5px green;/*下划线也存在阴影*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box">这是一行用于测试文本装饰的文字</div>
+</body>
+</html>
