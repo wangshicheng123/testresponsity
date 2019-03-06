@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试flex-shrink弹性盒子</title>
+    <style>
+        body, html{
+            margin: 0px;
+            height: 100%;
+        }
+        .box{
+            /* height: 50px; */
+            height: 100%;
+            display: flex;
+            width: 100%;
+            /* flex-wrap: wrap; */
+            flex-direction: column;
+            /* overflow: hidden; */
+            /* justify-content: space-around; */
+        }
+        .box1{
+            /* flex-shrink: 2; */
+            background: red;
+            width: 500px;
+        }
+        .box2{
+            /* flex-shrink: 3; */
+            background: green;
+            width: 500px;
+        }
+        .box3{
+            /* flex-shrink: 4; */
+            background: yellow;
+            width: 500px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+        <div class="box3">box3</div>
+    </div>
+</body>
+</html>
