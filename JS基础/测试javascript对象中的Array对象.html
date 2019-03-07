@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试javasript对象中的Array对象</title>
+
+</head>
+<body>
+    
+    <script>
+        //Array对象用于在当个变量中存储多个值
+        //创建Array对象语法
+        var arr1=new Array();
+        // console.log(arr1);//没有传递任何参数的时候，默认数组长度是0；
+
+        var arr2=new  Array(10);
+        // console.log(arr2);//当存在一个参数，则表示的是数组的长度
+
+        var arr3=new Array(32,4242,514,15151,51,51,342);
+        // console.log(arr3);//当存在多个参数的时候，这些参数将会成为数组的成员
+
+        //测试Array对象的方法
+
+        var arr4=new Array(34,24,2514,14,14134,342);
+        var arr5=new Array("fadmf0","aff");
+        // var arr6=arr4.concat(arr5);
+        // var arr6=arr5.concat(arr5);注意数组放置的前后顺序会有影响
+        // console.log(arr6);
+
+        // console.log(arr4.join("-"));//测试的是join()方法
+
+        //测试的是pop()方法
+        // var arr6= arr4.pop();
+        // console.log(arr4);//注意是在原数组的基础上进行删除的
+        // console.log(arr6);//返回值是删除的那个元素
+
+        //测试的是push()方法
+        // var arr6 =arr4.push(100);
+        // console.log(arr4);//注意是在原数组上进行修改的
+        // console.log(arr6);//返回值是数组的长度
+
+        //测试reverse()方法
+        // var arr6= arr4.reverse();
+        // console.log(arr4);//注意实在元素数组上面进行修改的，返回值也是一样
+        // console.log(arr6);
+
+        //测试valueOf()方法
+        // console.log(arr4.valueOf());
+
+        //测试shift()方法
+        // console.log(arr4);
+        // var arr6=arr4.shift();//注意实在原数组上面进行的修改
+        // console.log(arr4);
+        // console.log(arr6);//返回值是已经删除的元素
+
+        //测试unshift()方法 
+        // console.log(arr4);
+        // var arr6= arr4.unshift(12234);
+        // console.log(arr4);//注意实在原数组上面进行的修改
+        // console.log(arr6);//返回值是变化后的数组的长度
+
+        //
+    </script>
+</body>
+</html>
