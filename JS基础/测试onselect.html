@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试onselect</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" value="abcdefg" id="input">
+    <script>
+        var oDiv=document.getElementById("input");
+        oDiv.onselect=function(){
+            // this.style.color="red";
+            // return false;
+            //在表单元素被选中执行
+            console.log("这个元素被选中了");
+
+        }
+    </script>
+</body>
+</html>
