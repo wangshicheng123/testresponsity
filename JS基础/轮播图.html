@@ -74,12 +74,12 @@
             bottom: 7px;
             height: 25px;
             width: 80px;
-            color: #fff;
+            color: #ff0036;
         }
         #container .arrow span{
             margin-right: 10px;
             font-size: 20px;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0,0,0,0.2);
             border-radius: 5px;
             float: left;
             width: 25px;
@@ -127,6 +127,7 @@
         // var aArrow=document.getElementsByClassName("arrow");
         // var aArrowLi=aArrow[0].getElementsByTagName("li");
         var iNow=0;
+        var timer;
         for(var i=0; i<aLi.length; ++i){
             aLi[i].index=i;
             aLi[i].onclick=function(){
@@ -142,9 +143,10 @@
 
         var oNext=document.getElementById("right-arrow");
         var oPre=document.getElementById("left-arrow");
-
-
+        var oContainer=document.getElementById("container");
+        //右侧按钮
         oNext.onclick=function(){
+            // this.style.color="#ff0036";
             iNow++;
             for(var i=0; i<aLi.length;++i){
                 aLi[i].className="";
@@ -158,8 +160,9 @@
             aLi[iNow].className="active";
             aImgs[iNow].className="selected";
         }
-
+        //左侧按钮
         oPre.onclick=function(){
+            // this.style.color="#ff0036";
             iNow--;
             for(var i=0; i<aLi.length;++i){
                 aLi[i].className="";
@@ -174,7 +177,21 @@
             aImgs[iNow].className="selected";
         }
 
-        
+        function run(){
+            timer=setInterval(function(){
+                oNext.onclick();
+            },2000);
+        }
+
+
+        run();
+
+        oContainer.onmouseover=function(){
+            clearInterval(timer);
+        }
+        oContainer.onmouseout=function(){
+            run();
+        }
 
     </script>
 </body>
