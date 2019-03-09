@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试let</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #ul{
+            list-style: none;
+            width: 105px;
+        }
+
+        #ul li{
+            float: left;
+            margin-right: 5px;
+            background: red;
+            width: 30px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <ul id="ul">
+        <li>li1</li>
+        <li>li2</li>
+        <li>li3</li>
+    </ul>
+    <script>
+        var oUl=document.getElementById("ul");
+        var aLi=oUl.getElementsByTagName("li");
+        for(var i=0; i<aLi.length; ++i){
+            // (function(){
+            //     aLi[i].onclick=function(){
+            //         console.log(i);
+            //     }
+            // })();
+            aLi[i].onclick=function(){
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+</html>

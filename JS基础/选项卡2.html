@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        .ul{
+            width: 200px;
+            list-style: none;
+        }
+
+
+        .ul li{
+            width: 35px;
+            height: 20px;
+            background: red;
+            float: left;
+            cursor: pointer;
+        }
+        .clearfix::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .content{
+            width: 200px;
+            height: 200px;
+            /* border: 1px solid red; */
+            background: #eee;
+            display: none;
+        }
+        .ul .active{
+            background: green;
+        }
+        .selected{
+            /* background: blue; */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <ul class="ul clearfix" id="ul">
+        <li class="active">li1</li>
+        <li>li2</li>
+        <li>li3</li>
+    </ul>
+    <div class="content selected">div1</div>
+    <div class="content">div2</div>
+    <div class="content">div3</div>
+
+    <script>
+        var oUl=document.getElementById("ul");
+        var aLi=oUl.getElementsByTagName("li");
+        var aDiv=document.getElementsByClassName("content");
+        for(var i=0; i<aLi.length; ++i){
+
+            aLi[i].index=i;
+            aLi[i].onclick=function(){
+                for(var j=0;j<aLi.length;++j){
+                    aLi[j].className="";
+                    aDiv[j].style.display="none";
+                }
+                this.className="active";
+                aDiv[this.index].style.display="block";
+                // console.log(this.index);
+            }
+        }
+    </script>
+</body>
+</html>
