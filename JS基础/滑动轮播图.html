@@ -133,6 +133,16 @@
         // 记录定时器
         var timer;
 
+        function changeBanner(number){
+            for(var j=0; j<aBtnLi.length; ++j){
+                aBtnLi[j].className="";
+            }
+            //给当前的按钮加上样式
+            aBtnLi[number].className="active";
+            //使图片父元素的left改变
+            aImages[0].style.left=-number*750+"px";
+        }
+
         //给每一个按钮绑定点击事件
         for(var i=0; i<aBtnLi.length;++i ){
             aBtnLi[i].index=i;
@@ -140,14 +150,16 @@
                 //给全局变量赋值
                 count=this.index;
                 //在点击每一个按钮之前，去掉所有的以前的样式
-                for(var j=0; j<aBtnLi.length; ++j){
+                /*for(var j=0; j<aBtnLi.length; ++j){
                     aBtnLi[j].className="";
                 }
                 //给当前的按钮加上样式
                 this.className="active";
                 //使图片父元素的left改变
-                aImages[0].style.left=-this.index*750+"px"
-
+                aImages[0].style.left=-this.index*750+"px";
+                */
+                //切换banner图片以及相关的样式
+                changeBanner(this.index);
             }
         }
 
@@ -156,16 +168,18 @@
             //使count加加
             count++;
 
+            /*
             //清除按钮之前的样式
             for(var i=0; i<aBtnLi.length; ++i){
                 aBtnLi[i].className="";
             }
             aBtnLi[count].className="active";
-
             aImages[0].style.left=-750*count+"px";
             // console.log("asjdl");
             console.log(count);
-
+            */
+            //切换banner图片以及相关的样式
+            changeBanner(count);
             //判断按钮是不是最后一个
             if(count==aBtnLi.length-1){
                 count=-1;
@@ -177,17 +191,23 @@
             //使count--
             count--;
 
+            /*
             //清除按钮之前的样式
             for(var i=0; i<aBtnLi.length; ++i){
                 aBtnLi[i].className="";
             }
-
             //给当前按钮添加样式
             aBtnLi[count].className="active";
-
             //切换到当前照片
             aImages[0].style.left=-750*count+"px";
+
+
             console.log(count);
+            */
+            
+            //切换banner图片以及相关的样式
+            changeBanner(count);
+
             //判断按钮是不是第一个
             if(count==0){
                 count=aBtnLi.length;
