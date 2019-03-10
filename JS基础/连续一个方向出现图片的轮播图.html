@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #container{
+            margin: 100px auto;
+            width: 750px;
+            height: 291px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #container .banners{
+            width: 4500px;
+            height: 291px;
+            position: absolute;
+
+        }
+        #container .banners img{
+            float: left;
+        }
+
+        #container .banner-nav{
+            list-style: none;
+            position: absolute;
+            /* left: 50%; */
+            /* transform: translatex(-50%); */
+            right: 10px;
+            bottom: 10px;
+        }
+        #container .banner-nav li{
+            float: left;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(0,0,0,.2);
+            border-radius: 5px;
+            margin: 0px 5px;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+            color: #fff;
+        }
+        #container .banner-nav .active{
+            background: #ff0036;
+        }
+
+        #container .arrow{
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+        }
+        #container .arrow span{
+            margin: 0px 10px;
+            float: left;
+            width: 25px;
+            height: 20px;
+            background-color: rgba(0,0,0,.2);
+            text-align: center;
+            line-height: 20px;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="banners">
+            <img src="./img/1.jpg" alt="">
+            <img src="./img/2.jpg" alt="">
+            <img src="./img/3.jpg" alt="">
+            <img src="./img/4.jpg" alt="">
+            <img src="./img/5.jpg" alt="">
+            <img src="./img/1.jpg" alt="">
+        </div>
+
+        <ul class="banner-nav">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <div class="arrow">
+            <span id="left-arrow">&lt;</span>
+            <span id="right-arrow">&gt;</span>
+        </div>
+    </div>
+    <!-- 引入一个js文件 -->
+    <script src="./jslib.js"></script>
+    <script>
+        //获取图片的父容器
+        var aBanners=document.getElementsByClassName("banners");
+        //获取所有的banner
+        var aBanner=aBanners[0].getElementsByTagName("img");
+        //获取右箭头元素
+        var oNext=document.getElementById("right-arrow");
+        //获取左箭头元素
+        var oPre=document.getElementById("left-arrow");
+        //获取banner-nav元素
+        var aBannerNav=document.getElementsByClassName("banner-nav");
+        //获取banner-nav的子元素
+        var aBannerNavLi=aBannerNav[0].getElementsByTagName("li");
+
+
+        //定义全局变量
+        var iNow=0;
+
+        function change(num){
+
+            //banner部分
+            animate(aBanners[0],{
+                left: -750*num
+            });
+
+            //按钮部分
+            for(var i=0;i<aBannerNavLi.length;++i){
+                aBannerNavLi[i].className="";
+            }
+            if(num==aBanner.length-1){
+                num=0;
+            }
+            aBannerNavLi[num].className="active";
+
+        }
+        oNext.onclick=function(){
+            iNow++;
+            if(iNow==aBanner.length){
+                aBanners[0].style.left=0+"px";
+                iNow=1;
+            }
+            // aBanners[0].style.left = -750*iNow + "px";
+            change(iNow);
+        }
+
+        oPre.onclick=function(){
+            iNow--;
+            //此处有问题，接着此处继续写
+        }
+
+
+    </script>
+</body>
+</html>
