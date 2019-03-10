@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #container{
+            position: relative;
+        }
+        #container .images .banner{
+            position: absolute;
+            left: 50%;
+            transform: translatex(-50%);
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s ease .1s;
+        }
+        #container .images .banner1{
+            background: #dc2d32;
+            opacity: 1;
+        }
+        #container .images .banner2{
+            background: #e8e8e8;
+        }
+        #container .images .banner3{
+            background: #1d3cbc;
+        }
+
+        #container .banner-nav{
+            position: absolute;
+            top: 480px;
+            left: 50%;
+            transform: translatex(-50%);
+            list-style: none;
+        }
+        #container li{
+            width: 35px;
+            height: 10px;
+            background-color: rgba(0,0,0, .4);
+            float: left;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #container .active{
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="images">
+            <div class="banner1 banner">
+                <img src="http://img.alicdn.com/tps/i4/TB17ITUFuuSBuNjSsplSuve8pXa.jpg" alt="">
+            </div>
+            <div class="banner2 banner">
+                <img src="https://img.alicdn.com/simba/img/TB1xIQMvH5YBuNjSspoSuveNFXa.jpg" alt="">
+            </div>
+            <div class="banner3 banner">
+                <img src="http://img.alicdn.com/imgextra/i1/114/TB2wYu7c8cXBuNjt_XoXXXIwFXa_!!114-0-luban.jpg_q100.jpg_.webp" alt="">
+            </div>
+        </div>
+        <ul class="banner-nav">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        //获取class为images的元素
+        var aImages=document.getElementsByClassName("images");
+        //获取所有的banner元素
+        var aBanner=aImages[0].getElementsByClassName("banner");
+        //获取所有的按钮的父元素
+        var aBtn=document.getElementsByClassName("banner-nav");
+        //获取所有的按钮
+        var aBtnLi=aBtn[0].getElementsByTagName("li");
+
+        for(var i=0; i<aBtnLi.length; ++i){
+            aBtnLi[i].index=i;
+            aBtnLi[i].onclick=function(){
+                for(var j=0; j<aBtnLi.length; ++j){
+                    aBanner[j].style.opacity=0;
+                    aBtnLi[j].className="";
+                }
+                aBanner[this.index].style.opacity= 1;
+                aBtnLi[this.index].className="active";
+            }
+        }
+    </script>
+</body>
+</html>
