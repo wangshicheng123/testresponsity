@@ -13,14 +13,23 @@
         #container{
             position: relative;
         }
+
+        /* banner部分 */
         #container .images .banner{
+            opacity: 0;
+            transition: opacity 1s ease .1s; 
+            position: absolute;
+            width: 100%;
+            height: 500px;
+        }
+        /* 给每个图片进行剧中定位 */
+        #container .images img{
             position: absolute;
             left: 50%;
             transform: translatex(-50%);
-            width: 100%;
-            opacity: 0;
-            transition: opacity 1s ease .1s;
         }
+
+
         #container .images .banner1{
             background: #dc2d32;
             opacity: 1;
@@ -32,6 +41,7 @@
             background: #1d3cbc;
         }
 
+        /* banner-nav的部分 */
         #container .banner-nav{
             position: absolute;
             top: 480px;
@@ -51,6 +61,7 @@
         #container .active{
             background-color: #fff;
         }
+
     </style>
 </head>
 <body>
