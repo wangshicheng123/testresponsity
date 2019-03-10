@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #container{
+            width: 750px;
+            height: 291px;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        #container .images{
+            width: 3750px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            /* 测试一下transition发生在改变前的元素上，还之后的元素 */
+            transition: left 1s ease-in .1s;
+        }
+
+        #container .images img{
+            float: left;
+        }
+
+        /* 更改部分 */
+        /*#container .images .selected{
+            /* position: absolute; */
+            /* top: 0px; */
+            /* left: 0px; */
+            /* transition: left .5s ease-in .1s; 
+        }*/
+
+
+        #container .check-btn li{
+            float: left;
+            list-style: none;
+            background: rgba(0,0,0,0.4);
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            text-align: center;
+            margin-right: 5px;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #container .check-btn{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        
+        #container .check-btn .active{
+            background: #ff0036;
+        }
+
+        #container .arrow{
+            position: absolute;
+            left: 10px;
+            bottom: 7px;
+            height: 25px;
+            width: 80px;
+            color: #ff0036;
+        }
+
+        #container .arrow span{
+            margin-right: 10px;
+            font-size: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 5px;
+            float: left;
+            width: 25px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="images">
+            <img src="./img/1.jpg" alt="">
+            <img src="./img/2.jpg" alt="">
+            <img src="./img/3.jpg" alt="">
+            <img src="./img/4.jpg" alt="">
+            <img src="./img/5.jpg" alt="">
+        </div>
+        <ul class="check-btn">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <div class="arrow">
+            <span id="left-arrow">&lt</span>
+            <span id="right-arrow">&gt</span>
+        </div>
+    </div>
+
+    <script>
+        //选中container父元素
+        var oContainer=document.getElementById("container");
+        //取按钮元素
+        var aBtn=document.getElementsByClassName("check-btn");
+        //取按钮下的列表元素
+        var aBtnLi=aBtn[0].getElementsByTagName("li");
+        //获取图片父元素
+        var aImages=document.getElementsByClassName("images");
+        //获取所有的图片
+        var aImgs=aImages[0].getElementsByTagName("img");
+        //获取左侧箭头
+        var oNext=document.getElementById("right-arrow");
+        //获取右侧按钮
+        var oPre=document.getElementById("left-arrow");
+
+        //定义全局变量为了记录当前是哪一张图片
+        var count=0;
+        // 记录定时器
+        var timer;
+
+        //给每一个按钮绑定点击事件
+        for(var i=0; i<aBtnLi.length;++i ){
+            aBtnLi[i].index=i;
+            aBtnLi[i].onclick=function(){
+                //给全局变量赋值
+                count=this.index;
+                //在点击每一个按钮之前，去掉所有的以前的样式
+                for(var j=0; j<aBtnLi.length; ++j){
+                    aBtnLi[j].className="";
+                }
+                //给当前的按钮加上样式
+                this.className="active";
+                //使图片父元素的left改变
+                aImages[0].style.left=-this.index*750+"px"
+
+            }
+        }
+
+        //给右侧按钮添加点击事件
+        oNext.onclick=function(){
+            //使count加加
+            count++;
+
+            //清除按钮之前的样式
+            for(var i=0; i<aBtnLi.length; ++i){
+                aBtnLi[i].className="";
+            }
+            aBtnLi[count].className="active";
+
+            aImages[0].style.left=-750*count+"px";
+            // console.log("asjdl");
+            console.log(count);
+
+            //判断按钮是不是最后一个
+            if(count==aBtnLi.length-1){
+                count=-1;
+            }
+        }
+
+        //给左侧按钮添加点击事件 
+        oPre.onclick=function(){
+            //使count--
+            count--;
+
+            //清除按钮之前的样式
+            for(var i=0; i<aBtnLi.length; ++i){
+                aBtnLi[i].className="";
+            }
+
+            //给当前按钮添加样式
+            aBtnLi[count].className="active";
+
+            //切换到当前照片
+            aImages[0].style.left=-750*count+"px";
+            console.log(count);
+            //判断按钮是不是第一个
+            if(count==0){
+                count=aBtnLi.length;
+            }
+        }
+
+        function run(){
+            timer=setInterval(function(){
+                oNext.onclick();
+            },2000);
+        }
+        run();
+
+       
+
+        oContainer.onmouseover=function(){
+            clearInterval(timer);
+        }
+
+        oContainer.onmouseout=function(){
+            run()
+        }
+
+
+    </script>
+
+
+</body>
+</html>
