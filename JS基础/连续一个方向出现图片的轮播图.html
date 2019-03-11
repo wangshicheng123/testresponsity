@@ -110,7 +110,8 @@
         var aBannerNav=document.getElementsByClassName("banner-nav");
         //获取banner-nav的子元素
         var aBannerNavLi=aBannerNav[0].getElementsByTagName("li");
-
+        //获取container元素
+        var oContainer=document.getElementById("container");
 
         //定义全局变量
         var iNow=0;
@@ -132,6 +133,18 @@
             aBannerNavLi[num].className="active";
 
         }
+
+        //按钮控制轮播图部分
+        for(var i=0; i< aBannerNavLi.length; ++i){
+            aBannerNavLi[i].index=i;
+            aBannerNavLi[i].onclick=function(){
+                iNow=this.index;
+                change(iNow);
+            }
+        }
+
+
+        //箭头控制轮播图部分
         oNext.onclick=function(){
             iNow++;
             if(iNow==aBanner.length){
@@ -144,8 +157,36 @@
 
         oPre.onclick=function(){
             iNow--;
-            //此处有问题，接着此处继续写
+            //当inow的值是-1时，即是第一张图片的时候
+            if(iNow==-1){
+                //将图片容器左移五个图片的宽度
+                aBanners[0].style.left=-(aBanner.length-1)*750+"px";
+
+                iNow=4;//将图片的位置切换到第五张
+            }
+            change(iNow);
         }
+
+        var timer;
+        function run(){
+            timer=setInterval(function(){
+                oNext.onclick();
+            },2000);
+        }
+
+        run();
+
+        oContainer.onmouseover=function(){
+            clearInterval(timer);
+        }
+        oContainer.onmouseout=function(){
+            run();
+        }
+
+
+
+
+
 
 
     </script>
