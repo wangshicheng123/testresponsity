@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #parent{
+            width: 500px;
+            height: 500px;
+            background: pink;
+            position: relative;
+            left: 50px;
+        }
+
+        #box{
+            width: 200px;
+            height: 200px;
+            background: #ff0036;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            margin-left: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="box" style="width: 500px;"></div>
+    </div>
+    <script>
+        var oDiv=document.getElementById("box");
+        // console.log(oDiv.style.width);
+        // console.log(typeof(oDiv.style.width));
+
+        // console.log(oDiv.offsetHeight);
+        // console.log(oDiv.offsetWidth);
+        // console.log(typeof(oDiv.offsetHeight));
+        console.log(oDiv.offsetTop);
+        console.log(oDiv.offsetLeft);
+        console.log(oDiv.offsetParent);
+
+    </script>
+</body>
+</html>
