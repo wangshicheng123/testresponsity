@@ -235,6 +235,10 @@
                 //吃到🥚后使分数加一
                 oGrade.innerHTML=++grade;
 
+                //然后再随机产生一个🥚
+                //此处调用产生🥚的函数************************************
+
+
             }else{
                 //在组成🐍的数组(snakeArray)中的尾部添加一个元素
                 snakeDivPosition[x_snake][y_snake].className="active";
@@ -245,15 +249,15 @@
                 snakeArray[0].className="default";
                 snakeArray.shift();
             }
-
-
-
-
-
         }
+
         //定义x_egg和y_egg两个变量来记录蛋的位置
         var x_egg;
         var y_egg;
+        //定义一个产生0---columnNumber和0---rowNmuber之间的随机数的函数
+        function random(min,max){
+            return math.floor(math.random()*(max-min))+min;
+        }
 
 
 
