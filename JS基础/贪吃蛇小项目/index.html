@@ -96,9 +96,12 @@
     </div>
     <script>
         //获取整个地图元素
-        var map=document.getElementById("map");
+        var oMap=document.getElementById("map");
         //获取grade元素
-        var grade=document.getElementById("grade");
+        var oGrade=document.getElementById("grade");
+
+        //定义一个变量用来记录分数
+        var grade=0;
 
         //设置地图中一列有小方块的个数
         var columnNumber=25;
@@ -108,8 +111,8 @@
         //动态设置地图的宽和高(每个小方块的宽和高都是20px)
         var mapWidth=rowNumber*20+"px";
         var mapHeight=columnNumber*20+"px";
-        map.style.height=mapHeight;
-        map.style.width=mapWidth;
+        oMap.style.height=mapHeight;
+        oMap.style.width=mapWidth;
 
         //通过一个二维数组snakeDivPosition用来记录map上面所有的小方格的位置
         var snakeDivPosition=[];
@@ -118,7 +121,7 @@
             var rowArray=[];
             //新创建一个行的div用来盛放每一行的小div
             var rowDiv=document.createElement("div");
-            map.appendChild(rowDiv);
+            oMap.appendChild(rowDiv);
             
             //for循环用来生成每一行的小div元素
             for(var j=0; j<rowNumber; ++j){
@@ -228,6 +231,9 @@
                 snakeDivPosition[x_snake][y_snake].className="active";
                 //在存放🐍的元素的数组的尾部添加一个元素（这个位置有🥚）
                 snakeArray.push(snakeDivPosition[x_snake][y_snake]);    
+
+                //吃到🥚后使分数加一
+                oGrade.innerHTML=++grade;
 
             }else{
                 //在组成🐍的数组(snakeArray)中的尾部添加一个元素
