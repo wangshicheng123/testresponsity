@@ -97,6 +97,8 @@
     <script>
         //获取整个地图元素
         var map=document.getElementById("map");
+        //获取grade元素
+        var grade=document.getElementById("grade");
 
         //设置地图中一列有小方块的个数
         var columnNumber=25;
@@ -226,7 +228,13 @@
                 snakeDivPosition[x_snake][y_snake].className="active";
                 //在存放🐍的元素的数组的尾部添加一个元素（这个位置有🥚）
                 snakeArray.push(snakeDivPosition[x_snake][y_snake]);    
+
             }else{
+                //在组成🐍的数组(snakeArray)中的尾部添加一个元素
+                snakeDivPosition[x_snake][y_snake].className="active";
+                //在存放🐍的元素的数组的尾部添加一个元素（这个位置有🥚）
+                snakeArray.push(snakeDivPosition[x_snake][y_snake]);    
+
                 //没有吃到🥚，把存放🐍的数组的第一个元素的样式设为默认样式，并且从数组中删除
                 snakeArray[0].className="default";
                 snakeArray.shift();
