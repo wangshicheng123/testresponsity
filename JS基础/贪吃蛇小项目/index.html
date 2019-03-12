@@ -136,9 +136,9 @@
         //创建蛇模型部分
         //定义一个变量存储蛇的起始长度
         var snakeLength=3;
-        //定义蛇头的起始位置偏移量
+        //定义蛇头的起始位置偏移量(注意是从0开始的)
         var x_snake=2;
-        var y_snale=0;
+        var y_snake=0;
 
         //定义一个一维数组用来存储蛇身的每一个小div
         var snakeArray=[];
@@ -158,34 +158,88 @@
 
         document.onkeydown=function(e){
             var e =e||window.event;
-            if(direction="top"&&e.keyCode==40){
+            if(direction=="top"&&e.keyCode==38){
                 return;
             }
-            if(direction="bottom"&&e.keyCode==38){
+            if(direction=="bottom"&&e.keyCode==40){
                 return;
             }
-            if(direction=="left"&&e.keyCode==39){
+            if(direction=="left"&&e.keyCode==37){
                 return;
             }
-            if(direction="right"&&e.keyCode==37){
+            if(direction=="right"&&e.keyCode==39){
                 return;
             }
             switch(e.keyCode){
-                case 40:
-                    direction="top";
-                    return;
                 case 38:
+                    direction="top"; 
+                    return;
+                case 40:
                     direction="bottom";
                     return;
-                case 39:
+                case 37:
                     direction="left";
                     return;
-                case 37:
+                case 39:
                     direction="right";
                     return;
             }
         }
 
+        //设置🐍的移动逻辑的函数
+        function snakeMove(){
+            //通过direction去判断🐍要移动的方向，从而改变🐍头的偏移量
+            switch(direction){
+                case "right":
+                    x_snake++;
+                    break;
+                case "left":
+                    x_snake--;
+                    break;
+                case "top":
+                    y_snake--;
+                    break;
+                case "bottom":
+                    y_snake++;
+                    break;
+            }
+            //判断🐍头是否越界
+            if(x_snake==-1||x_snake==rowNumber||y_snake==-1||y_snake==columnNumber){
+                alert("很遗憾，您失败了！");
+                //此处要清除定时器并结束程序
+
+
+            }
+
+            //如果🐍吃到自己也要结束游戏，判断是否吃到自己
+            for(var i=0; i<snakeLength; ++i){
+                if(snakeArray[i]==snakeDivPosition[x_snake][y_snake]){
+                    alert("很遗憾，您失败了！");
+                    //此处要清除定时器并结束程序
+                }
+            }
+
+            //判断🐍是否吃到🥚，如果迟到怎么处理，没吃到怎么处理
+            if(x_snake==x_egg&&y_snake==y_egg){
+
+                //在组成🐍的数组(snakeArray)中的尾部添加一个元素
+                snakeDivPosition[x_snake][y_snake].className="active";
+                //在存放🐍的元素的数组的尾部添加一个元素（这个位置有🥚）
+                snakeArray.push(snakeDivPosition[x_snake][y_snake]);    
+            }else{
+                //没有吃到🥚，把存放🐍的数组的第一个元素的样式设为默认样式，并且从数组中删除
+                snakeArray[0].className="default";
+                snakeArray.shift();
+            }
+
+
+
+
+
+        }
+        //定义x_egg和y_egg两个变量来记录蛋的位置
+        var x_egg;
+        var y_egg;
 
 
 
