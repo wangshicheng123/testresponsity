@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>贪吃蛇小游戏</title>
+    <style>
+        body,ul{
+            margin: 0px;
+            padding: 0px;
+        }
+        #container{
+            background: #eee;
+            width: 1000px;
+            height: 700px;
+            margin: 0px auto;
+            /* 为了解决标题的上边距合并问题，触发BFC模式*/
+            overflow: hidden;
+        }
+
+        /* 标题样式 */
+        .title h1{
+            text-align: center;
+            margin: 20px 0px;
+            padding: 0px;
+        }
+
+        /* map样式 */
+        .game-Container .map{
+            background: #999;
+            height: 500px;
+            width: 500px;
+            margin: 0px auto;
+        }
+
+        .game-Container .control-btn{
+            width: 200px;
+            height: 500px;
+            /* background: red; */
+            float: right;
+            margin-right: 20px;
+            border: 1px solid red;
+        }
+        .game-Container .btn-list{
+            list-style: none;
+
+        }
+        .game-Container .btn-list li{
+            border: 1px solid green;
+            width: 80px;
+            margin: 5px auto 50px auto;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .game-Container .btn-list li:not(.grade):hover{
+            background: #ff0036;
+            cursor: pointer;
+        }
+
+
+        .default{
+            background: green;
+            width: 20px;
+            height: 20px;
+            float: left;
+        }
+        .active{
+            background: blue;
+            width: 20px;
+            height: 20px;
+            float: left;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="title">
+            <h1>这是一个贪吃蛇游戏</h1>
+        </div>
+        <div class="game-Container">
+            <div class="control-btn">
+                <ul class="btn-list">
+                    <li class="grade">grade: <span id="grade">0</span></li>
+                    <li id="pause">pause</li>
+                    <li id="start">start</li>
+                    <li id="refresh">refresh</li>
+                    <li id="speed">speed</li>
+                </ul>
+            </div>
+            <div class="map" id="map"></div>
+        </div>
+        
+    </div>
+    <script>
+        //获取整个地图元素
+        var map=document.getElementById("map");
+
+        //设置地图中一列有小方块的个数
+        var columnNumber=25;
+        //设置地图中一行有小方块的个数
+        var rowNumber=25;
+
+        //动态设置地图的宽和高(每个小方块的宽和高都是20px)
+        var mapWidth=rowNumber*20+"px";
+        var mapHeight=columnNumber*20+"px";
+        map.style.height=mapHeight;
+        map.style.width=mapWidth;
+
+        //通过一个二维数组snakeDivPosition用来记录map上面所有的小方格的位置
+        var snakeDivPosition=[];
+        for(var i=0; i<columnNumber; ++i){
+
+            var rowArray=[];
+            //新创建一个行的div用来盛放每一行的小div
+            var rowDiv=document.createElement("div");
+            map.appendChild(rowDiv);
+            
+            //for循环用来生成每一行的小div元素
+            for(var j=0; j<rowNumber; ++j){
+
+                //新创建每一行中的小div
+                var columnDiv=document.createElement("div");
+                columnDiv.className="default";
+                //把新创建的每个小div添加到大的行div内部
+                rowDiv.appendChild(columnDiv);
+                //把小div添加到行数组内部
+                rowArray.push(columnDiv);
+            }
+            snakeDivPosition.push(rowArray);
+        }
+        // console.log(snakeDivPosition);
+
+        //
+
+
+    </script>
+</body>
+</html>
