@@ -133,7 +133,61 @@
         }
         // console.log(snakeDivPosition);
 
-        //
+        //创建蛇模型部分
+        //定义一个变量存储蛇的起始长度
+        var snakeLength=3;
+        //定义蛇头的起始位置偏移量
+        var x_snake=2;
+        var y_snale=0;
+
+        //定义一个一维数组用来存储蛇身的每一个小div
+        var snakeArray=[];
+
+        //使用for循环来创建蛇身
+        for(var i=0; i<snakeLength; ++i){
+            //
+            snakeArray[i]=snakeDivPosition[0][i];
+            //给蛇身换成不同的样式，加以区分
+            snakeArray[i].className="active";
+        }
+
+
+        //添加键盘监听事件用来改变🐍 的移动方向
+        //定义一个direction变量用来记录🐍具体要移动的方向
+        var direction="right";
+
+        document.onkeydown=function(e){
+            var e =e||window.event;
+            if(direction="top"&&e.keyCode==40){
+                return;
+            }
+            if(direction="bottom"&&e.keyCode==38){
+                return;
+            }
+            if(direction=="left"&&e.keyCode==39){
+                return;
+            }
+            if(direction="right"&&e.keyCode==37){
+                return;
+            }
+            switch(e.keyCode){
+                case 40:
+                    direction="top";
+                    return;
+                case 38:
+                    direction="bottom";
+                    return;
+                case 39:
+                    direction="left";
+                    return;
+                case 37:
+                    direction="right";
+                    return;
+            }
+        }
+
+
+
 
 
     </script>
