@@ -47,12 +47,27 @@
         
         var oTitle2=document.getElementById("title2");
         var oList2=document.getElementById("list2");
+
+        var isShow1=true;
+        var isShow2=true;
         oTitle1.onclick=function(){
-            oList1.style.display="block";
+            if(isShow1){
+                oList1.style.display="block";
+                isShow1=false;
+            }else{
+                oList1.style.display="none";
+                isShow1=true;
+            }
         }
 
         oTitle2.onclick=function(){
-            oList2.style.display="block";
+            if(isShow2){
+                oList2.style.display="block";
+                isShow2=false;
+            }else{
+                oList2.style.display="none";
+                isShow2=true;
+            }
         }
     </script>
 </body>
