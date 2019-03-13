@@ -92,7 +92,7 @@
                     <li id="pause">pause</li>
                     <li id="start">start</li>
                     <li id="refresh">refresh</li>
-                    <li id="speed">speed</li>
+                    <li id="speed">accelerate</li>
                 </ul>
             </div>
             <div class="map" id="map"></div>
@@ -104,6 +104,17 @@
         var oMap=document.getElementById("map");
         //获取grade元素
         var oGrade=document.getElementById("grade");
+        //获取开始功能按钮元素
+        var oStart=document.getElementById("start");
+        //获取暂停功能按钮元素
+        var oPause=document.getElementById("pause");
+        //获取刷新功能按钮元素
+        var oRefresh=document.getElementById("refresh");
+        //获取加速功能按钮元素
+        var oAccelerate=document.getElementById("accelerate");
+
+        //定义一个🐍移动的定时器
+        var moveTimer;
 
         //定义一个变量用来记录分数
         var grade=0;
@@ -273,12 +284,14 @@
 
 
         //定义一个定时器，使🐍移动的函数在一定间隔的时间内不断执行
-        var moveTimer=setInterval(function(){
-            console.log(direction);
-            console.log(x_snake,y_snake);
-            snakeMove();
-            
-        },2000);
+        function run(){
+            moveTimer=setInterval(function(){
+                console.log(direction);
+                console.log(x_snake,y_snake);
+                snakeMove();
+            },300);
+        }
+        
 
         //定义x_egg和y_egg两个变量来记录蛋的位置
         var x_egg=0;
@@ -307,6 +320,17 @@
             snakeDivPosition[x_egg][y_egg].className="egg"
         }
 
+        //开始功能按钮的制作
+        oStart.onclick=function(){
+            //调用定时器函数是🐍不断地运动
+            run();
+        }
+
+        //开始暂停功能按钮的制作
+        oPause.onclick=function(){
+            //清除定时器，即可结束🐍的运动
+            clearInterval(moveTimer);
+        }
 
 
 
