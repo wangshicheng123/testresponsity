@@ -82,14 +82,14 @@
                 if(y>=yMax){
                     y=yMax;
                 }
+
                 oBox.style.left=x+"px";
                 oBox.style.top=y+"px";
                 //注意是负值
-                oImg.style.left=-2*x+"px";
-                oImg.style.top=-2*y+"px";
+                oImg.style.left=- (oBigImg.offsetWidth/oSmallImg.offsetWidth) * x+"px";
+                oImg.style.top=- (oBigImg.offsetHeight/oSmallImg.offsetHeight) * y+"px";
 
             }
-
         }
 
         oSmallImg.onmouseout=function(){
