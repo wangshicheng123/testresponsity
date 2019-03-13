@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>放大镜</title>
+
+    <style>
+        body{
+            margin: 0px;
+        }
+        #container{
+            /* position: relative; */
+        }
+        .small-img{
+            width: 400px;
+            height: 400px;
+            float: left;
+            position: relative;
+        }
+        .big-img{
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            float: left;
+            display: none;
+            position: relative;
+        }
+        .big-img img{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        #box{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            background: rgba(255,255,255,.3);
+            width: 200px;
+            height: 200px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="small-img" id="small-img">
+            <img src="./img/1.jpg" alt="">
+            <div id="box"></div>
+        </div>
+        <div class="big-img" id="big-img">
+            <img src="./img/2.jpg" alt="" id="img">
+        </div>
+    </div>
+    <script>
+        var oSmallImg=document.getElementById("small-img");
+        var oBox=document.getElementById("box");
+        var oBigImg=document.getElementById("big-img");
+        var oImg=document.getElementById("img");
+
+        oSmallImg.onmouseover=function(){
+            oBox.style.display="block";
+            oBigImg.style.display="block";
+            oSmallImg.onmousemove=function(e){
+                var x=e.clientX-oBox.offsetWidth/2;
+                var y=e.clientY-oBox.offsetHeight/2; 
+                var xMax=oSmallImg.offsetWidth-oBox.offsetWidth;
+                var yMax=oSmallImg.offsetHeight-oBox.offsetHeight;
+                
+                if(x<=0){
+                    x=0;
+                }
+                if(y<=0){
+                    y=0;
+                }
+
+                if(x>=xMax){
+                    x=xMax;
+                }
+                if(y>=yMax){
+                    y=yMax;
+                }
+                oBox.style.left=x+"px";
+                oBox.style.top=y+"px";
+                //注意是负值
+                oImg.style.left=-2*x+"px";
+                oImg.style.top=-2*y+"px";
+
+            }
+
+        }
+
+        oSmallImg.onmouseout=function(){
+            oBox.style.display="none";
+            oBigImg.style.display="none";
+        }   
+    </script>
+</body>
+</html>
