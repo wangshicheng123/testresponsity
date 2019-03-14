@@ -111,10 +111,13 @@
         //获取刷新功能按钮元素
         var oRefresh=document.getElementById("refresh");
         //获取加速功能按钮元素
-        var oAccelerate=document.getElementById("accelerate");
+        var oAccelerate=document.getElementById("speed");
 
         //定义一个🐍移动的定时器
         var moveTimer;
+
+        //定义一个改变🐍的移动速度的全局变量(单位是毫秒)
+        var moveSpeed=300;
 
         //定义一个变量用来记录分数
         var grade=0;
@@ -284,12 +287,12 @@
 
 
         //定义一个定时器，使🐍移动的函数在一定间隔的时间内不断执行
-        function run(){
+        function run(speed){
             moveTimer=setInterval(function(){
-                console.log(direction);
-                console.log(x_snake,y_snake);
+                // console.log(direction);
+                // console.log(x_snake,y_snake);
                 snakeMove();
-            },300);
+            },speed);
         }
         
 
@@ -323,7 +326,7 @@
         //开始功能按钮的制作
         oStart.onclick=function(){
             //调用定时器函数是🐍不断地运动
-            run();
+            run(moveSpeed);
         }
 
         //开始暂停功能按钮的制作
@@ -335,6 +338,13 @@
         //开始制作刷新按钮
         oRefresh.onclick=function(){
             window.location.reload();
+        }
+
+        //开始制作加速按钮功能
+        oAccelerate.onclick=function(){
+            moveSpeed-=20;
+            clearInterval(moveTimer);
+            run(moveSpeed);
         }
 
 
