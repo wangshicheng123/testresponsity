@@ -49,7 +49,7 @@
         .game-Container .btn-list li{
             border: 1px solid green;
             width: 80px;
-            margin: 5px auto 50px auto;
+            margin: 5px auto 20px auto;
             text-align: center;
             padding: 5px;
             border-radius: 5px;
@@ -57,6 +57,13 @@
         .game-Container .btn-list li:not(.grade):hover{
             background: #ff0036;
             cursor: pointer;
+        }
+
+        .game-Container .infor{
+            border: 1px solid red;
+            border-radius: 5px;
+            padding: 4px 3px;
+            margin-bottom: 5px;
         }
 
 
@@ -89,11 +96,16 @@
             <div class="control-btn">
                 <ul class="btn-list">
                     <li class="grade">grade: <span id="grade">0</span></li>
-                    <li id="pause">pause</li>
                     <li id="start">start</li>
+                    <li id="pause">pause</li>
+                    <li id="continue">continue</li>
                     <li id="refresh">refresh</li>
                     <li id="speed">accelerate</li>
                 </ul>
+                <div class="egg-posi infor">egg-posi: x:<span id="egg-posi-x">0</span>; y=<span id="egg-posi-y">0</span>;</div>
+                <div class="snake-head-posi infor">snak-posi: x:<span id="snake-x">0</span>; y=<span id="snake-y">2</span>;</div>
+                <div class="snake-speed infor">snake-speed: <span id="snake-speed">300</span> ms/格</div>
+                <div class="snake-length infor">snake-length: <span id="snake-length">3</span>格</div>
             </div>
             <div class="map" id="map"></div>
         </div>
@@ -108,10 +120,28 @@
         var oStart=document.getElementById("start");
         //获取暂停功能按钮元素
         var oPause=document.getElementById("pause");
+        //获取继续功能按钮元素
+        var oContinue=document.getElementById("continue");
         //获取刷新功能按钮元素
         var oRefresh=document.getElementById("refresh");
         //获取加速功能按钮元素
         var oAccelerate=document.getElementById("speed");
+
+        //获取随机产生🥚的x位置的元素
+        var oEggPosiX=document.getElementById("egg-posi-x");
+        //获取随机产生🥚的y位置的元素
+        var oEggPosiY=document.getElementById("egg-posi-y");
+        //获取🐍头的位置x的元素
+        var oSnakeHeadPosiX=document.getElementById("snake-x");
+        //获取🐍头的位置y的元素
+        var oSnakeHeadPosiY=document.getElementById("snake-y");
+        //获取🐍的速度的元素
+        var oSnakeSpeed=document.getElementById("snake-speed");
+        //获取🐍的当前长度
+        var oSnakeLength=document.getElementById("snake-length");
+        
+
+
 
         //定义一个🐍移动的定时器
         var moveTimer;
@@ -125,14 +155,34 @@
         //定义一个全局变量，用来记录游戏是否开始还是结束
         var isStart=false;
 
+        //定义x_egg和y_egg两个变量来记录蛋的位置
+        var x_egg=0;
+        var y_egg=0;
+
+        //定义一个direction变量用来记录🐍具体要移动的方向
+        var direction="right";
+
+        //创建蛇模型部分
+        //定义一个变量存储蛇的起始长度
+        var snakeLength=3;
+        //定义蛇头的起始位置偏移量(注意是从0开始的)
+        var x_snake=0;
+        var y_snake=2;
+
+        //定义一个一维数组用来存储蛇身的每一个小div
+        var snakeArray=[];
+
         //设置地图中一列有小方块的个数
         var columnNumber=25;
         //设置地图中一行有小方块的个数
         var rowNumber=25;
+        //设置每个小格子的宽高
+        var cellWidth=20;
+        var cellHeight=20;
 
         //动态设置地图的宽和高(每个小方块的宽和高都是20px)
-        var mapWidth=rowNumber*20+"px";
-        var mapHeight=columnNumber*20+"px";
+        var mapWidth=rowNumber*cellWidth+"px";
+        var mapHeight=columnNumber*cellHeight+"px";
         oMap.style.height=mapHeight;
         oMap.style.width=mapWidth;
 
@@ -160,36 +210,9 @@
         }
 
 
-        //创建蛇模型部分
-        //定义一个变量存储蛇的起始长度
-        var snakeLength=3;
-        //定义蛇头的起始位置偏移量(注意是从0开始的)
-        var x_snake=0;
-        var y_snake=2;
-
-        //定义一个一维数组用来存储蛇身的每一个小div
-        var snakeArray=[];
-
-        //使用for循环来创建蛇身
-        for(var i=0; i<snakeLength; ++i){
-            //
-            snakeArray[i]=snakeDivPosition[0][i];
-            //给蛇身换成不同的样式，加以区分
-            snakeArray[i].className="active";
-        }
-
-
         //添加键盘监听事件用来改变🐍 的移动方向
-        //定义一个direction变量用来记录🐍具体要移动的方向
-        var direction="right";
-        //var changeDir = true;// 判断是否需要改变蛇的移动方向
-        //var delayTimer = null;// 延迟定时器
-
         document.onkeydown=function(e){
-            // 先判断是否需要改变方向,true表示需要,false表示不需要
-            //if (!changeDir) {
-            //    return;// return空表示直接结束函数,后续代码不执行
-            //}
+
             var e1 =e||window.event;
             if(direction=="top"&&e1.keyCode==38){
                 return;
@@ -217,11 +240,6 @@
                     direction="right";
                     return;
             }
-            //changeDir = false;
-            //delayTimer = setTimeout(function() {
-                // 设置是否需要改变方向
-            //    changeDir = true;
-            //}, 300);
         }
 
         //设置🐍的移动逻辑的函数
@@ -272,7 +290,7 @@
 
                 //然后再随机产生一个🥚,继续进行游戏
                 createNewEgg();
-                console.log("吃到蛋了");//碰到蛋了但是没打印
+                oSnakeLength.innerHTML=++snakeLength;
 
 
             }else{
@@ -295,22 +313,18 @@
                 // console.log(direction);
                 // console.log(x_snake,y_snake);
                 snakeMove();
+                oSnakeHeadPosiX.innerHTML=x_snake;
+                oSnakeHeadPosiY.innerHTML=y_snake;
+                oSnakeSpeed.innerHTML=speed;
             },speed);
         }
-        
-
-        //定义x_egg和y_egg两个变量来记录蛋的位置
-        var x_egg=0;
-        var y_egg=0;
-
-        //初始产生的🥚,注意调用这个函数的位置，在上面的变量定义之后
-        createNewEgg();
 
         //定义一个产生0---columnNumber和0---rowNmuber之间的随机数的函数
         function random(min,max){
             return Math.floor(Math.random()*(max-min))+min;
         }
 
+        //随机产生🥚的函数
         function createNewEgg(){
             //随机产生🥚的位置
             x_egg=random(0,25);
@@ -324,17 +338,32 @@
             }
             //是当前🥚的样式进行改变
             snakeDivPosition[x_egg][y_egg].className="egg"
+            oEggPosiX.innerHTML=x_egg;
+            oEggPosiY.innerHTML=y_egg;
         }
 
         //开始功能按钮的制作
         oStart.onclick=function(){
-            //是isStart全局变量改变；
-            isStart=true;
+            if(!isStart){
+            //使用for循环来创建蛇身
+            for(var i=0; i<snakeLength; ++i){
+                //
+                snakeArray[i]=snakeDivPosition[0][i];
+                //给蛇身换成不同的样式，加以区分
+                snakeArray[i].className="active";
+            }
 
-            //注意要清除以前的定时器
-            clearInterval(moveTimer);
-            //调用定时器函数是🐍不断地运动
-            run(moveSpeed);
+                //初始产生的🥚,注意调用这个函数的位置，在上面的变量定义之后
+                createNewEgg();
+
+                //是isStart全局变量改变；
+                isStart=true;
+
+                //注意要清除以前的定时器
+                clearInterval(moveTimer);
+                //调用定时器函数是🐍不断地运动
+                run(moveSpeed);
+            }
         }
 
         //开始暂停功能按钮的制作
@@ -343,6 +372,11 @@
                 //清除定时器，即可结束🐍的运动
                 clearInterval(moveTimer);
             }
+        }
+
+        //开始制作暂停之后的继续功能
+        oContinue.onclick=function(){
+            
         }
 
         //开始制作刷新按钮
