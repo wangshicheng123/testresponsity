@@ -122,6 +122,9 @@
         //定义一个变量用来记录分数
         var grade=0;
 
+        //定义一个全局变量，用来记录游戏是否开始还是结束
+        var isStart=false;
+
         //设置地图中一列有小方块的个数
         var columnNumber=25;
         //设置地图中一行有小方块的个数
@@ -325,14 +328,21 @@
 
         //开始功能按钮的制作
         oStart.onclick=function(){
+            //是isStart全局变量改变；
+            isStart=true;
+
+            //注意要清除以前的定时器
+            clearInterval(moveTimer);
             //调用定时器函数是🐍不断地运动
             run(moveSpeed);
         }
 
         //开始暂停功能按钮的制作
         oPause.onclick=function(){
-            //清除定时器，即可结束🐍的运动
-            clearInterval(moveTimer);
+            if(isStart){
+                //清除定时器，即可结束🐍的运动
+                clearInterval(moveTimer);
+            }
         }
 
         //开始制作刷新按钮
@@ -342,9 +352,11 @@
 
         //开始制作加速按钮功能
         oAccelerate.onclick=function(){
-            moveSpeed-=20;
-            clearInterval(moveTimer);
-            run(moveSpeed);
+            if(isStart){
+                moveSpeed-=20;
+                clearInterval(moveTimer);
+                run(moveSpeed);
+            }
         }
 
 
