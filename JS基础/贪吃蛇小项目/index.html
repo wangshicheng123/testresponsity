@@ -237,7 +237,7 @@
             }
             //判断🐍头是否越界
             if(x_snake==-1||x_snake==rowNumber||y_snake==-1||y_snake==columnNumber){
-                alert("很遗憾，您失败了！越界");
+                alert("很遗憾，您失败了！越界,请refresh重试");
                 //此处要清除定时器并结束程序
                 clearInterval(moveTimer);
                 return;
@@ -246,7 +246,7 @@
             //如果🐍吃到自己也要结束游戏，判断是否吃到自己
             for(var i=0; i<snakeArray.length; ++i){
                 if(snakeArray[i]==snakeDivPosition[x_snake][y_snake]){
-                    alert("很遗憾，您失败了！吃到自己");
+                    alert("很遗憾，您失败了！吃到自己,请refresh重试");
                     //此处要清除定时器并结束程序
                     clearInterval(moveTimer);
                     return;
@@ -330,6 +330,11 @@
         oPause.onclick=function(){
             //清除定时器，即可结束🐍的运动
             clearInterval(moveTimer);
+        }
+
+        //开始制作刷新按钮
+        oRefresh.onclick=function(){
+            window.location.reload();
         }
 
 
