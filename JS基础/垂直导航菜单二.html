@@ -63,7 +63,19 @@
         var aUl=document.getElementsByTagName("ul");
 
         for(var i=0; i<aH3.length; ++i){
-
+            aH3[i].index=i;
+            //默认flag为true的时候，列表是不显示的，
+            aH3[i].flag=true;
+            aH3[i].onclick=function(){
+                if(this.flag){
+                    aUl[this.index].style.display="block";
+                    console.log(this.flag);
+                }else{
+                    aUl[this.index].style.display="none";
+                    console.log(this.flag);
+                }
+                this.flag=!this.flag;
+            }
         }
     </script>
 
