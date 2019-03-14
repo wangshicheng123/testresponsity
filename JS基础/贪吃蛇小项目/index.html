@@ -98,7 +98,7 @@
                     <li class="grade">grade: <span id="grade">0</span></li>
                     <li id="start">start</li>
                     <li id="pause">pause</li>
-                    <li id="continue">continue</li>
+                    <!-- <li id="continue">continue</li> -->
                     <li id="refresh">refresh</li>
                     <li id="speed">accelerate</li>
                 </ul>
@@ -120,8 +120,10 @@
         var oStart=document.getElementById("start");
         //获取暂停功能按钮元素
         var oPause=document.getElementById("pause");
+
         //获取继续功能按钮元素
-        var oContinue=document.getElementById("continue");
+        // var oContinue=document.getElementById("continue");
+        
         //获取刷新功能按钮元素
         var oRefresh=document.getElementById("refresh");
         //获取加速功能按钮元素
@@ -242,6 +244,26 @@
             }
         }
 
+        //数据初始化置零函数
+        function startData(){
+            moveSpeed=300;
+            grade=0;
+            isStart=true;
+            x_egg=0;
+            y_egg=0;
+            direction="right";
+            snakeLength=3;
+            x_snake=0;
+            y_snake=2;
+            //使用for循环来创建蛇身
+            for(var i=0; i<snakeLength; ++i){
+                //
+                snakeArray[i]=snakeDivPosition[0][i];
+                //给蛇身换成不同的样式，加以区分
+                snakeArray[i].className="active";
+            }
+        }
+
         //设置🐍的移动逻辑的函数
         function snakeMove(){
             //通过direction去判断🐍要移动的方向，从而改变🐍头的偏移量
@@ -345,38 +367,36 @@
         //开始功能按钮的制作
         oStart.onclick=function(){
             if(!isStart){
-            //使用for循环来创建蛇身
-            for(var i=0; i<snakeLength; ++i){
-                //
-                snakeArray[i]=snakeDivPosition[0][i];
-                //给蛇身换成不同的样式，加以区分
-                snakeArray[i].className="active";
-            }
+
+                //调用游戏开始数据初始化函数
+                startData();
 
                 //初始产生的🥚,注意调用这个函数的位置，在上面的变量定义之后
                 createNewEgg();
 
-                //是isStart全局变量改变；
-                isStart=true;
-
                 //注意要清除以前的定时器
                 clearInterval(moveTimer);
+
+                //在重新开始的时候
+                //可以调用一个置零函数
+
                 //调用定时器函数是🐍不断地运动
                 run(moveSpeed);
             }
         }
 
-        //开始暂停功能按钮的制作
+        //开始暂停/继续功能按钮的制作
         oPause.onclick=function(){
             if(isStart){
                 //清除定时器，即可结束🐍的运动
                 clearInterval(moveTimer);
+                isStart=false;
+                oPause.innerHTML="continue";
+            }else{
+                isStart=true;
+                run(moveSpeed);
+                oPause.innerHTML="pause";
             }
-        }
-
-        //开始制作暂停之后的继续功能
-        oContinue.onclick=function(){
-            
         }
 
         //开始制作刷新按钮
