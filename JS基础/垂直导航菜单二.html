@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>垂直导航菜单更新版（通过给每一个标题加上一个flag去标识其是否被点击过）</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #container{
+            border: 1px solid #999;
+            border-radius: 5px;
+            background: rgba(0,0,0,.1);
+            width: 100px;
+            margin: 10px auto;
+        }
+        #container .title{
+            text-align: center;
+            color: #333;
+            cursor: pointer;
+        }
+
+        #container .list{
+            text-align: center;
+            list-style: none;
+            display: none;
+            border-top: 1px solid #999;
+        }
+
+        #container .list li{
+            color: #333;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="manage-area">
+            <h3 class="title">管理区</h3>
+            <ul class="list">
+                <li>001</li>
+                <li>002</li>
+                <li>003</li>
+            </ul>
+        </div>
+        <div class="communicate-area">
+            <h3 class="title" style="border-top: 1px solid #999;">交流区</h3>
+            <ul class="list">
+                <li>001</li>
+                <li>002</li>
+                <li>003</li>
+            </ul>
+        </div>
+    </div>  
+
+    <script>
+        var aH3=document.getElementsByTagName("h3");
+        var aUl=document.getElementsByTagName("ul");
+
+        for(var i=0; i<aH3.length; ++i){
+
+        }
+    </script>
+
+
+</body>
+</html>
