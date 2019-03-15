@@ -299,6 +299,7 @@
                 alert("很遗憾，您失败了！越界,请refresh重试");
                 //此处要清除定时器并结束程序
                 clearInterval(moveTimer);
+                isStart=false;
                 return;
             }
 
@@ -308,6 +309,7 @@
                     alert("很遗憾，您失败了！吃到自己,请refresh重试");
                     //此处要清除定时器并结束程序
                     clearInterval(moveTimer);
+                    isStart=false;
                     return;
                 }
             }
@@ -351,6 +353,7 @@
                 oSnakeHeadPosiX.innerHTML=x_snake;
                 oSnakeHeadPosiY.innerHTML=y_snake;
                 oSnakeSpeed.innerHTML=speed;
+                console.log(isStart);
             },speed);
         }
 
@@ -399,16 +402,23 @@
         }
 
         //开始暂停/继续功能按钮的制作
+        var isPause=false;
         oPause.onclick=function(){
             if(isStart){
-                //清除定时器，即可结束🐍的运动
-                clearInterval(moveTimer);
-                isStart=false;
-                oPause.innerHTML="continue";
-            }else{
-                isStart=true;
-                run(moveSpeed);
-                oPause.innerHTML="pause";
+                if(!isPause){
+
+                    //清除定时器，即可结束🐍的运动
+                    clearInterval(moveTimer);
+                    // isStart=false;
+                    isPause=true;
+                    oPause.innerHTML="continue";
+                }else{
+
+                    // isStart=true;
+                    isPause=false;
+                    run(moveSpeed);
+                    oPause.innerHTML="pause";
+                }
             }
         }
 
