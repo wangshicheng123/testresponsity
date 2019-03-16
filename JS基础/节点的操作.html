@@ -11,6 +11,14 @@
     <div id="div1">
         <h2>二级标题</h2>
     </div>
+
+    <ul id="ul">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
     <script>
         var oDiv1=document.getElementById("div1");
         var oP=document.createElement("p");//常见新的节点元素；
@@ -26,8 +34,15 @@
         oDiv1.insertBefore(oH1,oP);//在某一个节点之前进行插入节点
         // oDiv1.removeChild(oH1);//删除子节点 
         oDiv1.replaceChild(oh4,oH1);//替换子节点；
-        console.log(oDiv1.children);
-        console.log(oDiv1.childNodes);
+        // console.log(oDiv1.children);
+        // console.log(oDiv1.childNodes);
+
+        var oUl=document.getElementById("ul");
+        // console.log(oUl.children);
+        // console.log(oUl.childNodes);
+        console.log(oUl.children.length);//获取子列表可以像一个数组进行使用
+        console.log(oUl.childNodes.length);//也可以使用中括号访问子列表中的每一项
+        
     </script>
 </body>
 </html>
