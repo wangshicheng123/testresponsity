@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试寻找节点的兼容性处理</title>
+</head>
+<body>
+    <div id="div1">
+        <span id="span1">abcdefg</span>
+        <span id="span2">akfrwilj</span>
+    </div>
+
+    <script>
+        var oSpan1=document.getElementById("span1");
+        
+
+        //兼容标准浏览器和IE浏览器的寻找下一个元素节点，而不是文本节点
+        function next(elem){
+
+            do{
+                elem=elem.nextSibling;
+            }while(elem && elem.nodeType !=1);
+
+            return elem;
+        }
+
+        function pre(elem1){
+            do{
+                elem=elem.previousSibling;
+            }while(elem && elem.nodeType !=1);
+            return elem;
+        }
+
+        var elem=next(oSpan1);
+        // console.log(elem);
+        var elem2=pre(span2);
+        console.log(elem2);
+    </script>
+</body>
+</html>
