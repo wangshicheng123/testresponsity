@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象的构造与使用</title>
+</head>
+<body>
+    
+
+    <script>
+        function Person(name,age){
+            this.name=name;
+            this.age=age;
+            this.eat=function(){
+                console.log("饿了，吃饭吧");
+            }
+        }
+
+        // var per=new Person("wangwu",90);
+        // per.eat();
+
+        function Person1(name,age){
+            this.name=name;
+            this.age=age;
+        }
+        //声明在原型下面的属性和方法可以被所有的实例化对象所共享
+        Person1.prototype.sleep=function(){
+            console.log("sleep");
+        }
+
+        var per1=new Person1("wnag",23);
+        per1.sleep();
+        
+        console.log(per1.__proto__);
+    </script>
+</body>
+</html>
