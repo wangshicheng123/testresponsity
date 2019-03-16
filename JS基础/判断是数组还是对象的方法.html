@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>判断是数组还是对象的方法</title>
+</head>
+<body>
+    
+    <script>
+        /*
+            两种数据类型之一的引用数据类型：
+            array object
+            (Array,Object是系统内置的类, 
+            可以用于实例化array,object这样的引用类型的对象)
+
+            判断是数组还是对象
+            {
+                Array.isArray();//参数是一个实例化的数组对象
+                .constructor 返回实例化对象的构造函数
+                arr instanceof Array  用于判断arr是否是Array的一个实例化对象
+            }
+        */
+        var arr =[1,2,3];
+        var obj={name:"acj1"};
+        // console.log(typeof arr); //返回的是Object
+        // console.log(typeof obj); //返回的是Object
+
+        console.log("判断是不是数组1: "+Array.isArray(arr));
+
+        //返回的是实例化该对象的构造函数
+        console.log("判断是不是数组2： "+arr.constructor);
+        
+        console.log(arr instanceof Array);//返回true 说明arr是Array的一个实例化对象
+
+    </script>
+</body>
+</html>
