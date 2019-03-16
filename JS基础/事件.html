@@ -9,19 +9,64 @@
         body{
             margin: 0px;
         }
-        #div1{
+        #div1, #div2{
             width: 200px;
             height: 200px;
             background: red;
+            margin-bottom: 30px;
+        }
+        #child, #child2{
+            width: 100px;
+            height: 100px;
+            background: green;
         }
     </style>
 </head>
 <body>
-    <div id="div1"></div>
+    <!-- 注意内联事件的写法 -->
+    <div id="div1" onclick="test()">
+        <div id="child"></div>
+    </div>
+    <div id="div2">
+        <div id="child2"></div>
+    </div>
 
     <script>
+        // function test(){
+        //     console.log("ajcn");
+        // }//如果对一个元素设置多个事件，后面的事件会覆盖掉前面的事件
         var oDiv1=document.getElementById("div1");
+        oDiv1.onclick=function(e){
+            console.log(this);//注意this指向是绑定事件的元素
+            e= e||window.event;
+            console.log(e);
+            // console.log("我被点击了");
+            console.log(e.target);//指向的是哪个触发事件的元素；
+            console.log(e.target.tagName);//注意标签名是大写的
+        }
+
+        var oDiv2=document.getElementById("div2");
+        var oChild2=document.getElementById("child2");
+
+        //冒泡的方向是从内到外，捕获的方向是从外到内；
+        //如果既有冒泡又有捕获，是先捕获后冒泡
+        oDiv2.addEventListener("click",function(){
+            console.log("这是通过addEventListener给元素添加事件,捕获");
+        },true);//注意第三个参数是 布尔值表示是否冒泡；
+        //false表示冒泡，true表示捕获；
+
+        oDiv2.addEventListener("click",function(){
+            console.log("在父元素上的点击事件，冒泡");
+        },false);
+
+        oChild2.addEventListener("click",function(){
+            console.log("子元素的事件，捕获");
+        },true);
+
         
+        oChild2.addEventListener("click",function(){
+            console.log("子元素的事件,冒泡");
+        },false);
     </script>
 </body>
 </html>
