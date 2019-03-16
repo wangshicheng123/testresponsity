@@ -14,7 +14,7 @@
 
     <script>
         var oSpan1=document.getElementById("span1");
-        
+        var oDiv1=document.getElementById("div1");
 
         //兼容标准浏览器和IE浏览器的寻找下一个元素节点，而不是文本节点
         function next(elem){
@@ -36,7 +36,8 @@
         var elem=next(oSpan1);
         // console.log(elem);
         var elem2=pre(span2);
-        console.log(elem2);
+        // console.log(elem2);
+        console.log(oDiv1.children);
     </script>
 </body>
 </html>
