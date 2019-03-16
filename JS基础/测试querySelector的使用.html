@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>querySelector的使用</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script>
+        //返回DOM对象，如果有多个符合条件的元素，只选择一个；
+        var oLi=document.querySelector("li");
+        // console.log(aLi);
+
+        //返回的是所有符合条件的类数组（nodeList,节点列表）
+        var aLi=document.querySelectorAll("li");
+        console.log(aLi);
+    </script>
+</body>
+</html>
