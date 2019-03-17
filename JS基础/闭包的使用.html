@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+    <script>
+        var aLi=document.getElementsByTagName("li");
+
+        //每次输出的都是类数组的长度，因为在没有开始点击事件的时候，循环已经执行完毕
+        //此时可以给每一个li加上一个index属性用来解决问题，也可以使用闭包
+
+        // (function(){  //这是函数的立即调用
+            
+        // })();
+        for(var i=0 ;i<aLi.length; ++i){
+            //如何要保存现有的i的每一次的值就是我们现在要做的
+            (function(j){
+                var b=j;
+                aLi[b].onclick=function(){
+                   console.log(b);
+                }
+            })(i);
+        }   
+
+
+        //形式参数可以直接使用
+
+    </script>
+</body>
+</html>
