@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <dvi id="div1">
+        abcdefg
+    </dvi>
+
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        var $div1 =$("#div1");
+        console.log($div1);
+
+        console.log($div1[0]); //通过类数组下表去访问，是jq对象与原生对象进行转换的方法
+        console.log($div1.get(0)); //通过get()方法是jq对象与原生对象进行转换
+        
+    </script>
+</body>
+</html>
