@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this的指向</title>
+    <style>
+        #div{
+            width: 200px;
+            height: 200px;
+            background: #ff0036;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="div"></div>
+    
+    <script>
+        //测试this的指向
+
+        //在全局函数中使用的this ,其指向是调用该方法的对象，也就是window对象；
+        function test(){
+            console.log(this);
+        }
+        // window.test();
+
+        // 在触发事件时中的事件处理函数中使用this 的指向；就是绑定事件的那个元素
+        var oDiv=document.getElementById("div");
+        oDiv.onclick=function(e){
+            e=e||window.event;
+            console.log("this的指向",this);
+            var target=e.target||e.srcElement;
+            console.log("事件源元素",target);
+        }
+
+        //对象中方法的中的this指向, 实例化对象中方法中的this指向是当前的实例化对象
+        //也就是调用该方法的当前对象 
+        var obj =new Object();
+        obj.name="wang";
+        obj.age=34;
+        obj.say=function(){
+            console.log(this);
+        }
+        // obj.say();
+
+
+        //使用构造器常见一个类 ，，注意这只是类的定义，此时并没有调用，
+        // 只有当实例化对象的时候才会调用构造器生成实例化对象
+        function Person(name,age){
+            this.name=name;
+            this.age=age;
+            this.eat=function(){
+                console.log("this的指向： ",this);
+            }
+        }
+
+        var person1=new Person("ashc",334);
+        // person1.eat();//this的指向是调用方法的对象
+
+        //改变this的指向
+
+        function test1(a,b){
+            console.log("this的指向： ",this,a,b);
+        }
+
+        test1.call(obj,12,34); //this的指向是调用方法的对象obj ,注意使用call方法时的参数写法
+        test1(12,34); //this的指向是调用方法的对象window
+
+        test1.apply(obj,[23,45]); //this的指向是调用方法的对象obj,注意使用apply方法时参数的写法
+
+        test1.bind(obj,3,6)();// this的指向是调用方法的对象obj,参数写法和call方法一样
+        //注意bind方法不会调用函数，想要调用函数必须自己再调用 
+
+    </script>
+</body>
+</html>
