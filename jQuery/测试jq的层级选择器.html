@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试jq的层级选择器</title>
+</head>
+<body>
+    <ul id="ul">
+        <ul>
+            <li>11</li>
+            <li>22</li>
+        </ul>
+        <li id="item">111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+    </ul>
+    <div id="box"></div>
+
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        // 测试jq选择器的返回值 (返回的是含有一个元素或者多个元素组成的集合)
+        // console.log($("#box"));
+
+        // 测试子代选择器
+        // $("#ul >li").css("background","red");
+        // console.log($("#ul >li"));
+
+        // 测试后代选择器
+        // $("#ul li").css("background","red");
+        // console.log($("#ul li"));
+
+        // 测试相邻兄弟选择器 (选择到的是当前元素的接着的下一个元素)
+        // $("#item + li").css("background","red");
+        // console.log($("#item + li"));
+
+        // 测试一般的兄弟选择器 (选择到的是当前元素后的所有元素组成的集合)
+        // $("#item ~ li").css("background","red");
+        // console.log($("#item ~ li"));
+
+        
+    </script>
+
+</body>
+</html>
