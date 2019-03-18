@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>全选反选</title>
+    <!-- <script src="./jquery-1.12.4.js"></script>
+    <script>
+        //样式添加到内联上面的了
+        
+        $(function(){
+            $("#div").css("background","red");
+        })
+    </script> -->
+</head>
+
+<body>
+    球类运动 <br>
+    <input type="checkbox" name="items" value="足球">足球
+    <input type="checkbox" name="items" value="篮球">篮球
+    <input type="checkbox" name="items" value="羽毛球">羽毛球
+    <input type="checkbox" name="items" value="乒乓球">乒乓球
+
+    <br/>
+    <input type="button" id="CheckedAll" value="全　选" />
+    <input type="button" id="CheckedNo" value="全不选" />
+    <input type="button" id="CheckedRev" value="反　选" />
+
+    <input type="button" id="send" value="提　交" />
+    <div id="div">abcdefghi</div>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        //样式添加到内联上面的了
+        
+        // $(function(){
+        //     $("#div").css("background","red");
+        // })
+
+        //做全选功能
+        var aInput=$(":checkbox");
+        // console.log(aInput);
+        $("#CheckedAll").on("click",function(){
+            // aInput.each(function(index,item){
+                // console.log(index,item);
+                // $("item").css("background","red");
+            // });
+
+            //注意aInput是一个类数组；
+            // console.log(aInput.length);
+            //prop方法是改变每个元素的属性值；，
+            //在jQuery中，使用prop方法不需要遍历每一项就可以改变所有
+            //项的属性值
+            aInput.prop("checked",true);
+        });
+
+        //做全部选中的功能
+        $("#CheckedNo").on("click",function(){
+            $(":checkbox").prop("checked",false);
+        });
+
+        //做反选功能
+        $("#CheckedRev").on("click",function(){
+
+            console.log($(":checkbox"));
+            // 取值的时候 取到的是集合中的第一个
+            // 但是注意在改变元素的值的时候，可以一次性改变集合中的
+            // 所有元素
+            console.log( $(":checkbox").prop("checked"));
+
+            $(":checkbox").each(function(index,item){
+                item.checked=!item.checked;
+            });
+        });
+    </script>
+</body>
+</html>
