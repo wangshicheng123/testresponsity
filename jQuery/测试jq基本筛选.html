@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测是jq基本筛选</title>
+</head>
+<body>
+    
+    <ul id="ul">
+        <li>111</li>
+        <li>222</li>
+        <li class="item">333</li>
+        <li>444</li>
+        <li>555</li>
+    </ul>
+    <ul id="ul">
+            <li>111</li>
+            <li>222</li>
+            <li class="item">333</li>
+            <li>444</li>
+            <li>555</li>
+        </ul>
+    
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        //测试 :even的筛选器的使用 （选择索引值为偶数的元素）
+        // $("#ul li:even").css("background","red");
+        // console.log($("#ul li:even"));
+
+        //测试 :odd的筛选器的使用 （选择索引值为奇数的元素）
+        // $("#ul li:odd").css("background","red");
+        // console.log($("ul li:odd"));
+
+        //测试 :first的筛选器的使用 （选择索引值为0的元素）
+        // 注意虽然:first只匹配一个单独的元素，
+        // 但是:first-child选择器可以匹配多个
+        // $("ul li:first").css("background","red");
+        // console.log($("ul li:first"));
+
+        //测试 :last的筛选器的使用 （选择索引值为类数组长度减一的元素）
+        // $("#ul li:last").css("background","red");
+        // console.log($("#ul li:last"));
+
+        //测试 :eq(index) 注意index是从0开始的索引值
+        // $("ul li:eq(2)").css("background","red");
+        // console.log($("ul li:eq(2)"));
+
+        //测试 :not(selector)  注意selector是一个选择器
+        // $("ul li:not(.item)").css("background","red");
+        // console.log($("ul li:not(.item)"));
+    </script>
+</body>
+</html>
