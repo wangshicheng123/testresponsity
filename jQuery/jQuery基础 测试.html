@@ -13,11 +13,18 @@
 
     <script src="./jquery-1.12.4.js"></script>
     <script>
+        //注意jQuery中的元素对象与原声js中的元素对象是不一样的；
         var $div1 =$("#div1");
-        console.log($div1);
+        // console.log($div1);
 
-        console.log($div1[0]); //通过类数组下表去访问，是jq对象与原生对象进行转换的方法
-        console.log($div1.get(0)); //通过get()方法是jq对象与原生对象进行转换
+        // console.log($div1[0]); //通过类数组下表去访问，是jq对象与原生对象进行转换的方法
+        // console.log($div1.get(0)); //通过get()方法是jq对象与原生对象进行转换
+
+        var oDiv=document.getElementById("div1");
+        console.log(oDiv);
+
+        //jQuery中元素对象到原生js中对象的转化
+        console.log($(oDiv));
         
     </script>
 </body>
