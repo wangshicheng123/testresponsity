@@ -11,6 +11,25 @@
     <div id="box">box</div>
     <script src="./jquery-1.12.4.js"></script>
     <script>
+        // jQuery版本的文档就绪函数,
+        // 会等待页面文档结构加载完毕后执行，不会等待外部资源加载完毕
+        // 多个文档就绪函数都会执行，相互之间没有影响；
+        $(document).ready(function(){
+            console.log("abc");
+        });
+
+        $(document).ready(function(){
+            console.log("123");
+        });
+        // 原生js中的文档就绪函数，会等待所有资源加载完毕
+        // 注意对于多个原生js中的文档就绪函数，只会执行一次，前面
+        // 绑定在window上面的onload事件函数会被下面的覆盖掉；
+        window.onload=function(){
+            // console.log("abc");
+        }
+        window.onload=function(){
+            // console.log("123");
+        }
     </script>
 </body>
 </html>
