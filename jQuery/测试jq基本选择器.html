@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试jq基本选择器</title>
+</head>
+<body>
+    <ul>
+        <li class="two one">111</li>
+        <li>222</li>
+        <li id="three">333</li>
+        <li class="one">444</li>
+    </ul>
+    
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        //测试类选择器(注意如果有多个类名，只要有我们要寻找的就可以匹配)
+        // $(".one").css("background","red");
+        // console.log($(".one"));
+
+        //测试id选择器(如果有多个元素含有id名，只会匹配第一个) 
+        // $("#three").css("background","red");
+        // console.log($("#three"));
+
+        //测试元素选择器
+        // $("li").css("background","red");
+        // console.log($("li"));
+
+        //测试组合选择器的使用 (注意组合选择器用逗号隔开)
+        // $(".one,#three").css("background","red");
+        // console.log($(".one,#three"));
+
+
+    </script>
+</body>
+</html>
