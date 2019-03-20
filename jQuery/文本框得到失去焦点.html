@@ -10,6 +10,9 @@
         #name{
             outline: none;
         }
+        .bgcolor{
+            background: red;
+        }
     </style>
 </head>
 <body>
@@ -25,15 +28,18 @@
         //当文本框含有用户的内容的时候，还是显示用户的内容，在此基础上添加内容
         //当文本框不含内容的时候，失去焦点的时候显示默认值；
 
-        $("input").on("focus",function(){
-            // var input=$(this);
-            
+        $("input").on("focus",function(){            
+            $(this).addClass("bgcolor");//在获取焦点的时候，添加一个类样式
 
+            //判断如果当前的value值为默认值，得到焦点的时候，内容变成空
             if($(this).val()==this.defaultValue){
-                $(this).val("");
+                $(this).val("");//注意 .val() 方法的使用
             }
-            
+        
         }).on("blur",function(){
+            $(this).removeClass("bgcolor");//在失去焦点的时候移除一个类样式
+
+            //判断失去焦点的时候，如果当前的内容为空，则还原为默认的value
             if($(this).val()==""){
                 $(this).val(this.defaultValue);
             }
