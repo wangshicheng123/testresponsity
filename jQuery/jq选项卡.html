@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jq选项卡</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }    
+
+        #btn{
+            list-style: none;
+            height: 25px;
+        }
+        #btn li{
+            float: left;
+            /* margin-right: 10px; */
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            width: 65px;
+            border: 1px solid #666;
+            cursor: pointer;
+        }
+        .active{
+            background: #999;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #999;
+        }
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="btn">
+            <li class="active">时事</li>
+            <li>体育</li>
+            <li>娱乐</li>
+        </ul>
+        <div class="box">时事</div>
+        <div class="box hidden">体育</div>
+        <div class="box hidden">娱乐</div>
+    </div>
+    <script src="./jquery-1.12.4.js"></script>
+
+    <script>
+        //使用on方法绑定事件可以对所有元素绑定事件
+        /*$("#btn").children().each(function(index,item){
+
+            $(item).on("click",function(){
+                $(this).siblings().removeClass("active");
+                $(this).addClass("active");
+                // console.log(index);
+                
+                // console.log($(this).index());
+                $(".box").addClass("hidden");
+                $(".box").eq($(this).index()).removeClass("hidden");
+            });
+        });*/
+
+        $("#btn li").on("click",function(){
+            // console.log("akdfj");
+            //把点击当前的btn样式设为active,其余的设为无样式；
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
+
+            //选中所有的div元素
+            $(".box").addClass("hidden");
+            $(".box").eq($(this).index()).removeClass("hidden");
+        });
+    </script>
+</body>
+</html>
