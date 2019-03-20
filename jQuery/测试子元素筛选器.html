@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试子元素筛选器</title>
+</head>
+<body>
+    
+    <ul id="ul">
+        <li>001</li>
+        <li>002</li>
+        <li>003</li>
+        <li>004</li>
+        <li>005</li>
+    </ul>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        //可以通过children()方法返回父元素下的子元素
+        // console.log($("ul").children());
+        //测试 :first-child (选择所有父元素下面的第一个子元素，可以是多个)
+        //注意和 :first 的区别（只选择一个符合条件的子元素）
+        $("ul li:first-child").css("background","red");
+
+        //测试 :last-child （选择所有父元素下面的最后一个子元素）
+        //注意和 :last 的区别（只选择一个符合条件的子元素）
+        $("ul li:last-child").css("background","red");
+
+        //测试 :nth-child(n) 注意参数n是从1开始计数的
+        $("ul li:nth-child(2)").css("background","red");
+
+        //
+    </script>
+</body>
+</html>
