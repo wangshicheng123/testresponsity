@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #container{
+            width:750px;
+            height: 291px;
+            margin: 100px auto;
+            position: relative;
+        }
+
+
+
+        #container .images img{
+            display: none;
+        }
+        #container .images .selected{
+            display: block;
+        }
+
+        #container .check-btn li{
+            float: left;
+            list-style: none;
+            background: rgba(0,0,0,0.4);
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            text-align: center;
+            margin-right: 5px;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #container .check-btn{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            /* overflow: hidden; */
+        }
+        
+        #container .check-btn .active{
+            background: #ff0036;
+        }
+        #container .arrow{
+            position: absolute;
+            left: 10px;
+            bottom: 7px;
+            height: 25px;
+            width: 80px;
+            color: #ff0036;
+        }
+        #container .arrow span{
+            margin-right: 10px;
+            font-size: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 5px;
+            float: left;
+            width: 25px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="images">
+            <img class="selected" src="../JS基础/img/1.jpg" alt="">
+            <img src="../JS基础/img/2.jpg" alt="">
+            <img src="../JS基础/img/3.jpg" alt="">
+            <img src="../JS基础/img/4.jpg" alt="">
+            <img src="../JS基础/img/5.jpg" alt="">
+        </div>
+        <ul class="check-btn">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+
+        <div class="arrow">
+            <span id="left-arrow">&lt</span>
+            <span id="right-arrow">&gt</span>
+        </div>
+    </div>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        var currentIndex=0;
+        $(".check-btn li").on("click",function(){
+            currentIndex=$(this).index();
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".images img").eq($(this).index()).addClass("selected").siblings().removeClass("selected");
+        });
+
+        //前一站图片
+        $("#left-arrow").on("click",function(){
+            if(currentIndex==0){
+                currentIndex=4;
+            }else{
+                currentIndex--;
+            }
+            $(".images img").eq(currentIndex).addClass("selected").siblings().removeClass("selected");
+            $(".check-btn li").eq(currentIndex).addClass("active").siblings().removeClass("active");
+        });
+        //后一张图片
+        $("#right-arrow").on("click",function(){
+            if(currentIndex==4){
+                currentIndex=0;
+            }else{
+                currentIndex++;
+            }
+            $(".images img").eq(currentIndex).addClass("selected").siblings().removeClass("selected");
+            $(".check-btn li").eq(currentIndex).addClass("active").siblings().removeClass("active");
+        });
+    </script>
+</body>
+</html>
