@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试可见性筛选</title>
+    <style>
+        div{
+            border: 1px solid red;
+        }
+
+        .box1{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">111</div>
+    <div class="box2">222</div>
+    <div class="box3">333</div>
+
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        //测试 :hidden (选择所有符合条件的被隐藏的元素)
+        $("div:hidden").next().css("background","green");
+
+        //测试 :visible （选择所有符合条件的显示的元素）
+        //注意元素visibility: hidden或opacity: 0被认为是可见的
+        $("div:visible").css("background","yellow");
+    </script>
+</body>
+</html>
