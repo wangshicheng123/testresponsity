@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jq事件委托</title>
+    <style>
+        ul{
+            background: red;
+        }
+        li{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">add</button>
+    <ul>
+        <li>001</li>
+        <li>002</li>
+        <li>003</li>
+        <li>004</li>
+        <li>005</li>
+    </ul>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        //可以发现我们新增加的li项是没有添加点击事件的
+        /*$("li").on("click",function(){
+            console.log($(this).html());
+        });
+        */
+        //我们可以使用 绑定事件的第二个参数： 就是为了解决事件委托这个问题的
+        // 第二个参数就是我们要点击事件的元素才会真正触发事件处理函数的元素
+        $("ul").on("click","li",function(){
+            console.log(this.innerHTML);
+        });
+        $("#btn").on("click",function(){
+            $("ul").append("<li>"+ Math.random() +"</li>");
+        });
+    </script>
+</body>
+</html>
