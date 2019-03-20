@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试jq中的更改属性获取属性值方法</title>
+</head>
+<body>
+    <!-- <input type="text" value="请输入你的姓名"> -->
+    <input type="checkbox" name="ball" id=""> 篮球
+    <input type="checkbox" name="ball" id=""> 排球
+    <input type="checkbox" name="ball" id=""> 足球
+    <br>
+    <input type="button" value="全选" id="selectAll">
+    <input type="button" value="全不选" id="selectNo">
+    <input type="button" value="反选" id="selectRe">
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        //测试 attr()方法获取元素的属性值；（当只有一个参数的时候）
+        // var x=$("input:text").attr("value");
+        // console.log(x);
+
+        //测试 attr()方法更改属性的属性值 （当含有两个参数的时候）
+        // 把value的值进行更改
+        // $("input:text").attr("value","abjcdkah");
+
+        //测试 prop()方法更改属性的值
+        //注意 prop()方法和attr()方法的区别
+        //prop()方法是适用在一些特有属性，attr()方法是适用于一些共有属性
+        $("#selectAll").on("click",function(){
+            $("input:checkbox").prop("checked",true);
+        });
+        $("#selectNo").on("click",function(){
+            $("input:checkbox").prop("checked",false);
+        });
+        $("#selectRe").on("click",function(){
+            // $("input:checkbox").
+            // console.log($("input:checkbox"));
+            $("input:checkbox").each(function(index,item){
+                $(item).prop("checked",!$(item).prop("checked"));
+            });
+        });
+    </script>
+</body>
+</html>
