@@ -12,21 +12,60 @@
         ul{
             background: red;
         }
-        li{
+        /* 注意伪类选择器是从1开始的 */
+        li:nth-child(odd){
             background: green;
         }
     </style>
 </head>
 <body>
-    <ul>
+    <ul id="ul">
         <li>1</li>
         <li>2</li>
         <li>3</li>    
         <li>4</li>
     </ul>
-
+    <button id="btn">add</button>
     <script>
-        
+        //测试事件委托
+        var oBtn=document.getElementById("btn");
+        var oUl=document.getElementById("ul");
+        var aLi=oUl.getElementsByTagName("li");
+        // console.log(aLi);
+        /*
+        for(var i=0; i<aLi.length; ++i){
+            aLi[i].onclick=function(){
+                console.log(this.innerHTML);
+            }
+        }
+        */
+        oUl.onclick=function(e){
+            //获取事件对象，处理兼容性问题
+            var e=e||window.event;
+            //获取事件源，处理兼容性问题
+            var target=e.target|| e.srcElement;
+            // console.log(target);
+            //通过判断事件源是ul元素，还是li元素
+            if(target.tagName=="LI"){
+                console.log(target.innerHTML);
+            }
+
+        }
+
+        //通过点击按钮我们发现新添加的li项没有点击事件，
+        //此时我们可以通过事件委托的方法来解决这个问题
+        // 那什么是事件委托呢？
+        // 事件委托就是用来解决后生元素的事件绑定问题，
+        // 解决方法：
+        // 把事件绑定在父元素上面，通过在子元素上面触发事件源，
+        // 通过冒泡的方式把触发的事件传到父元素上面，
+        // 在父元素上面通过事件对象event获取触发事件的事件源，
+        // 从而在事件源上面进行一系列操作，就可以达到事件委托的效果
+        oBtn.onclick=function(){
+            var li=document.createElement("li");
+            li.innerHTML=Math.random();
+            oUl.appendChild(li);
+        }
     </script>
 </body>
 </html>
