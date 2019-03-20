@@ -98,31 +98,35 @@
     <script src="./jquery-1.12.4.js"></script>
     <script>
         var currentIndex=0;
+        var $li=$(".check-btn li");
+        var $img=$(".images img");
+        
         $(".check-btn li").on("click",function(){
             currentIndex=$(this).index();
             $(this).addClass("active").siblings().removeClass("active");
-            $(".images img").eq($(this).index()).addClass("selected").siblings().removeClass("selected");
+            $img.eq($(this).index()).addClass("selected").siblings().removeClass("selected");
         });
 
         //前一站图片
         $("#left-arrow").on("click",function(){
+            // console.log("cajd");
             if(currentIndex==0){
                 currentIndex=4;
             }else{
                 currentIndex--;
             }
-            $(".images img").eq(currentIndex).addClass("selected").siblings().removeClass("selected");
-            $(".check-btn li").eq(currentIndex).addClass("active").siblings().removeClass("active");
+            $img.eq(currentIndex).addClass("selected").siblings().removeClass("selected");
+            $li.eq(currentIndex).addClass("active").siblings().removeClass("active");
         });
         //后一张图片
         $("#right-arrow").on("click",function(){
-            if(currentIndex==4){
+            if(currentIndex==$img.length){
                 currentIndex=0;
             }else{
                 currentIndex++;
             }
-            $(".images img").eq(currentIndex).addClass("selected").siblings().removeClass("selected");
-            $(".check-btn li").eq(currentIndex).addClass("active").siblings().removeClass("active");
+            $img.eq(currentIndex).addClass("selected").siblings().removeClass("selected");
+            $li.eq(currentIndex).addClass("active").siblings().removeClass("active");
         });
     </script>
 </body>
