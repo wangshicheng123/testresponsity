@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试jq中改变元素位置的方法</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+        #div{
+            width: 100px;
+            height: 200px;
+            background: #f00;
+            /* margin-left: 50px; */
+            /* margin-top: 33px; */
+            position: absolute;
+            top: 33px;
+            left: 34px;
+        }
+        #div2{
+            width: 250px;
+            height: 250px;
+            background: #0f0;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="div2">
+        <div id="div"></div>
+    </div>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        // 测试jq中获取元素相对于document文档的位置
+        // var obj=$("#div").offset();
+        // console.log(obj);
+
+        // 测试jq中获取元素相对于最近已经定位的父元素的位置
+        // 注意获取不到元素的外边距的高度；只能是定义元素的的top,left值；
+        var obj2=$("#div").position();
+        console.log(obj2);
+    </script>
+</body>
+</html>
