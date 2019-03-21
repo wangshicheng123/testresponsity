@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试jq中的尺寸方法</title>
+    <style>
+        #div{
+            width: 200px;
+            height: 299px;
+            background: #00f;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="div"></div>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        //测试常用的 width(), height()方法获取元素内容的宽度和高度
+        var width=$("#div").width();
+        var height=$("#div").height();
+        console.log(width);
+        console.log(height);
+    </script>
+</body>
+</html>
