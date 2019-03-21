@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试jq中获取css属性和更改css属性值</title>
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        .div{
+            border: 1px solid #000;
+        }
+        .div1{
+            border: 5px solid #0f0;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1" class="div">
+
+    </div>
+    <script src="./jquery-1.12.4.js"></script>
+    <script>
+        // 测试css() 方法获取某个元素的属性值 （注意只有一个属性参数）
+        // 注意使用css() 方法的时候 获取的是匹配元素集合中的第一个元素的属性值
+        // console.log($("#div1").css("width"));//结果是一个带px的字符串
+
+        // 测试css()方法修改某个元素属性的值，（注意含有两个参数）
+        // 注意如果有多个匹配的元素，则修改所有元素的属性值
+        // $("#div1").css("width","400px");
+
+        // 测试 addClass() 方法为所有匹配的元素添加一个类样式
+        // 注意这是一个方法 ,参数是一个类 选择器
+        // $("#div1").addClass("div");
+
+        //测试 removeClass()  移除已经存在的类选择器
+        // 参数是已经存在的类选择器
+        // $("#div1").removeClass("div");
+
+        //测试toggleClass() 方法的使用
+        // $("#div1").toggleClass("div1");
+
+        
+    </script>
+</body>
+</html>
