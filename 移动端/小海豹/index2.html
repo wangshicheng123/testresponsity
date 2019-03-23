@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index2</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        h1{
+            width: 960px;
+            height: 100px;
+            background: #eee;
+            margin: 30px auto 0px auto;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        #img-box{
+            width: 960px;
+            margin: 0px auto;
+        }
+        #img-box .big-img{
+            width: 100%;
+            display: block;
+        }
+        #img-box img{
+            display: none;
+        }
+
+        #content{
+            width: 960px;
+            height: 300px;
+            background: #f00;
+            margin: 0px auto;
+        }
+
+        #content .left{
+            float: left;
+            background: #00f;
+            width: 630px;
+            height: 100%;
+            display: table;
+        }
+        #content .left p, #content .right p{
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+        #content .right{
+            float: right;
+            background: #0f0;
+            width: 300px;
+            height: 100%;
+            display: table;
+        }
+
+        @media screen and (max-width: 960px){
+            h1{
+                width: 100%;
+            }
+            #img-box{
+                width: 100%;
+            }
+            #img-box .middle-img{
+                width: 100%;
+            }
+            #img-box .big-img, #img-box .small-img{
+                display: none;
+            }
+            #img-box .middle-img{
+                display: block;
+            }
+
+            #content{
+                width: 100%;
+            }
+            #content .left{
+                width: 66%;
+            }
+            #content .right{
+                width: 31%;
+            }
+        }
+
+        @media screen and (max-width: 480px){
+            #img-box .big-img, #img-box .middle-img{
+                display: none;
+            }
+            #img-box .small-img{
+                display: block;
+            }
+            #content .left{
+                width: 100%;
+            }
+            #content .right{
+                width: 100%;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>页头</h1>
+    <h1>标题</h1>
+
+    <div id="img-box">
+        <img class="big-img" src="./image/01.jpg" alt="">
+        <img class="middle-img" src="./image/01_s_2x.jpg" alt="">
+        <img class="small-img" src="./image/01_s.jpg" alt="">
+    </div>
+    <div id="content">
+        <div class="left"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sem erat, egestas quis luctus ut, rhoncus vitae risus. Integer venenatis libero sit amet sapien dictum, quis bibendum mi volutpat. Cras pretium quam quis magna facilisis, eget feugiat nisi lacinia.</p></div>
+        <div class="right"><p>Donec dolor arcu, interdum sed turpis faucibus, placerat ultricies felis. Donec pulvinar gravida rhoncus. Suspendisse vestibulum est eget dolor lobortis.</p></div>
+    </div>
+    <h1>页尾</h1>
+</body>
+</html>
