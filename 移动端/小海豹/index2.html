@@ -44,8 +44,10 @@
             background: #00f;
             width: 630px;
             height: 100%;
+            /* 要使多行文字水平垂直剧中需使父元素设置:  display: table; */
             display: table;
         }
+        /* 为了使多行文字水平垂直剧中 */
         #content .left p, #content .right p{
             display: table-cell;
             text-align: center;
