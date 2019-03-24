@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>remJs的使用</title>
+    <script src="./rem.js"></script>
     <style>
         *{
             margin: 0px;
@@ -15,7 +16,11 @@
             /* 在已知确定当前设备的情况下使用固定宽度 */
             /* width: 320px; */
             /* 使用百分比来实现 */
-            width: 100%;
+            /* width: 100%; */
+            /* 使用单位rem来实现 ,注意引入的rem.js文件是把当前设备的
+            宽度除以6.4倍适1rem*/
+
+            width: 6.4rem;
             height: 50px;
             background: #f00;
         }
@@ -23,5 +28,6 @@
 </head>
 <body>
     <div id="head"></div>
+
 </body>
 </html>
