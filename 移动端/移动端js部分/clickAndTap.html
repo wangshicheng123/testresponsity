@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            background: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <script src="zepto.js"></script>
+    <script src="./touch.js"></script>
+    <script>
+        $("#box").on("tap", function () {
+            console.log("tap");
+        });
+
+        //理论上先触发tap事件，后触发click事件，（click事件有300ms的延迟）
+        // 300ms以内再次点击，会认为是双击事件（dbclick）；
+        $("#box").on("click", function () {
+            console.log("click");
+        });
+    </script>
+</body>
+
+</html>
