@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            touch-action: none;
+        }
+        body{
+            margin: 0px;
+            padding: 0px;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            background: #0f0;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="box"></div>
+    <script src="./zepto.js"></script>
+    <script src="./touch.js"></script>
+    <script>
+        //原生的触摸事件
+
+        // touch 
+        //touchstart   //手指触摸会触发
+        //touchend     //手指离开后会触发
+        //touchmove  //手指在屏幕上移动的时候会触发
+        //touchcancel  //当触摸事件被打断的时候会触发，  事件会被取消
+
+
+        //zepto封装的事件
+        // 手指滑动的距离超过30px才会触发滑动事件
+        // *{
+        //    touch-action: none;   //取消默认滑动事件
+        //}
+
+        // swipe        //手指滑动事件
+        // swipeLeft   //手指左滑事件
+        // swipeUp     //手机上滑事件
+
+
+        //tap事件（注意和click事件的区别）
+        // singleTap   //单机事件
+        // doubleTap   //双击事件
+        //longTap      //长按事件
+
+
+        //测试touch原生触摸事件
+        //测试touchstart事件（是小写的，是原生的）
+        $("#box").on("touchstart",function(){
+            // console.log("touch start");
+        });
+
+        //测试touchend事件（是小写的，是原生的）
+        $("#box").on("touchend",function(){
+            // console.log("touch end");
+        });
+
+        //测试touchmove事件，（是小写的，是原生的）
+        $("#box").on("touchmove",function(){
+            // console.log("touch move");
+        });
+
+        //测试tap点击事件（是经过封装的）
+
+        // $("#box").on("tap",function(){
+        //     console.log("tap");
+        // });
+
+        $("#box").on("doubleTap",function(){
+            // console.log("tap");
+        });
+
+        $("#box").on("singleTap",function(){
+            // console.log("single tap");
+        });
+
+        //测试手指长按触发长按事件
+        $("#box").on("longTap",function(){
+            // console.log("long tap");
+        });
+
+
+        //测试手指滑动的事件（是经过封装的）
+        //测试手指向左滑动触发滑动事件
+        $("#box").on("swipeLeft",function(){
+            // console.log("swipe left");
+        });
+
+        //测试手指向右滑动触发滑动事件
+        $("#box").on("swipeRight",function(){
+            // console.log("swipe right");
+        });
+
+        //测试手指上滑事件
+        $("#box").on("swipeUp",function(){
+            console.log("swipe up");
+        });
+
+
+
+    </script>
+</body>
+</html>
