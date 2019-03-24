@@ -180,6 +180,9 @@ body{
 }
 
 @keyframes moveFromBottom{
+    /* 注意百分之零是元素的初始状态 ，
+    从这个初始状态的基础之上进行变换，如果只有一个初始状态参数，
+    则其末状态是当前元素的默认样式*/
     0%{
         transform: translateY(100%);
     }
@@ -197,6 +200,8 @@ body{
     }
 }
 @keyframes moveToBottom{
+    /* 注意百分之百是元素的末状态， 
+    如果只有这个参数，则其初始状态就是当前元素的默认样式 */
     100%{
         transform: translateY(100%);
     }
