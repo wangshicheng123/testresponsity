@@ -1,0 +1,185 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+#first-page{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #083846;
+}
+#first-page .cover{
+    width: 248px;
+    /* margin: 0px auto; 注意行级元素不能使用margin居中,
+    对于行级元素一般使用text-align居中（单行元素，不能是多行），*/
+    position: absolute;
+    left: 50%;
+    margin-left: -124px;
+}
+#first-page .wording-cover{
+    width: 185px;
+    position: absolute;
+    top: 350px;
+    left: 50%;
+    margin-left: -92.5px;
+}
+#first-page .icon-up{
+    width: 25px;
+    position: absolute;
+    left: 50%;
+    margin-left:-12.5px; 
+    bottom: 30px;
+}
+.moveFromTop{
+    animation: moveFromTop .6s ease forwards;
+}
+
+.moveFromLeft{
+    /* 注意时间要加单位 */
+    animation: moveFromLeft .6s ease forwards;
+}
+.moveFromIcon{
+    animation: moveFromIcon 1.5s ease infinite forwards;
+}
+
+@keyframes moveFromTop{
+    0%{
+        transform: translateY(-100%);
+    }
+}
+@keyframes moveFromLeft{
+    0%{
+        transform: translateX(-100%);
+    }
+}
+@keyframes moveFromIcon{
+    0%{
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    50%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    /*
+        0%--隐藏
+        50%-显示向上移
+        100%-隐藏向下移
+    */
+}
+
+.hidden{
+    display: none;
+}
+#second-page{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #9261BF;
+}
+
+#second-page .wording{
+    width: 158px;
+    position: absolute;
+    left: 50%;
+    /* transform: translateX(-50%); */
+    margin-left: -79px;
+}
+#second-page .circle{
+    width: 240px;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    margin-left: -120px;
+}
+
+#second-page .floating-deve{
+    width: 248px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    margin-left: -124px;
+}
+#second-page .people{
+    width: 241px;
+    position: absolute;
+    left: 50%;
+    top: 180px;
+    margin-left: -120.5px;
+}
+
+#second-page .check-deve{
+    width: 142px;
+    position: absolute;
+    bottom: 85px;
+    left: 50%;
+    margin-left: -71px;
+}
+
+#second-page .dot1{
+    width: 20px;
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    margin-left: -10px;
+}
+
+#second-page .icon-up{
+    width: 25px;
+    position: absolute;
+    left: 50%;
+    margin-left:-12.5px; 
+    bottom: 30px;
+}
+
+
+
+.moveScale{
+    animation: moveScale .6s ease forwards;
+}
+
+.moveCircle{
+    animation: moveCircle 1.2s ease forwards;
+}
+
+.moveFromBottom{
+    animation: moveFromBottom .6s ease forwards;
+}
+
+@keyframes moveScale{
+    0%{
+        transform: scale(0);
+    }
+}
+@keyframes moveCircle{
+    0%{
+        transform: translateY(-60%);
+    }
+    30%{
+        transform: translateY(30%)
+    }
+    50%{
+        transform: translateY(-20%);
+    }
+    80%{
+        transform: translateY(15%);
+    }
+    100%{
+        transform: translateY(-5%);
+    }
+}
+
+@keyframes moveFromBottom{
+    0%{
+        transform: translateY(100%);
+    }
+}

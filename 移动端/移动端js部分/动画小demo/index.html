@@ -7,43 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>js动画</title>
     <style>
-        body{
-            margin: 0px;
-            padding: 0px;
-        }
-
-        #first-page{
-            position: absolute;
-            top: 0px;
-            bottom: 0px;
-            left: 0px;
-            right: 0px;
-            background: #083846;
-        }
-        #first-page .cover{
-            width: 248px;
-            /* margin: 0px auto; 注意行级元素不能使用margin居中,
-            对于行级元素一般使用text-align居中（单行元素，不能是多行），*/
-            position: absolute;
-            left: 50%;
-            margin-left: -124px;
-        }
-        #first-page .wording-cover{
-            width: 185px;
-            position: absolute;
-            top: 350px;
-            left: 50%;
-            margin-left: -92.5px;
-        }
-        .moveFromTop{
-            animation: moveFromTop .6s ease forwards;
-        }
-        @keyframes moveFromTop{
-            0%{
-                transform: translateY(-100%);
-            }
-        }
-
+        
 
     </style>
 </head>
@@ -52,11 +16,29 @@
     <div id="container">
         <div id="first-page">
             <img class="cover moveFromTop" src="./img/cover.png" alt="">
-            <img class="wording-cover" src="./img/wording_cover.png" alt="">
-            <!-- <img class="icon-up" src="./img/icon_up.png" alt=""> -->
+            <img class="wording-cover moveFromLeft" src="./img/wording_cover.png" alt="">
+            <img class="icon-up moveFromBottom" src="./img/icon_up.png" alt="">
         </div>
-
+        <div id="second-page">
+            <img class="wording moveFromBottom" src="./img/wording.png" alt="">
+            <img class="circle moveCircle" src="./img/circle.png" alt="">
+            <img class="floating-deve moveScale" src="./img/floating_develop.png" alt="">
+            <img class="people moveFromLeft" src="./img/people.png" alt="">
+            <img class="check-deve moveScale" src="./img/check_develop.png" alt="">
+            <img class="dot1 moveScale" src="./img/dot1.png" alt="">
+            <img class="icon-up moveFromIcon" src="./img/icon_up.png" alt="">
+        </div>
     </div>
+
+    <script src="../zepto.js"></script>
+    <script src="../touch.js"></script>
+    <script>
+        var iNow=1;
+        $(document).on("swipeUp",function(){
+
+        });
+    </script>
+
 </body>
 
 </html>
