@@ -11,17 +11,19 @@
             height: 200px;
             background: #f00;
             
+            /* forwards回到动画结束时的状态 */
             animation: run 2s ease 2s forwards;
         }
 
         @keyframes run{
             /* 可以使用from  to或者使用百分比 */
+            /* 百分之零是动画的初始状态，然后使用动画运动的这个状态 */
             0%{
                 width: 50px;
             }
-            100%{
-                width: 300px;
-            }
+            /* 100%{ */
+                /* width: 300px; */
+            /* } */
         }
     </style>
 </head>
