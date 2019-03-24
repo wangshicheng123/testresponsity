@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试flex弹性和模型</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #container {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            background: #999;
+        }
+
+        #container .item1{
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-around; */
+            align-items: center;
+        }
+
+        #container .box1{
+            width: 100px;
+            height: 50px;
+            background: #00f;
+        }
+        #container .box2{
+            width: 110px;
+            height: 60px;
+            background: #0f0;
+        }
+        #container .box3{
+            
+            width: 100px;
+            height: 50px;
+            background: #f00;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <div class="item1">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+        </div>
+    </div>
+</body>
+
+</html>
