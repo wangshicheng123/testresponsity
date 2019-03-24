@@ -6,20 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>js动画</title>
-    <style>
-        
+    <link rel="stylesheet" href="./index.css">
 
-    </style>
 </head>
 
 <body>
     <div id="container">
-        <div id="first-page">
+        <div id="page-1">
             <img class="cover moveFromTop" src="./img/cover.png" alt="">
             <img class="wording-cover moveFromLeft" src="./img/wording_cover.png" alt="">
             <img class="icon-up moveFromBottom" src="./img/icon_up.png" alt="">
         </div>
-        <div id="second-page">
+        <div id="page-2" class="hidden">
             <img class="wording moveFromBottom" src="./img/wording.png" alt="">
             <img class="circle moveCircle" src="./img/circle.png" alt="">
             <img class="floating-deve moveScale" src="./img/floating_develop.png" alt="">
@@ -33,9 +31,12 @@
     <script src="../zepto.js"></script>
     <script src="../touch.js"></script>
     <script>
+        //设置一个全局变量用来记录当前是哪一个页面
         var iNow=1;
+        //获取整个document页面，在document上面绑定一个上滑事件
         $(document).on("swipeUp",function(){
-
+            $("#page-"+iNow).attr("class","moveToTop");
+            $("#page-"+(iNow+1)).attr("class","moveFromBottom");
         });
     </script>
 

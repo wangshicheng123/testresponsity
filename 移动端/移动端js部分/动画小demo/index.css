@@ -1,9 +1,10 @@
 body{
     margin: 0px;
     padding: 0px;
+    touch-action: none;
 }
 
-#first-page{
+#page-1{
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -11,7 +12,7 @@ body{
     right: 0px;
     background: #083846;
 }
-#first-page .cover{
+#page-1 .cover{
     width: 248px;
     /* margin: 0px auto; 注意行级元素不能使用margin居中,
     对于行级元素一般使用text-align居中（单行元素，不能是多行），*/
@@ -19,14 +20,14 @@ body{
     left: 50%;
     margin-left: -124px;
 }
-#first-page .wording-cover{
+#page-1 .wording-cover{
     width: 185px;
     position: absolute;
     top: 350px;
     left: 50%;
     margin-left: -92.5px;
 }
-#first-page .icon-up{
+#page-1 .icon-up{
     width: 25px;
     position: absolute;
     left: 50%;
@@ -78,7 +79,7 @@ body{
 .hidden{
     display: none;
 }
-#second-page{
+#page-2{
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -87,14 +88,14 @@ body{
     background: #9261BF;
 }
 
-#second-page .wording{
+#page-2 .wording{
     width: 158px;
     position: absolute;
     left: 50%;
     /* transform: translateX(-50%); */
     margin-left: -79px;
 }
-#second-page .circle{
+#page-2 .circle{
     width: 240px;
     position: absolute;
     top: 150px;
@@ -102,14 +103,14 @@ body{
     margin-left: -120px;
 }
 
-#second-page .floating-deve{
+#page-2 .floating-deve{
     width: 248px;
     position: absolute;
     top: 50px;
     left: 50%;
     margin-left: -124px;
 }
-#second-page .people{
+#page-2 .people{
     width: 241px;
     position: absolute;
     left: 50%;
@@ -117,7 +118,7 @@ body{
     margin-left: -120.5px;
 }
 
-#second-page .check-deve{
+#page-2 .check-deve{
     width: 142px;
     position: absolute;
     bottom: 85px;
@@ -125,7 +126,7 @@ body{
     margin-left: -71px;
 }
 
-#second-page .dot1{
+#page-2 .dot1{
     width: 20px;
     position: absolute;
     bottom: 70px;
@@ -133,7 +134,7 @@ body{
     margin-left: -10px;
 }
 
-#second-page .icon-up{
+#page-2 .icon-up{
     width: 25px;
     position: absolute;
     left: 50%;
@@ -180,6 +181,23 @@ body{
 
 @keyframes moveFromBottom{
     0%{
+        transform: translateY(100%);
+    }
+}
+
+.moveToTop{
+    animation: moveToTop .6s ease forwards;
+}
+.moveToBottom{
+    animation: moveToBottom .6s ease forwards;
+}
+@keyframes moveToTop{
+    100%{
+        transform: translateY(-100%);
+    }
+}
+@keyframes moveToBottom{
+    100%{
         transform: translateY(100%);
     }
 }
