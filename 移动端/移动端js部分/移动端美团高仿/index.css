@@ -1,0 +1,22 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    font-size: 0.32rem;
+}
+
+#header{
+    height: 1.01rem;
+    background: #06c1ae;
+    display: flex;
+    line-height: 1.01rem;
+}
+
+#header .address{
+    color: #fff;
+    margin: 0 0.2rem;
+}
+#header .icon-xiajiantou{
+    font-size: .16rem;
+}
