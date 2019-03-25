@@ -27,58 +27,16 @@ body{
     left: 50%;
     margin-left: -92.5px;
 }
-#page-1 .icon-up{
+.icon-up{
     width: 25px;
     position: absolute;
     left: 50%;
     margin-left:-12.5px; 
     bottom: 30px;
 }
-.moveFromTop{
-    animation: moveFromTop .6s ease forwards;
-}
 
-.moveFromLeft{
-    /* 注意时间要加单位 */
-    animation: moveFromLeft .6s ease forwards;
-}
-.moveFromIcon{
-    animation: moveFromIcon 1.5s ease infinite forwards;
-}
 
-@keyframes moveFromTop{
-    0%{
-        transform: translateY(-100%);
-    }
-}
-@keyframes moveFromLeft{
-    0%{
-        transform: translateX(-100%);
-    }
-}
-@keyframes moveFromIcon{
-    0%{
-        transform: translateY(100%);
-        opacity: 0;
-    }
-    50%{
-        transform: translateY(0);
-        opacity: 1;
-    }
-    100%{
-        opacity: 0;
-        transform: translateY(-100%);
-    }
-    /*
-        0%--隐藏
-        50%-显示向上移
-        100%-隐藏向下移
-    */
-}
-
-.hidden{
-    display: none;
-}
+/* page-2的样式 */
 #page-2{
     position: absolute;
     top: 0px;
@@ -134,16 +92,169 @@ body{
     margin-left: -10px;
 }
 
-#page-2 .icon-up{
-    width: 25px;
+
+/* page-3的样式 */
+#page-3{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #F3533C;
+}
+#page-3 .wording-desi{
+    width: 166px;
     position: absolute;
     left: 50%;
-    margin-left:-12.5px; 
-    bottom: 30px;
+    margin-left: -83px; 
+    top: 10px;
+}
+#page-3 .circle-desi{
+    width: 250px;
+    position: absolute;
+    left: 50%;
+    margin-left: -125px;
+    top: 170px;
+}
+#page-3 .floating-desi{
+    width: 248px;
+    position: absolute;
+    left: 50%;
+    margin-left: -124px;
+    top: 240px;
+}
+#page-3 .people-desi{
+    width: 172px;
+    position: absolute;
+    left: 60%;
+    margin-left: -86px;
+    top: 150px;
+}
+#page-3 .check-desi{
+    width: 142px;
+    position: absolute;
+    left: 50%;
+    margin-left: -71px;
+    bottom: 85px;
+}
+#page-3 .dot1{
+    width: 20px;
+    position: absolute;
+    left: 50%;
+    margin-left: -10px;
+    bottom: 70px;
+}
+
+
+/* page-4的样式 */
+#page-4{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #FFBF50;
+}
+#page-4 .wording-pro{
+    width: 162px;
+    position: absolute;
+    left: 50%;
+    margin-left: -81px;
+    top: 10px;
+}
+#page-4 .circle-pro{
+    width: 230px;
+    position: absolute;
+    left: 50%;
+    margin-left: -115px;
+    top: 160px;
+}
+#page-4 .floating-pro{
+    width: 271px;
+    position: absolute;
+    left: 50%;
+    margin-left: -135.5px;
+    top: 190px;
+}
+#page-4 .people-pro{
+    width: 161px;
+    position: absolute;
+    left: 50%;
+    margin-left: -80.5px;
+    top: 160px;
+}
+#page-4 .pic-shadow-pro{
+    width: 169px;
+    position: absolute;
+    left: 50%;
+    margin-left: -84.5px;
+    bottom: 120px;
+}
+#page-4 .check-pro{
+    width: 142px;
+    position: absolute;
+    left: 50%;
+    margin-left: -71px;
+    bottom: 90px;
+}
+#page-4 .dot1{
+    width: 20px;
+    position: absolute;
+    left: 50%;
+    margin-left: -10px;
+    bottom: 70px;
 }
 
 
 
+
+/* page-5的样式 */
+
+#page-5{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #083846;
+}
+
+#page-5 .pic-back{
+    width: 280px;
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    margin-left: -140px;
+}
+#page-5 .btn-join{
+    width: 260px;
+    position: absolute;
+    left: 50%;
+    margin-left: -130px;
+    bottom: 150px;
+}
+
+
+
+/* 动画部分 */
+.moveFromTop{
+    animation: moveFromTop .6s ease forwards;
+}
+.moveFromBottom{
+    animation: moveFromBottom .6s ease forwards;
+}
+
+.moveFromLeft{
+    /* 注意时间要加单位 */
+    animation: moveFromLeft .6s ease forwards;
+}
+/* 为什么这个样式动画会撑大容器宽度 */
+.moveFromRight{
+    animation: moveFromRight .6s ease forwards;
+}
+.moveFromIcon{
+    animation: moveFromIcon 1.5s ease infinite forwards;
+}
 .moveScale{
     animation: moveScale .6s ease forwards;
 }
@@ -152,8 +263,56 @@ body{
     animation: moveCircle 1.2s ease forwards;
 }
 
-.moveFromBottom{
-    animation: moveFromBottom .6s ease forwards;
+.moveToTop{
+    animation: moveToTop .6s ease forwards;
+}
+.moveToBottom{
+    animation: moveToBottom .6s ease forwards;
+}
+
+
+
+@keyframes moveFromTop{
+    0%{
+        transform: translateY(-100%);
+    }
+}
+@keyframes moveFromBottom{
+    /* 注意百分之零是元素的初始状态 ，
+    从这个初始状态的基础之上进行变换，如果只有一个初始状态参数，
+    则其末状态是当前元素的默认样式*/
+    0%{
+        transform: translateY(100%);
+    }
+}
+@keyframes moveFromLeft{
+    0%{
+        transform: translateX(-100%);
+    }
+}
+@keyframes moveFromRight{
+    0%{
+        transform: translateX(100%);
+    }
+}
+@keyframes moveFromIcon{
+    0%{
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    50%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    /*
+        0%--隐藏
+        50%-显示向上移
+        100%-隐藏向下移
+    */
 }
 
 @keyframes moveScale{
@@ -179,21 +338,6 @@ body{
     }
 }
 
-@keyframes moveFromBottom{
-    /* 注意百分之零是元素的初始状态 ，
-    从这个初始状态的基础之上进行变换，如果只有一个初始状态参数，
-    则其末状态是当前元素的默认样式*/
-    0%{
-        transform: translateY(100%);
-    }
-}
-
-.moveToTop{
-    animation: moveToTop .6s ease forwards;
-}
-.moveToBottom{
-    animation: moveToBottom .6s ease forwards;
-}
 @keyframes moveToTop{
     100%{
         transform: translateY(-100%);
@@ -205,4 +349,8 @@ body{
     100%{
         transform: translateY(100%);
     }
+}
+
+.hidden{
+    display: none;
 }
