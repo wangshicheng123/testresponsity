@@ -4,6 +4,8 @@
 }
 body{
     font-size: 0.32rem;
+    background: #f0efed;
+    /* background: #f00; */
 }
 
 #header{
@@ -77,7 +79,7 @@ body{
 
 /* 以下是banner部分样式 */
 #banner{
-    border-bottom: 1px solid #c6c0b3;
+    border-bottom: 1px solid #eee;
     position: relative;
 }
 #banner .banner-img{
@@ -102,34 +104,115 @@ body{
 }
 
 /* 以下是product-list样式 */
-#product-list ul{
+#product{
+    background: #fff;
+    margin-top: -.1rem;
+    padding-bottom: 0.1rem;
+}
+#product .product-list {
     list-style: none;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
-#product-list li{
+#product .product-list li{
     text-align: center;
     width: 20%;
-    padding: .2rem 0px;
+    padding: .25rem 0rem 0rem 0rem;
 }
-#product-list a{
+#product .product-list a{
     text-decoration: none;
 }
-#product-list .icon-container{
+#product .product-list .icon-container{
     width: .75rem;
     height: .75rem;
     border-radius: 10rem;
     text-align: center;
     line-height: .75rem;
-    /* font-size: .8rem; */
     color: #fff;
     margin: auto auto .14rem auto;
 }
-#product-list .iconfont{
+#product .product-list .iconfont{
     font-size: .55rem;
 }
-#product-list span{
+#product .product-list span{
     font-size: .2rem;
     color: #666;
+}
+
+#product .product-nav{
+    width: 20%;
+    margin: 0.1rem auto;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+#product .product-nav li{
+    width: .16rem;
+    height: .16rem;
+    border-radius: 50%;
+    background: #F0EFED;
+}
+#product .product-nav .active{
+    background: #06c1ae;
+}
+
+#guess-like{
+    margin-top: .2rem;
+    background: #fff;
+    padding-left: .2rem;
+}
+#guess-like .text{
+    font-size: .34rem;
+    color: #333;
+    padding: .28rem .2rem .2rem 0rem;
+    font-weight: 400;
+    border-bottom: 1px solid #DDD8CE;
+}
+#guess-like li{
+    padding: .2rem .2rem .1rem 0rem;
+    border-bottom: 1px solid #DDD8CE;
+
+}
+#guess-like li img{
+    width: 1.8rem;
+    height: 1.64rem;
+}
+#guess-like a{
+    text-decoration: none;
+    display: flex;
+}
+#guess-like .content{
+    flex: 1;
+    margin-left: .07rem;
+}
+#guess-like .title{
+    padding-top: .07rem;
+    margin-bottom: .07rem;
+    font-size: .3rem;
+    font-weight: 400;
+    color: #333;
+}
+#guess-like .description{
+    font-size: .24rem;
+    color: #666;
+    margin-bottom: .07rem;
+}
+#guess-like .price{
+    position: relative;
+}
+#guess-like .current-pri{
+    color: #06c1ae;
+    font-size: .30rem;
+}
+#guess-like .last-pri{
+    color: #666;
+    font-size: .24rem;
+}
+#guess-like .items{
+    color: #666;
+    font-size: .24rem;
+    position: absolute;
+    top: .08rem;
+    right: 0rem;
 }
