@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        var reg1=/ad/;
+        
+        //匹配第一个符合条件的字符串，并返回一个对象；
+        // console.log(reg1.exec(str));
+
+        var reg2=new RegExp("dww");
+        // 如果匹配不到结果就返回null;
+        // console.log(reg2.exec(str));
+
+        var reg3=/a.+/
+        // 全部都匹配上了
+        // console.log(reg3.exec(str));
+
+        var reg4=/w{2,5}/;
+        //符合贪婪模式
+        // console.log(reg4.exec(str));
+
+        var reg5=/w{3,}/;
+        //匹配三个字母c或者三个以上的字母c， 尽可能多的匹配
+        // console.log(reg5.exec(str));
+
+        var reg6=/a*/;
+        // 注意*号匹配0个或者多个，
+        // 从头开始匹配，如果第一个不是a,则直接匹配空字符串，返回一个空字符串
+        // console.log(reg6.exec(str));
+
+        
+
+        var reg7=/a+/;
+        //从头开始，匹配一个或者多个字符
+        // console.log(reg7.exec(str));
+
+        var reg8=/a?/;
+        //从头开始匹配，如果第一个不是要匹配的字符，则返回空字符串
+        // console.log(reg8.exec(str));
+
+        // console.log("\n"+"abckdk\nkvc11dkm");
+
+        var reg9=/^a|b.*/
+        // 注意使用|的时候是否加小括号，可能造成歧义
+        // console.log(reg9.exec(str));
+
+        var reg10=/[abcdefghij]+/;
+        // 中括号是匹配其中任意一个字符就截止返回当前字符
+        // 从符合条件的第一个字符开始匹配，直到结束为止
+        // 如果没有说明匹配字符数目，则默认匹配一个字符就结束
+        // console.log(reg10.exec(str));
+        var str="nnaaaabc ij adwws";
+        var reg11=/[^a]+/;
+        // console.log(reg11.exec(str));
+
+        var reg12=/\bij\b/;
+        //测试边界表示 \b
+        // 字符串边界或者空格的两边都算边界
+        console.log(reg12.exec(str));
+
+    </script>
+</body>
+</html>
