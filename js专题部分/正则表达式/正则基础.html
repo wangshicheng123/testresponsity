@@ -64,8 +64,13 @@
         var reg12=/\bij\b/;
         //测试边界表示 \b
         // 字符串边界或者空格的两边都算边界
-        console.log(reg12.exec(str));
+        // console.log(reg12.exec(str));
 
+        //测试 | 的使用细节
+        var str2="abcd"
+        var reg13=/d|c/;
+        //注意或在正则中，一旦第一个正则表达式被匹配，第二个正则表达式将不会被匹配
+        // console.log(reg13.exec(str2));
     </script>
 </body>
 </html>
