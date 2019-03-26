@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+</head>
+
+<body>
+    <ul>
+        <li></li>
+        <li id="item" class="item cdaa"></li>
+        <li></li>
+        <li class="item"></li>
+        <li></li>
+    </ul>
+    <script>
+        // var ali=document.getElementsByClassName("item");
+        // for(var i=0; i<ali.length; ++i){
+        // ali[i].style.background="red";
+        // }
+        var oLi = document.getElementById("item");
+        //注意如果一个元素有多个类名，使用className属性会返回所有类名构成的字符串
+        console.log(oLi.className);
+        function getEleMentByClassName(clsName) {
+            var result = [];
+            //获取所有的元素 ，注意*是一个通配符
+            var ele = document.getElementsByTagName("*");
+            // 注意边界符的转义使用，不转义的话没有作用；
+            var reg = new RegExp("\\b" + clsName + "\\b");
+
+            for (var i = 0; i < ele.length; ++i) {
+
+                if (reg.test(ele[i].className)) {
+                    result.push(ele[i]);
+                }
+            }
+            return result;
+        }
+        var res = getEleMentByClassName("item");
+        for (var i = 0; i < res.length; ++i) {
+            res[i].style.background = "red";
+        }
+        // console.log(res);
+        // console.log(typeof("\nscsc"));
+    </script>
+</body>
+
+</html>
