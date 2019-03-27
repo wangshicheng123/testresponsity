@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>删除字符串中两端的空格</title>
+
+</head>
+<body>
+    
+
+    <script>
+        function myTrim(str){
+            var reg=/^\s+|\s+$/;
+            var result=str.replace(reg,"")
+            return result;
+        }
+        var str1="   asad dwf233 cfv   ";
+        console.log(str1);
+        console.log(myTrim(str1));
+        //也可以直接使用trim()方法删除字符串两端的空格;
+        console.log(str1.trim());
+    </script>
+</body>
+</html>
