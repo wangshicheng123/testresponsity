@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>判断字符串是不是由数字组成</title>
+</head>
+<body>
+    
+    <script>
+
+        var str="2345678";
+        var str2="3252sdfs34khk2bfw";
+        // 正则表达式的含义是:
+        // 匹配字符串的开头是数字,中间是一个或者多个数字,结尾也是
+        // 数字的字符串;
+        var reg=/^\d+$/;
+        // 注意正则的test()方法返回的是一个布尔值: true,false;
+        console.log(reg.test(str));
+        console.log(reg.test(str2));
+    </script>
+</body>
+</html>
