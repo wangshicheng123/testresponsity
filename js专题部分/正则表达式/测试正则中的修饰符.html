@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试正则中的修饰符</title>
+</head>
+<body>
+    
+    <script>
+        // 测试不区分大小写的修饰符 i
+        var str="abcdjABCsakbkcgs";
+        // 对字符串中的大写字母不敏感
+        // 对于中括号的使用,要注意如果遇到不匹配之后则停止匹配
+        // var reg=/[a-z]+/i;
+        // console.log(reg.exec(str));
+
+        //注意中括号是如果匹配会连续进行匹配,否则中断匹配;
+        // 匹配多个就像是在匹配一个字符串;
+        var reg =/[skg]+/;
+        console.log(reg.exec(str));
+    </script>
+</body>
+</html>
