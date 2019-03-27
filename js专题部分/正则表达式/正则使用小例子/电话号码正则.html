@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>电话号码正则</title>
+</head>
+<body>
+    
+
+    <script>
+        var str="1320-4661693-123";
+        var str2="123-4315678-12";
+        //注意花括号是前一个字符出现的次数,
+        // 注意小括号的使用,看成一个整体进行执行
+        // 注意^(表示字符串的开头)的使用和$(表示字符串的结尾)的使用
+        //注意?号(表示0次或者一次)的使用位置,在这里表示:
+        // (-\d{3,4})?  是(...)出现一次或者零次
+        var reg=/^\d{3,4}-\d{7,8}(-\d{3,4})?$/;
+        console.log(reg.test(str));
+        console.log(reg.test(str2));
+    </script>
+</body>
+</html>
