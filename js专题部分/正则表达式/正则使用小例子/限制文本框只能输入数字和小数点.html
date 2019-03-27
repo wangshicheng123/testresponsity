@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>限制文本框只能输入数字和小数点</title>
+</head>
+<body>
+    
+    <script>
+
+        //可以匹配开头是数字,中间的小数点可有可无,结尾是数字 
+        var reg=/^\d+\.?\d{2,}$/;
+        var str="1231.34343";
+        //可以匹配随意数量和随意位置的数字和小数点
+        //这就是中括号使用的巧妙之处
+        var reg2=/[0-9\.]+/;
+        // console.log(reg.exec(str));
+        var str2="45467,....3425";
+        console.log(reg2.exec(str2));
+
+        //
+    </script>
+</body>
+</html>
