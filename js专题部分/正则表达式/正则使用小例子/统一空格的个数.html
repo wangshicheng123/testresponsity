@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>同意空格的个数</title>
+</head>
+<body>
+    
+    <script>
+        var str="cabjd   adja va v v vwr gwrg eg hetgh  gef";
+        var reg=/\s+/g;
+        //可以通过字符串的replace()方法去把一个或者多个空格替换成为
+        // 一个空格; 注意replace()方法会返回一个新的被更改的字符串,
+        // 元素字符串不会进行改变
+        var str2=str.replace(reg," ");
+        console.log(str);
+        console.log(str2);
+    </script>
+</body>
+</html>
