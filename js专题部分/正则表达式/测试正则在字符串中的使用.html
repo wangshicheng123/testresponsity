@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试正则在字符串中的使用方式</title>
+</head>
+<body>
+    
+    <script>
+
+        var str="ab  cd3 456e fghi   jk";
+        //注意字符串中的IndexOf方法的参数是一个你要进行
+        // 匹配的字符串,返回的是当前匹配字符串的首字符的索引值;
+        // 找不到返回 -1;
+        // console.log(str.indexOf("z"));
+
+
+        //测试一下search()方法
+        var reg=/\d+/;
+        //字符串方法seach中的参数是一个正则,返回的是找到的字符串的首字符
+        // 的索引值, 找不到返回-1;
+        // console.log(str.search(reg));
+
+        //测试一下match()方法
+        // match()方法的参数是一个正则,如果找匹配值,
+        // 则返回匹配的字符串, 找不到返回null;
+        // console.log(str.match(reg));
+
+        //测试replace()方法
+        // 注意两个参数表示的含义:
+        // 第一个参数是: 所有匹配的正则,
+        // 第二个参数是: 使用哪个字符串去替换已经匹配到的元素;
+        // console.log(str.replace(reg,"王事成"));
+
+        //测试split()方法
+        // 返回的是一个数组,已经分割的字符串组成的 ;
+        // 注意这里的参数是一个正则
+        var reg2=/\s+/;
+        console.log(str.split(reg2));
+
+    </script>
+</body>
+</html>
