@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>替换小数点前面的内容为制定的内容</title>
+</head>
+<body>
+    
+    <script>
+        //以任意字符开头数目不限,后面只要遇到符号 .  就会停止寻找匹配;
+        var reg=/^.+\./;
+        var str="23444sdcsc-=;'?@#$%^&*.342fd2e";
+        var str2="asc.";
+        console.log(str.replace(reg,"王事成"));
+        // console.log(reg.exec(str));
+    </script>
+</body>
+</html>
