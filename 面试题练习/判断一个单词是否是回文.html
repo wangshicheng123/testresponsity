@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>判断一个单词是否是回文</title>
+</head>
+<body>
+    
+
+    <script>
+        //方法一，使用循环来解决
+        /*var str="abccba";
+        //可以使用中括号的方法来找到字符串中的每一个元素
+        var flag=0;
+        for(var i=0; i<str.length; ++i){
+            if(str[i]!=str[str.length-i-1]){
+                console.log("不符合回文要求");
+                flag=1;
+            }
+        }   
+
+        if(!flag){
+            console.log("符合回文要求");
+        }*/
+
+        //方法二
+        /*
+        var str="abccba";
+        // console.log(str.split("").reverse().join(""));
+        function isHuiwen(str){
+            return str==str.split("").reverse().join("");
+        }
+        console.log(isHuiwen(str));
+        */
+    </script>
+</body>
+</html>
