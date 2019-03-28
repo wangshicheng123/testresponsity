@@ -12,6 +12,7 @@
 
     <script>
         function myTrim(str){
+            // 注意正则里面的或第一个符合条件之后，第二个也会执行
             var reg=/^\s+|\s+$/;
             var result=str.replace(reg,"")
             return result;
