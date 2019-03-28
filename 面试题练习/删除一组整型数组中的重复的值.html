@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>删除一组整型数组中的重复的值</title>
+</head>
+<body>
+    
+
+    <script>
+        //方法一：
+        /*
+        var arr=[23,41,42,54,22,41,54];
+        var result=[];
+        result.push(arr[0]);
+        var flag=0;
+        for(var i=0; i<arr.length; ++i){
+            for(var j=0; j<result.length; ++j){
+                if(result[j]==arr[i]){
+                    flag=1;
+                    continue;
+                }
+            }
+            if(!flag){
+                result.push(arr[i]);
+            }
+            flag=0;
+        }     
+
+        for(var i=0; i<result.length; ++i)  {
+            console.log(result[i]);
+        }
+        */
+        //方法二：
+        var arr=[34,52,25,625,25,34,4,5,2,2];
+        // 注意原数组的值必须是number类型的，不然无法做比较
+        //思路： 可以用一个不定长数组，把原数组中的每一项作为这个不定长
+        // 数组的下标来使用，然后把这一项的值为true;
+        // 对于一个数组而言，如果没有赋值，其值相当于undefine;
+        // 在定义一个数组用于保存不重复的数组项
+        function uniqe(arr){
+            var arr1=[];
+            var result=[];
+            for(var i=0; i<arr.length; ++i){
+                // 如果判断的结果为true，说明这个值是不重复的，
+                // 可以直接push到result数组中，
+                // 如果判断结果为false, 说明这个值是已经存在的，
+                // 则不用保存到result数组中
+                if(!arr1[arr[i]]){
+                    result.push(arr[i]);
+                    //
+                    arr1[arr[i]]=true;
+                }
+            }
+            return result;
+        }
+
+        console.log(uniqe(arr));
+
+    </script>
+</body>
+</html>
