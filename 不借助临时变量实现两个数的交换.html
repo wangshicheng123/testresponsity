@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>不借助临时变量进行两个数的交换</title>
+</head>
+<body>
+    
+    <script>
+        var a=300;
+        var b=500;
+        function swap(x,y){
+            y=y-x;
+            x=x+y;
+            y=x-y;
+            return [x,y];
+        }
+
+        // console.log(a,b);
+        console.log(swap(a,b));
+        //a,本身的值并没有改变
+        console.log(a,b);
+    </script>
+</body>
+</html>
