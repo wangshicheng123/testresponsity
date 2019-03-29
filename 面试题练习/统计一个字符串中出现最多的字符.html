@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>统计一个字符串中出现最多的字符</title>
+</head>
+<body>
+    
+    <script>
+        var str="acbankjfwkfwlnvn11111111asc";
+        function maxLetter(str){
+            var arr1=[];
+            //思路： 我们可以首先计算出每个字符出现的次数，
+            // 然后把这个次数作为数组的下标
+            for(var i=0; i<str.length; ++i){
+
+                var index=-1;
+                // console.log(str.indexOf(str[i]));
+                var count=0;
+                do{
+                    //应该是次数
+                    index=str.indexOf(str[i],index+1);
+                    if(index!=-1){
+                        count++;
+                    }
+                }while(index!=-1);
+                // console.log("index:"+index);
+                arr1[count]=str[i];
+            }
+
+            // 可能会出现在result数组中
+            for(var j=0; j<arr1.length; ++j){
+                console.log(arr1[j]);
+            }   
+        }
+
+        maxLetter(str);
+
+
+        // charAt()方法返回指定位置的字符；
+        // 参数是一个number值，是一个具体的位置
+        // 如果参数是在0---str.length之外，会返回一个空字符串；
+        // console.log(str.charAt(-1));
+
+        // console.log(str.indexOf("g"));
+        // console.log(str.indexOf("a",4));
+
+        //测试一些indexOf()  // 返回指定字符串值在字符串中首次出现的位置;
+        // 注意indexOf()方法找不到符合的值，就会返回-1;
+        // 第一个参数是制定哪个字符的位置，
+        // 第二个参数是从字符串的哪个位置开始寻找；
+        /*
+        var index=-1;
+        do{
+            index=str.indexOf("a",index+1);
+            if(index!=-1){
+                console.log(index);
+            }
+        }while(index!=-1);
+        /*
+        var arr=[34,51,53,3,1,5,7];
+        console.log(arr.sort(function(a,b){
+            return a-b;
+        }));
+        */
+    </script>
+</body>
+</html>
