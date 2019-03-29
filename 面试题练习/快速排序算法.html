@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>快速排序算法</title>
+</head>
+<body>
+    
+
+    <script>
+
+        //快速排序思路：
+        // 首先取出数组中的一项，然后判断其他项与这个书的大小
+        // 关系，如果小于这个数，就把小的数放在一个新数组中，
+        // 如果大于这个数，就把大的数放在另一个新的数组中；
+        function quickSort(arr){
+            //定义一个临时变量用于保存第一个数；
+            var temp=arr[0];
+            //定义一个数组用于存储比temp值小的数；
+            var leftArr=[];
+            //定义一个数组用于存储比temp值大的数；
+            var rightArr=[];    
+            //判断初始数组的长度，若为1则不必要进行排序，
+            // 直接返回结果即可；
+            if(arr.length<=1){
+                return arr;
+            }
+
+            for(var i=1; i< arr.length; ++i){
+                if(temp>arr[i]){
+                    leftArr.push(arr[i]);
+                }else{
+                    rightArr.push(arr[i]);
+                }
+            }
+            // 注意每次返回的值要形成递归的形式，中间一定要加上arr[0]
+            return [].concat(quickSort(leftArr),arr[0],quickSort(rightArr));
+        }
+
+        console.log(quickSort([34,54,2,66,4,86,3,52]));
+    </script>
+</body>
+</html>
