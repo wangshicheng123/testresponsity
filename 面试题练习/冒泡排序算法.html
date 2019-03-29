@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>冒泡排序算法1</title>
+</head>
+<body>
+    
+
+    <script>
+        //冒泡排序算法思路：
+        // 首先可以使用外层循环控制循环次数，
+        // 然后内层嵌套一个循环，使用数组中的每一个元素
+        // 与其他所有的元素进行比较，把最小的元素方法最左边；
+        // 也可以把大的元素放在右边，就可以进行冒泡了
+        var count=0;
+        function bubble(arr){
+            //外层循环控制循环次数
+            
+            for(var i=0; i<arr.length; ++i){
+                
+                //每一次内层循环把一个最大的值冒泡在数组的尾部；
+                //优化： 在控制内层循环次数的部分减去i,;
+                // 因为每一次内层循环都把一个最大的值冒泡到最后面
+                // 因此可以不用比较了；
+                for(var j=0; j<arr.length-i; ++j){
+                    var temp;
+                    if(arr[j]>arr[j+1]){
+                        temp=arr[j];
+                        arr[j]=arr[j+1];
+                        arr[j+1]=temp;
+                    }
+                    count++;
+                }
+            }
+            return arr;
+        }
+        console.log(bubble([12,3,42,14,6,34,14]));
+        console.log(count);
+    </script>
+</body>
+</html>
