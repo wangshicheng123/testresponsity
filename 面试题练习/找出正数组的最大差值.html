@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正数组的最大差值</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // 正数组的最大差值思路：
+        // 首先要找到数组中的最大值和最小值
+        // 然后做差值得到最大差值；
+
+        function maxResult(arr){
+            var max=arr[0];
+            var min=arr[0];
+            for(var i=1; i<arr.length; ++i){
+                // var temp;
+                if(max<arr[i]){
+                    max=arr[i];
+                }
+                if(min>arr[i]){
+                    min=arr[i];
+                }
+            }
+            return max-min;
+        }
+
+        console.log(maxResult([23,43,14,1,524]));
+    </script>
+</body>
+</html>
