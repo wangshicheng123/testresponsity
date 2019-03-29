@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实现斐波那契数组的方法</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        //实现斐波那契数组方法的思路：
+        // 用递归的方法去实现找到斐波那契的某一项；
+        function getFeibo(n) {
+            // var arr=[];
+            if (n == 1 | n == 2) {
+                return 1;
+            }
+            return getFeibo(n - 1) + getFeibo(n - 2);
+        }
+
+        // console.log(getFeibo(5));
+
+        function getFeibo2(n) {
+            //定义一个数组用来保存上两个斐波那契数；
+            var arr = [1, 1];
+            //如果n是1或者2的话，就直接返回结果；
+            if (n == 1 | n == 2) {
+                return arr[0];
+            }
+            //进行n次循环，得到第n项斐波那契数字的值；
+            for (var i = 2; i <= n; ++i) {
+                arr[i] = arr[i - 1] + arr[i - 2];
+            }
+            //看你想返回一项还是n项数据
+            return arr;
+        }
+
+        // console.log(getFeibo2(5));
+
+        function getFeibo3(n) {
+            var feibo = [];
+            var i = 0;
+
+            while (i <= n) {
+                if (i == 1 | i == 0) {
+                    feibo.push(1);
+                } else {
+                    feibo.push(feibo[i - 1] + feibo[i - 2]);
+                }
+                i++;
+            }
+            return feibo;
+        }
+        console.log(getFeibo3(3));
+    </script>
+</body>
+
+</html>
