@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>函数的自调用与arguments的使用</title>
+</head>
+<body>
+    
+    <script>
+
+        (function(m){
+            console.log(m);
+        })(12345); //注意这里传入的参数就是一个实参，也就是传到内部函数的
+        // 形式参数的值；
+
+
+        function myFun(){
+            // 在函数执行的时候函数内部就会有arguments对象，它包含了所有的参数
+            for(var i=0; i< arguments.length; ++i){
+                console.log(arguments[i]);
+            }
+        }
+
+        // myFun([34,5252,626,637,73],[3453,525,6225,34]);
+
+        //使用arguments对象模拟函数重载
+        function myFun2(){
+            switch(arguments.length){
+                case 0:
+                    console.log("没有参数");
+                    break;
+                case 1:
+                    console.log("一个参数");
+                    break;
+                case 2:
+                    console.log("两个参数");
+                    break;
+                default:
+                    console.log("很多参数");
+                    break;
+            }
+        }
+
+        myFun2(3,34,535,5);
+    </script>
+</body>
+</html>
