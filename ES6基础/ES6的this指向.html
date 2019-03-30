@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6的指向</title>
+    <style>
+        #div{
+            width: 100px;
+            height: 100px;
+            background: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div id="div">
+
+    </div>
+    <script>
+        // 普通函数中的this指向是调用时的this,
+        // 箭头函数中的this指向是声明时的this,(父作用域中的this)
+        var oDiv=document.getElementById("div");
+        /*
+        oDiv.onclick=function(){
+            console.log(this); //返回的是绑定该点击事件的元素oDiv
+            setTimeout(function(){
+                console.log(this);//返回的是window对象，（即调用该定时器的window对象）
+            },1000);
+        }
+        */
+
+        // 注意bind(),【不会立即调用，参数为一个一个的】 
+        //call()【会立即调用，参数是一个一个的】,
+        // apply() 【会立即调用，参数是一个数组】方法的使用与区别
+        /*
+        oDiv.onclick=function(){
+            setTimeout(function(){
+                console.log(this);
+            }.bind(this),1000);
+        }
+        */
+
+        oDiv.onclick=function(){
+            // console.log(this);
+            setTimeout(() => {
+                // 注意箭头函数并没有绑定this,
+                // 因此箭头函数中的this指向是取决于上下文的；（也就是却决于父作用域的）
+                // 如果其父作用域也是箭头函数，则再向上寻找this的指向
+                // 箭头函数中的this指向是声明这个箭头函数的this;
+                // 也就是父作用域中的this指向；
+                console.log(this);
+
+            }, 1000);
+        }
+
+
+        var obj={
+            name: "name",
+            age: 20,
+            say:()=>{
+                // this的指向是window;
+                // 在对象中，作为方法的箭头函数的this指向是window全局对象
+                // 而普通函数则指向调用它的对象；（箭头函数没有绑定this）
+                console.log(this);
+            }
+        }
+        // obj.say();
+        var xx=100;
+        var obj2={
+            name:"name",
+            age: 23,
+            xx: 23,
+            say:function(){
+                //在对象中普通函数中this指向是调用该方法的对象
+                setTimeout(()=>{
+                    //由于箭头函数是没有绑定this的，因此要向父作用域去寻找
+                    console.log(this.xx);
+                },1000);
+            }
+        }
+        // obj2.say();
+
+        //注意在构造函数中this的指向与实例化对象中的区别
+        function Person(name,age){
+            this.name=name;
+            this.age=age;
+            this.say=()=>{
+                console.log(this);
+            }
+        }
+
+        var per1=new Person("wang",34);
+        // per1.say();
+
+        //匿名函数的最后一一个参数是拥有默认值的；
+        var fn=(a,b,c=100)=>{
+            console.log(a,b,c);
+        }
+        // 第三个参数如果不写，则是默认值，
+        // 如果给定其值为undefined结果也是默认值
+        fn(1213,4,undefined);
+    </script>
+</body>
+</html>
