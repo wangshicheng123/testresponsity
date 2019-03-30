@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解构赋值</title>
+</head>
+<body>
+    
+
+    <script>
+        // 两个数的交换：
+        // 临时变量， a=a+b; 解构赋值
+        // a=[b,b=a][0];// 限制性b=a; 后执行a=b;
+
+        // 数组赋值：
+        // var [a,b,c,d]=[34,41,1,52];
+        //数组的解构赋值
+        // console.log(a,b,c,d);
+        // var [a,b,[c,d,e]]=[32,55,[1,35,6]]
+        // console.log(a,b,c,d,e);
+
+        //对象的解构赋值
+        let obj={
+            name: "abc",
+            age: 21
+        }
+        // 必须使用与原对象相同的属性名，否则是undefined;
+        // 或者给name去一个别名；
+        // let {name:names,age}=obj;
+        // console.log(names,age);
+
+        //字符串的解构赋值
+        // let [a,b,c,d]="1234";
+        // console.log(a,b,c,d);
+        
+    </script>
+</body>
+</html>
