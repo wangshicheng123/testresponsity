@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>扩展运算符</title>
+</head>
+<body>
+    
+
+    <script>
+        // 扩展运算符复制数组
+        let arr=[1,2,45,6];
+        // let arr2=arr;
+        // arr2[2]=100;
+        // console.log(arr);
+        //对数组进行扩展
+        let arr2=[...arr];
+        arr2[2]=100;
+        console.log(arr2);
+        //可以发现arr没有进行改变，还是原来的值；
+        console.log(arr);
+    </script>
+</body>
+</html>
