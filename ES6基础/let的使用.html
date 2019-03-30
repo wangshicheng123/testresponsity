@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>let的使用</title>
+</head>
+
+<body>
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script>
+        var aLi = document.getElementsByTagName("li");
+        // 使用var 定义变量i的时候，
+        // 没有块级作用域， 循环瞬间执行完毕，i的值为5；
+        // 给每个li绑定事件，事件处理函数里面的变量i
+        // 会沿着作用域链向上寻找，找到全局变量i ,
+        // 但是此时的i的值已经是5，；
+
+        /*for(var i=0; i<aLi.length; ++i){
+            aLi[i].onclick=function(){
+                console.log(i);
+            }
+        }*/
+
+        // 使用let定义变量，
+        // for循环后面的花括号会形成一个块级作用域
+        // i是一个局部变量
+        for (let i = 0; i < aLi.length; ++i) {
+            aLi[i].onclick = function () {
+                console.log(i);
+            }
+        }
+        /*
+        for(var i=0; i<aLi.length; ++i){
+            (function(num){
+                aLi[i].onclick=function(){
+                    console.log(num);
+                }
+            })(i);
+        }
+        */
+        // console.log(i)
+
+        // var x;
+        // 对于一个变量，如果没有进行初始化默认值是undefined;
+        // console.log(x);
+
+        //var 定义变量存在变量提升
+        // 但是不会进行变量的赋值
+        // console.log(x);
+        // var x=10;
+
+        //let定义变量的不存在变量提升
+        // let x;
+        // 对于let定义的变量，没有进行初始化，其值是undefined;
+        // console.log(x);
+
+        // let 定义变量不存在变量提升
+        // console.log(x);
+        // 会报错， 变量未定义
+        // let x;
+
+        //var 定义的变量可以重复声明
+        // var x=200;
+        // var x=300;
+        // 后面的值会覆盖前面的值
+        // console.log(x);
+
+        // let定义的变量不可以重复的声明
+        // let x=93;
+        // let x=49;
+        // 会报错，变量x已经被声明了
+        // console.log(x);
+
+        
+    </script>
+</body>
+
+</html>
