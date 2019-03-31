@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字符串扩展</title>
+</head>
+<body>
+    
+
+    <script>
+        let id="box";
+        let cls="box1";
+        let name='1234';
+        // 使用${}拼接字符串更加方便，
+        // 但是要注意字符串两边使用反引号；
+        let str=`<div id='${id}' class='${cls}' name='${name}'></div>`;
+        // console.log(str);
+
+        // 测试字符串新增的的includes()方法
+        // 注意该方法返回的是true或者false
+        // console.log(str.includes("class12"));
+
+        // 和indexOf()方法的对比
+        // 注意该方法返回的是所要进行匹配字符串的第一个字符的索引值；
+        // 匹配不到返回-1;
+        // console.log(str.indexOf("class13"));
+
+        //测试一下starsWith()方法
+        // 就是匹配一个字符串是不是以某个元素进行开头的函数；
+        // console.log(str.startsWith("<di22"));
+        // endWith()方法
+        // 匹配一个字符串是不是以某个元素进行结尾的；
+        // console.log(str.endsWith("div>"));
+
+        // 测试一下padStart()方法
+        // 注意第一个参数是整个填充之后字符串的长度，
+        // 如果一开始第一个参数的值小于初始字符串的长度
+        // 则不会进行填充
+        console.log(id.padStart(3,"ghjkl"));
+
+        // 和padStart()方法类似，
+        // 第一个参数是整个填充之后的字符串的长度
+        // 如果一开始第一个参数的值小于初始字符串的长度
+        // 则不会进行填充
+        // console.log(id.padEnd(13,"asfgf"));
+
+        //注意repeat方法的参数是初始字符串需要重复的次数
+        // console.log(str.repeat(3));
+    </script>
+</body>
+</html>
