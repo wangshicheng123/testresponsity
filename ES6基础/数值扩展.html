@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数值扩展</title>
+</head>
+<body>
+    
+    <script>
+        let x="f";
+        // Number.isFinite()方法是用来判断一个参数是不是数值类型的
+        let res=Number.isFinite(x);
+        // console.log(res);
+
+        //Number.isNaN()方法判断一个参数是不是NaN类型的；
+        // Number.parseInt()方法将一个参数转化为number整数类型
+        // Number.parseFloat()方法将一个参数转化为Number浮点型
+        // console.log(Number.isNaN(Number.parseFloat(x)));
+
+
+        let y=0;
+        // Math.trunc()方法是将一个小数的小数部分去掉，保留其整数部分
+        console.log(Math.trunc(y));
+        console.log(Number.parseInt(y));
+
+        //是正数就返回1 ，负数就返回-1， 0就返回0；
+        // 判断一个数是正数负数还是0；
+        console.log(Math.sign(y));
+    </script>
+</body>
+</html>
