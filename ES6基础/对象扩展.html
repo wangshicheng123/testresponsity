@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象的扩展</title>
+</head>
+<body>
+    
+
+    <script>
+        let name="wangshicheng0";
+        let obj ={
+            //同名属性可以省略不写
+            name,
+            age: 32,
+            //对于对象中的方法 function:可以省略
+            say(){
+                console.log("1234");
+            }
+        }
+
+        //注意循环对象的方法： for..in  
+        for(val in obj){    
+            console.log(obj[val]);
+        }
+    </script>
+</body>
+</html>
