@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>promise的使用</title>
+</head>
+<body>
+    
+    <!-- <script src="../jQuery/jquery-1.12.4.js"></script> -->
+    <script>
+        let  p1=new Promise(function(resolve,reject){
+            setTimeout(function(){
+                console.log("1");
+                reject();
+            },1000);
+            // 注意then里面的方法是成功后的回调函数
+        }).then(function(){
+            console.log("2");
+            // 注意catch里面的方法是失败后的回调函数
+            return new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    console.log("4");
+                    resolve();
+                },1000);
+            });
+        },function(){
+            console.log("3");
+        }).then(function(){
+            console.log("5");
+        });
+
+        // setTimeout(function(){
+            // console.log("a123456");
+        // },2000);
+        // function test(){
+            // console.log("abcdf789")
+        // }
+        //注意定时器里面的方法可以只写函数名就行；
+        // setTimeout(test,2000);
+    </script>
+</body>
+</html>
