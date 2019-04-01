@@ -23,8 +23,40 @@
 
         //注意循环对象的方法： for..in  
         for(val in obj){    
-            console.log(obj[val]);
+            // console.log(obj[val]);
         }
+
+        // 测试一下Object对象的静态方法
+        console.log(Object.is(NaN,NaN));  // 结果是true;
+        console.log(NaN===NaN);  //在严格等于上NaN是不相等的 （false）
+
+        console.log(Object.is(+0,-0)); //结果是false
+        console.log(+0===-0);  //结果是true;
+
+        // 测试一下Object的合并方法assign();
+        // 注意assign()是静态方法
+        let obj2={
+            name: "wang123",
+            age: 34
+        }
+        let obj3={
+            weight: 244,
+            height: 12
+        }
+
+        // console.log(Object.assign(obj2,obj3));
+
+        for(val in obj3){
+            console.log(obj3[val]);
+        }
+
+        for(val in obj3){
+            console.log(val)
+        }
+
+        // 判断对象中是否拥有某个属性
+        console.log("weight" in obj3);
+        
     </script>
 </body>
 </html>
