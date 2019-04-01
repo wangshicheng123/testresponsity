@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX原理</title>
+</head>
+<body>
+    
+
+    <script>
+        let xmlHttp;
+        // 创建XMlHttpRequest对象
+        // 处理XMLHttpRequest对象的不同浏览器下的兼容性问题
+        if(window.XMLHttpRequest){
+            xmlHttp= new XMLHttpRequest();
+        }else{
+            xmlHttp=new ActiveXObject("Microsorft.XMLHTTP");
+        }
+        // 使用创建的XMlHttpRequest对象向服务器发起get请求
+        xmlHttp.open("GET","www.txt",true);
+        xmlHttp.send();
+
+        //接受服务器响应的数据
+        //判断服务器是否是成功响应
+        xmlHttp.onreadystatechange=function(){
+            if(xmlHttp.readyState==4&&xmlHttp.status==400){
+                //执行响应成功的代码
+            }
+        }
+    </script>
+</body>
+</html>
