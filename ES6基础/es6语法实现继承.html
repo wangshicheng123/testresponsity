@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>es6语法实现继承</title>
+</head>
+<body>
+    
+
+    <script>
+        // 使用class顶一个类；
+        class Person{
+            constructor(name,age){
+                this.name=name;
+                this.age=age;
+            }
+            //注意类方法中静态方法的定义
+            // 静态方法就是可以直接使用类名.方法进行调用 
+            static eat(){
+                console.log("eat");
+            }
+            //普通方法的定义
+            eat(){
+                console.log("eat1");
+            }
+
+        }
+
+        // let p1=new Person("wang",34);
+        // console.log(p1.name);
+        // p1.eat();
+        // Person.eat();
+
+        //注意extends关键字用于继承父类的属性和方法
+        class Coder extends Person{
+            //constructor关键字是构造函数用于初始化类中的属性
+            constructor(name,age,weight){
+                //调用父类的构造函数
+                super(name,age);
+                this.weight=weight;
+            }
+            sleep(){
+                console.log("sleep");
+            }
+        }
+        let c1=new Coder("wewr",43,190);
+        console.log(c1.name);
+        c1.eat();
+    </script>
+</body>
+</html>
