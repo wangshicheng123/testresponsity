@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>promise.all()方法的使用</title>
+</head>
+<body>
+    
+
+    <script>
+        let p1=new Promise(function(resolve,reject){
+            setTimeout(()=>{
+                console.log("成功1");
+                resolve();
+            },1000);
+        });
+
+        let p2=new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                console.log("成功2");
+                resolve();
+                // reject();
+            },3000);
+        });
+
+        let p3=new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                console.log("成功3");
+                // resolve();
+                reject();
+            },100);
+        });
+
+        // 等所有的异步操作都成功了，才执行下面成功的回调函数
+        // 只要有一个异步操作失败啦，就会执行失败的回调函数，
+        /*
+        Promise.all([p1,p2,p3]).then(()=>{
+            console.log("都成功啦");
+        }).catch(()=>{
+            console.log("失败啦吗");
+        });
+        */
+
+        // 最快的异步操作成功完成就可以执行成功的回调函数
+        // 如果有慢的异步操作失败了也不会执行失败的回调函数
+        // 最快的失败就可以调用失败的回调函数，
+        Promise.race([p1,p2,p3]).then(()=>{
+            console.log("over");
+        }).catch(()=>{
+            console.log("1234");
+        });
+    </script>
+</body>
+</html>
