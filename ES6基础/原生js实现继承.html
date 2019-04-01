@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原生js实现继承</title>
+</head>
+<body>
+    
+    <script>
+        function People(name,age){
+            this.name=name;
+            this.age=age;
+        }
+        //原型对象下的属性和方法可以被所有实例化对象所共享
+        // 一般我们可以在原型下面添加一些方法，原型的属性和方法
+        // 只有一份拷贝，所有的实例化对象都可以使用者一份拷贝进行操作
+        // 节省了空间
+        People.prototype.eat=function(){
+            console.log("吃好吃的");
+            console.log(this.name);
+        }
+
+        // let p1=new People("wang",322);
+        // p1.eat(1000);
+
+        function Coder(name,age,weight){
+            //继承父类下的属性
+            People.call(this,name,age);
+            this.weight=weight;
+        }
+
+        //继承父类下的方法
+        Coder.prototype=new People();
+        //是子类下面的construcor属性指向本身
+        Coder.prototype.constructor=Coder;
+
+        let c1=new Coder("12abc",43,190);
+        c1.eat();
+        console.log(c1.weight);
+    </script>
+</body>
+</html>
