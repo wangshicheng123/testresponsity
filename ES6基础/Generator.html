@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Generator的使用</title>
+</head>
+<body>
+    
+
+    <script>
+        // 首先我们要知道什么是Generator?
+        // 就是用同步的流程表示异步的代码
+        // 
+
+        // 注意函数名与function之间存在一个星号，表示其是一个genarator函数
+        function *fn(){
+            // yield 
+            console.log("开始");
+            console.log("请求1开始");
+            // 此处将会遇到yield会停止执行代码
+            // 注意yield后面的表达式的值是value的值，
+            // {value: yield的取值，done: 表示异步代码结束}
+
+            // 注意 yield语句返回结果通常为undefined，
+            // 当调用next方法时传参内容会作为启动时yield语句的返回值。
+            let data=yield req();
+            console.log(data);
+            console.log("请求2开始");
+            yield req2();
+            
+        }
+        function req(){
+            setTimeout(()=>{
+                let data="请求1返回的数据"
+                console.log("请求1成功");
+                //此时遇到第二个yield语句，
+                console.log(a.next(data)); // {value: 12345, done: false}
+            },1000);
+            return "abcd";
+        }
+
+        function req2(){
+            setTimeout(()=>{
+                console.log("请求2成功");
+                console.log(a.next()); //{value: undefined,done: true}
+            },1000);
+            return "12345"
+        }
+        //注意fn返回的是指针对象，并不会执行函数内部的逻辑代码
+        let a=fn();
+        // 调用next()方法开始执行函数内部的逻辑代码，遇到yield代码停止执行
+        // 此时遇到第一个yield语句，，，
+        console.log(a.next()); //{value: abcd,done: false}
+
+        // console.log(a.next());
+
+    </script>
+</body>
+</html>
