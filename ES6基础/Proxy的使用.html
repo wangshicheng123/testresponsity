@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Proxy的使用</title>
+</head>
+<body>
+    
+
+    <script>
+        let obj={
+            name: "zhangsan",
+            age: 34
+        }
+
+        // 使用new Proxy()定义的对象的第一个参数是想要监视的对象，
+        // 第二个参数是一个包含两个方法的对象，
+        // 第一个方法是当对象的属性发生改变的时候，会触发，
+        // 第二个方法是当调用对象的属性的时候，会触发；
+        let proObj=new Proxy(obj,{
+            set: (target,key,property)=>{
+                console.log(target,key,property);
+                // 相应的更改obj对象中的属性值
+                target[key]=property;
+            },
+            get: (target,key,property)=>{
+                console.log(target,key,property);
+                // 注意必须要使用return ;
+                // 因为需要获取属性值；
+                return target[key];
+            }
+        });
+
+        // 此时原来的obj对象中的属性值也会发生改变
+        proObj.name="12343";
+        // console.log(obj);
+        proObj.age=100;
+
+        console.log(proObj.name);
+    </script>
+</body>
+</html>
