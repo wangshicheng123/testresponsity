@@ -1,0 +1,18 @@
+$color: #f00;
+
+div{
+    color: $color;
+    background: $color;
+}
+
+$l: 5;
+@while $l > 0 {
+    .aa-#{$l}{
+        width: 20px*$l;
+    }
+    $l:$l - 1;
+}
+
+p{
+    width: 300px;
+}
