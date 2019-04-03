@@ -1,18 +1,131 @@
-$color: #f00;
+// 引用外部的Scss文件
+// 导入common.scss文件 @import "common.scss"; 
+// common.scss表示文件私有，不单独生成.css文件
+@import "common.scss";
 
-div{
-    color: $color;
-    background: $color;
+// 变量的基本使用
+$color1: #aeaeae;
+.div1{
+    background-color: $color1;
 }
 
-$l: 5;
-@while $l > 0 {
-    .aa-#{$l}{
-        width: 20px*$l;
+// 变量的嵌套使用
+// 嵌套在其他语言中即是字符串插值，需要使用#{$var}--来使用变量
+// 不然会报错
+$left: left;
+.div1{
+    border-#{$left}: 1px solid red;
+}
+
+// Sass中也支持对于变量的简单计算
+// 注意34px也是number类型的
+$right: 34px;
+.div{
+    margin-#{$left}: $right+300;
+    font: (10px/8);
+    $width: 1000px;
+    width: $width/2;
+    width: floor(2.5px)/2px;
+    height: ceil(3.4)*3px;
+    margin-right: 5px+8px/2px;
+}
+
+//选择器的嵌套
+.div1{
+    .span{
+        height: 12px;
+        width: 100px;
     }
-    $l:$l - 1;
+
+    .div2{
+        width: 23px;
+        height: 90px;
+    }
 }
 
+// 不仅选择器可以嵌套，属性也可以进行嵌套
 p{
-    width: 300px;
+    border: {
+        color: red;
+        width: 1px;
+        style: solid;
+    }
+
+    //注意冒号后面必须加上空格
+    margin: {
+        top: 23px;
+        left: 23px;
+        right: 34px;
+        bottom: 100px;
+    }
+}
+
+// 父元素的引用：
+// 在嵌套的子层级中，允许使用&引用父元素
+.div1{
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+// 继承部分
+// Sass允许一个选择器，继承另一个选择器；
+// 使用@extend 
+.class1{
+    font-size: 12px;
+}
+
+.class2{
+    @extend .class1;
+    color: #ff0036;
+}
+
+// 如果在class2的后面设置了 class1属性，那么也会影响class2;
+.class1{
+    border: 1px solid red;
+}
+
+// mixin和include的使用
+// mixin定义的是可以重复使用的代码块
+@mixin left{
+    float: left;
+    margin-left: 12px;
+}
+
+// 使用@include命令，调用这个mixin;
+div{
+    @include left;
+    width: 120px;
+}
+
+// 参数和缺省值
+@mixin common($value1,$value2,$defaultValue: 120px){
+    display: block;
+    margin-left: $value1;
+    margin-right: $value2;
+    padding: $defaultValue;
+}
+
+.class1{
+    font-size: 12px;
+    // 注意参数只给了两个其中最后一个使用的是默认值
+    @include common(34px,54px);
+}
+.class2{
+    font-size: 54px;
+    // 注意参数给了三个，把默认值进行覆盖了
+    @include common(343px,42px,90px);
+}
+
+// 流程控制： 条件语句
+//  @if 可以用来判断
+p{
+    // 注意条件语句的写法
+    @if 1+ 1 ==2{
+        border: 1px solid red;
+    }
+    @if 5>3{
+        // border: 2px solid blue;
+        margin-top: 10px;
+    }
 }
