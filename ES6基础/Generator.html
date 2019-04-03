@@ -26,7 +26,7 @@
             // 注意 yield语句返回结果通常为undefined，
             // 当调用next方法时传参内容会作为启动时yield语句的返回值。
             let data=yield req();
-            console.log(data);
+            console.log(data); // 结果是请求1返回的数据
             console.log("请求2开始");
             yield req2();
             
