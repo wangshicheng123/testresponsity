@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>百度地图api的使用</title>
+    <style>
+        html {
+            height: 100%
+        }
+
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #container {
+            /* height: 100% */
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+            position: absolute;
+            left: 50%;
+            top: 50px;
+            transform: translate(-50%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container"></div>
+    <div id="results"></div>
+
+    <script type="text/javascript"
+        src="http://api.map.baidu.com/api?v=2.0&ak=ezdyRynFBseGeEGOZh8v2YnMUySDfCEW"></script>
+    <script>
+        // 创建地图实例
+        var map=new BMap.Map("container");
+        //创建点坐标，初始化地图，设置中心点坐标和地图级别
+        map.centerAndZoom(new BMap.Point(126.657716855, 45.7732246332),15);
+
+        // 是否开启鼠标滚轮缩放
+        // map.enableScrollWheelZoom(true);
+
+        // 给map添加一个点击事件click;
+        map.addEventListener("click",function(e){
+            console.log(e);
+            // 可以再添加其他标注的时候，清除以前的标注
+            // map.clearOverlays();
+            // 在新点击的位置添加新的标注
+            map.addOverlay(new BMap.Marker(e.point));
+        });
+
+        // 驾车路线规划
+        /*
+        var driving=new BMap.DrivingRoute(map,{
+            //此类表示搜索结果呈现的配置(没有构造函数，但可以通过对象的字面量形式进行表示)
+            renderOptions: {
+                map:map,
+                autoViewport: true,
+                // 提供了面板参数，方案描述会自动展示到页面上
+                panel: "results"
+
+
+            }
+        });
+        driving.search("农大北门","黑龙江大学211医院");
+        console.log(driving.getResults);
+        */
+        var driving =new BMap.DrivingRoute(map,{
+            renderOptions:{
+                map:map,
+                autoViewport: true,
+                panel: "results"
+            },
+            onSearchComplete: function(results){
+                // 判断状态信息
+                if(driving.getStatus()==BMAP_STATUS_SUCCESS){
+                    // 获取第一条方法
+                    var plan=results.getPlan(0);
+                    console.log(results.getPlan(0));
+                    // 获取方案的驾车路线
+                    var route=plan.getRoute(0);
+                    console.log(route);
+
+                    //获取到每个关键的步骤，并输出到页面
+                    //
+                    var s=[];
+                    for(var i=0; i< route.getNumSteps();++i){
+                        var step=route.getStep(i);
+                        s.push((i+1)+"."+step.getDescription());
+                        // console.log(step.Uh);
+                        map.addOverlay(new BMap.Marker(step.Uh));
+                    }
+                    document.getElementById("results").innerHTML=s.join("<br>");
+                }
+            }
+
+        });
+
+        driving.search("农大北门","黑龙江大学211医院");
+    </script>
+</body>
+
+</html>
