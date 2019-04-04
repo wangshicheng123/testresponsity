@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hello, World</title>
+    <style type="text/css">
+        html {
+            height: 100%
+        }
+
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #container {
+            /* height: 100% */
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+            position: absolute;
+            left: 50%;
+            top: 50px;
+            transform: translate(-50%);
+        }
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ezdyRynFBseGeEGOZh8v2YnMUySDfCEW">
+//v2.0版本的引用方式：src="http://api.map.baidu.com/api?v=2.0&ak=您的密钥"
+    </script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <div id="box"></div>
+    <script type="text/javascript">
+        var map = new BMap.Map("container");
+        // 创建地图实例  
+        var point = new BMap.Point(126.657716855, 45.7732246332);
+        // 创建点坐标  347	126.657716855,45.7732246332
+        map.centerAndZoom(point, 15);
+        // 初始化地图，设置中心点坐标和地图级别
+
+        // 开启鼠标滚轮缩放
+        map.enableScrollWheelZoom(true);
+
+        // 可以通过可选参数anchor修改空间位置
+        var ops = { anchor: BMAP_ANCHOR_BOTTOM_RIGHT };
+        // var ops = {offset: new BMap.Size(150, 5)}
+        //向地图添加平移缩放控件
+        map.addControl(new BMap.NavigationControl(ops));
+
+
+        // 向地图添加缩略地图控件
+        map.addControl(new BMap.OverviewMapControl());
+
+        //向地图添加比例尺
+        map.addControl(new BMap.ScaleControl());
+
+        //向地图添加地图类型
+        map.addControl(new BMap.MapTypeControl());
+
+        //向地图添加版权
+        map.addControl(new BMap.CopyrightControl());
+
+        // 向地图添加定位
+        map.addControl(new BMap.GeolocationControl());
+
+        // 个性化地图的设置
+        var myStyleJson = [
+            {
+                "featureType": "road",
+                "elementType": "geometry.stroke",
+                "stylers": {
+                    "color": "#ff0000"
+                }
+            }];
+        map.setMapStyle({styleJson:myStyleJson});
+
+
+        // 向地图添加标注
+        //创建标注
+        var marker=new BMap.Marker(point);
+        map.addOverlay(marker);
+
+        // 监听标注事件
+        marker.addEventListener("click",function(){
+            alert("您点击了标注");
+        });
+
+        // 可拖拽的标注
+        // 这样标注就可以进行拖拽了
+        marker.enableDragging();
+
+        //监听标注的dragend事件来捕获标注的最新位置
+        marker.addEventListener("dragend",function(e){
+            console.log("当前位置： "+e.point.lng+","+e.point.lat);
+            console.log(e);
+            
+        });
+
+        // 标注折线
+        // Polyline表示地图上的折线覆盖物，它包含一组点，
+        // 并将这些点连接起来形成折线；
+        // 折线在地图上绘制一系列直线段，
+        // 可以自定义这些线段的颜色，粗细，和透明度
+        var polyline=new BMap.Polyline([
+            // 注意必须存在多个点才能实现路线的绘制
+            // 两个点只能有一条直线
+            // 点数越多线路越清晰
+            new BMap.Point(126.657932,45.774682),
+            new BMap.Point(126.659513,45.775084),
+            new BMap.Point(126.661885,45.77785),
+            new BMap.Point(126.657214,45.779409)
+        ],
+        {strokeColor: "green",strokeWeight:6,strokeOpacity:0.5,strokeStyle:"solid"})
+
+        map.addOverlay(polyline);
+        // 标注一个圆
+        var circle=new BMap.Circle(new BMap.Point(126.657214,45.779409),3,{
+            strokeColor: "blue",fillColor: "blue",strokeWeight: 6,strokeOpacity: 0.5,fillOpacity: 0.5
+        });
+        map.addOverlay(circle); 
+
+        // 注意circle是一个类，getRadius是其下面的方法之一，可以直接使用；
+        // console.log(circle.getRadius());
+        // console.log(map.getCenter());
+
+        // 添加信息窗口
+        var opts={
+            width: 250,
+            height: 100,
+            title: "Hello"
+        }
+        // 创建信息窗口对象
+        // 第一个参数是信息窗口的内容，
+        // 第二个参数是信息窗口的参数
+        var inforWindow=new BMap.InfoWindow("world",opts)
+        //打开信息窗口(其位置是当前map的标注位置)
+        map.openInfoWindow(inforWindow,map.getCenter());
+
+        //事件监听：
+        // 百度地图API中的大部分对象中含有addEventListener方法
+        // 您可以通过该方法来监听对象事件，在特定的环境下这些事件会被
+        // 触发，同时监听函数会得到相应的时间参数e,
+        // 例如用户点击地图时，e参数会包含鼠标所对应的地理位置point
+
+        //弹窗事件
+        // map.addEventListener("click",function(){
+            // alert("您点击了地图");
+        // });
+
+        // 捕获状态
+        // 通过监听事件还可以捕获事件触发后的状态
+        map.addEventListener("dragend",function(e){
+            var center=map.getCenter();
+
+            //获取当前地图的中心位置
+            console.log("当前地图的中心点："+center.lng+","+center.lat);
+
+            // 获取拖拽点的位置
+            console.log("e当前地图的中心点："+e.point.lng+","+e.point.lat);
+        });
+
+
+
+        // 提供的检索服务
+        // LocalSearch: 本地搜索（提供某一特定地区的位置搜索服务）
+        // 支持： 城市搜索，圆形检索，矩形检索
+        // 第一个参数： 检索区域可以是BMap.Map对象，BMap.Point对象，
+        // 或者是省市名的字符串；
+        // 第二个参数： 可选的，用于指定结果的呈现，
+        // BMap.RenderOptiond类提供了若干控制
+        // 呈现的属性， 
+        // 其中map制定的了结果所展现的地图实例，
+        // 搜索结果的标注线路均会自动添加到此地图上面
+        // panel制定了结果列表的容器元素
+        // autoViewport: 检索结束后是否自动调整地图视野
+
+        // 城市搜索
+        var local1 =new BMap.LocalSearch(map,{
+            renderOptions:{map:map, autoViewport: true}
+        });
+        // 
+        // local1.search("哈尔滨站");
+
+        var local2=new BMap.LocalSearch(map,{
+            renderOptions:{map:map,autoViewport: true}
+        });
+        // local2.searchNearby("小吃","东北农业大学");
+
+        var local3=new BMap.LocalSearch(map,{
+            renderOptions:{map:map,autoViewport: true},
+            onSearchComplete: function(results){
+                // 判断状态是否正确
+                if(local3.getStatus()==BMAP_STATUS_SUCCESS){
+                    var s=[];
+                    for(var i=0; i< results.getCurrentNumPois(); i++){
+                        s.push(results.getPoi(i).title+","+results.getPoi(i).address);
+
+                    }
+                    document.getElementById("box").innerHTML=s.join("<br>");
+                    console.log(results);
+                }
+            }
+        });
+        local3.search("公园");
+
+        // 制定经纬度获取地址
+        var myGeo=new BMap.Geocoder();
+
+        map.addEventListener("click",function(e){
+            // 根据点击的位置获取当前坐标；
+            console.log(e.point);
+            var x= e.point.lng;
+            var y=e.point.lat;
+            var point=new BMap.Point(x,y);
+            console.log(point);
+            myGeo.getLocation(point,function(result){
+                if(result){
+                    console.log(result.address);
+                    map.centerAndZoom(point,16);
+                    map.addOverlay(new BMap.Marker(point));
+                }
+            });
+        });
+
+
+
+        /*
+        window.setTimeout(function(){
+            map.panTo(new BMap.Point(116.409, 39.918));
+        },2000);
+        */
+    </script>
+</body>
+
+</html>
