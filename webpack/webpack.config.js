@@ -26,9 +26,9 @@ module.exports={
     plugins:[
         // 使用插件（实例化一个打包html文件的HtmlPlugin对象）
         new HtmlPlugin({
-            // minify: {
-                // removeAttributeQuotes: true
-            // },
+            minify: {
+                removeAttributeQuotes: true
+            },
             // hash: true,
             template: "./src/index.html"
         })

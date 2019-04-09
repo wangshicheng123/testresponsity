@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("console.log(\"这是一段js的逻辑代码\");\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
