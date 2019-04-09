@@ -1,3 +1,4 @@
+// (直接写模块名称就可以，会自动到node_modules文件夹下面去寻找)
 // 导入一个path模块
 const path =require("path");
 
