@@ -22,6 +22,16 @@ module.exports={
         // filename: "index.js"
     },
 
+    module:{
+        rules:[
+            {
+                test: /\.css$/,
+                // 先使用css-loader,在使用style-loader
+                use: ["style-loader","css-loader"]
+            }
+        ]
+    },
+
     //插件，用于生产模板和各项功能
     plugins:[
         // 使用插件（实例化一个打包html文件的HtmlPlugin对象）
@@ -29,9 +39,12 @@ module.exports={
             minify: {
                 removeAttributeQuotes: true
             },
+            // chunks: [] //选择哪一个入口的js文件
             // hash: true,
             template: "./src/index.html"
         })
+
+        // 如果有多个html页面，需要new 多个HtmlPlugin实例化对象
     ],
 
     // 配置webpack开发服务功能
