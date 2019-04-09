@@ -5,6 +5,9 @@ const path =require("path");
 // 注意使用一个插件必须首先进行引入
 const HtmlPlugin=require("html-webpack-plugin");
 
+//
+const ExtractTextPlugin=require("extract-text-webpack-plugin");
+
 module.exports={
     // 设置打包文件的模式（开发模式）
     mode: "development",
@@ -27,7 +30,11 @@ module.exports={
             {
                 test: /\.css$/,
                 // 先使用css-loader,在使用style-loader
-                use: ["style-loader","css-loader"]
+                // use: ["style-loader","css-loader"]
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
             }
         ]
     },
@@ -42,9 +49,13 @@ module.exports={
             // chunks: [] //选择哪一个入口的js文件
             // hash: true,
             template: "./src/index.html"
-        })
+        }),
 
         // 如果有多个html页面，需要new 多个HtmlPlugin实例化对象
+
+        // css分离需要在plugins中在new 一个ExtraTextPlugin对象
+        // 其参数是要分离的css文件的路径
+        new ExtractTextPlugin("index.css")
     ],
 
     // 配置webpack开发服务功能
