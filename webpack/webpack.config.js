@@ -27,15 +27,6 @@ module.exports={
 
     module:{
         rules:[
-            {
-                test: /\.css$/,
-                // 先使用css-loader,在使用style-loader
-                // use: ["style-loader","css-loader"]
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
-                })
-            },
 
             // 当css文件中含有图片的时候处理方法
             {
@@ -68,6 +59,19 @@ module.exports={
                 use: ExtractTextPlugin.extract({
                     use: ["css-loader","sass-loader"],
                     fallback: "style-loader"
+                })
+            },
+
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [{
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 1
+                        }
+                    },"postcss-loader"]
                 })
             },
             
