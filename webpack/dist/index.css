@@ -1,9 +1,12 @@
+/*! 翻版必究 */
 body {
-  color: green; }
-body{
-    background-color: pink;
-    background-image: url(/images/e1250969920c561f9f47459fef000645.gif);
-    background-repeat: no-repeat;
-    -webkit-transform:rotate(30deg);
-            transform:rotate(30deg);
+  color: green;
+}
+
+body {
+  /* background-color: pink; */
+  background-image: url(/images/e1250969920c561f9f47459fef000645.gif);
+  background-repeat: no-repeat;
+  -webkit-transform: rotate(-30deg);
+  transform: rotate(-30deg);
 }

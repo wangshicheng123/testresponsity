@@ -1,6 +1,10 @@
 body{
-    background-color: pink;
+    /* background-color: pink; */
     background-image: url(./images/shuqian.gif) ;
     background-repeat: no-repeat;
-    transform:rotate(30deg);
+    transform:rotate(-30deg);
+}
+
+.asa{
+    color: blue
 }
