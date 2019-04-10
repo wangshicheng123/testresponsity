@@ -1,4 +1,5 @@
 body{
     background-color: pink;
-    background-image: url(./images/shuqian.gif) 
+    background-image: url(./images/shuqian.gif) ;
+    background-repeat: no-repeat;
 }

@@ -54,6 +54,33 @@ module.exports={
             {
                 test: /\.(html|htm)$/i,
                 loader: 'html-withimg-loader'
+            },
+
+            //css打包到js文件中
+            // {
+            //     test: /\.scss$/,
+            //     use: ["style-loader","css-loader","sass-loader"]
+            // },
+
+            // css分离到方法
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    use: ["css-loader","sass-loader"],
+                    fallback: "style-loader"
+                })
+            },
+            
+            // es6语法转成es6语法
+            {
+                test: /\.js$/,
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ["@babel/preset-env"]
+                    }
+                }],
+                exclude: /node_modules/
             }
         ]
     },

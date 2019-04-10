@@ -1,4 +1,6 @@
 body{
     background-color: pink;
-    background-image: url(/images/e1250969920c561f9f47459fef000645.gif) 
-}
+    background-image: url(/images/e1250969920c561f9f47459fef000645.gif);
+    background-repeat: no-repeat;
+}body {
+  color: red; }
