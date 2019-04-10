@@ -35,6 +35,25 @@ module.exports={
                     fallback: "style-loader",
                     use: "css-loader"
                 })
+            },
+
+            // 当css文件中含有图片的时候处理方法
+            {
+                // 用于匹配图片文件的后缀名称
+                test: /\.(png|jpg|gif)$/,
+                // 指定使用的loader和loader的配置参数
+                use: [{
+                    loader: "url-loader",
+                    options: {
+                        // 是把小于500b的文件打包成为Base64的格式，写入到css文件中
+                        limit: 500,
+                        outputPath: '/images/'
+                    }
+                }]
+            },
+            {
+                test: /\.(html|htm)$/i,
+                loader: 'html-withimg-loader'
             }
         ]
     },
