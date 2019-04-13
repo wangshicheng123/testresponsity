@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #app .title {
+            text-align: center;
+        }
+        .active{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="title">todolist</h1>
+        <hr>
+        名称： <input type="text" placeholder="请输入产品名称" name="name" v-model="name"><br>
+        价格： <input type="text" v-model="price"><br>
+        <button @click="add">增加</button><br>
+        <input type="text" placeholder="请搜索关键字" v-model="queryName"><button @click="query">查询</button>
+
+        <table>
+            <tr>
+                <th>多选删除</th>
+                <th>单选删除</th>
+                <th>名称</th>
+                <th>价格</th>
+            </tr>
+            <!-- v-bind:class="{isActive?actvie:'', selected}" -->
+            <tr v-for="item in productList">
+                <td><input type="checkbox" name="product"></td>
+                <td><button>X</button></td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+            </tr>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                name: "",
+                price: 0,
+                queryName: "",
+                // isActive: true,
+                productList:[
+                    {
+                        name: "衣服",
+                        price: 1231
+                    },
+                    {
+                        name: "鞋子",
+                        price: 1231
+                    },
+                    {
+                        name: "裤子",
+                        price: 1231
+                    },
+                    {
+                        name: "电脑",
+                        price: 1231
+                    },
+                ]
+            },
+            methods: {
+                add() {
+                    let productObj={
+                        name: this.name,
+                        price: this.price
+                    };
+                    this.productList.push(productObj);
+                },
+                query() {
+                    let arr=this.productList.filter((item)=>{
+                        return this.queryName===item.name;
+                    });
+                    this.productList=arr;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

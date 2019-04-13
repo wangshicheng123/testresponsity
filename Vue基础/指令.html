@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>指令的使用</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+        .color{
+            color: red;
+        }
+        .bg-color{
+            background: #ff0;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app" v-cloak>
+        {{msg}}
+
+        <div v-if="isTrue">
+            {{msg}}
+        </div>
+        <div v-else>
+            648468438
+        </div>
+        <!-- 当元素频繁的出现消失的的时候使用，注意和v-if的区别 -->
+        <div v-show="isTrue">
+            {{msg}}
+        </div>
+
+        <!-- 注意v-text渲染的结果是文本 -->
+        <div v-text="text">
+            <!-- wangcadjcbkadc -->
+        </div>
+        <!-- v-html渲染的结果是html -->
+        <div v-html="html">
+
+        </div>
+        <!-- // 注意v-on的使用，其还可以进行传入参数 -->
+        <button v-on:click="add(10,$event)">加</button>
+        <button @click="back(10)">减</button>
+        <!-- 注意v-model的使用，是双向数据绑定，常在表单元素上面使用 -->
+        number: <input type="text" v-model="num"/>
+        {{num}}
+        <hr>
+
+        <!-- <input type="text" v-model="name"/> -->
+        <form action="">
+            name: <input type="text" v-model.trim="name" name="name"/><br>{{name}}
+            age: <input type="number" v-model="age" name="age"/><br>
+            <input type="submit" value="submit">
+        </form>
+        <hr>
+        <p v-bind:class="{color: isColor}">{{name}}</p>
+        <!-- 注意属性如果用-分割必须加上单引号，否则不显示 -->
+        <p :class="{'bg-color': isBgColor}">{{age}}</p>
+        <p v-bind:class="{color:isColor,'bg-color':isBgColor}">
+            {{name}}:{{age}}
+        </p>
+        <hr>
+        <!-- 注意单词之间有-的一定要用单引号分隔开 -->
+        <div v-bind:class="[isColor ? color : '', 'bg-color']">{{age}}12345??</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                isColor: true,
+                isBgColor: true,
+                color: "color",
+                msg: "asdfhgjh",
+                'bg-color': "bg-color",
+                isTrue: false,
+                text: "<h1>2345678</h1>",
+                html: "<h1>2345678</h1>",
+                num: 0,
+                age: 100,
+                name: "张三"
+            },
+            methods:{
+                add(a,e){
+                    this.num+=a;
+                    console.log(e);
+                },
+                back(a){
+                    this.num-=a;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
