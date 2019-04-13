@@ -65,6 +65,13 @@
         <hr>
         <!-- 注意单词之间有-的一定要用单引号分隔开 -->
         <div v-bind:class="[isColor ? color : '', 'bg-color']">{{age}}12345??</div>
+
+        <input type="checkbox" name="1" id="" value="111" v-model="arr">
+        <input type="checkbox" name="2" id="" value="222" v-model="arr">
+        <input type="checkbox" name="3" id="" value="333" v-model="arr">
+        <input type="checkbox" name="4" id="" value="444" v-model="arr">
+
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>
@@ -81,7 +88,8 @@
                 html: "<h1>2345678</h1>",
                 num: 0,
                 age: 100,
-                name: "张三"
+                name: "张三",
+                arr:[]
             },
             methods:{
                 add(a,e){

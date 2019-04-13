@@ -15,8 +15,9 @@
         #app .title {
             text-align: center;
         }
-        .active{
-            display: none;
+
+        .active {
+            background: #f00;
         }
     </style>
 </head>
@@ -38,12 +39,17 @@
                 <th>价格</th>
             </tr>
             <!-- v-bind:class="{isActive?actvie:'', selected}" -->
-            <tr v-for="item in productList">
-                <td><input type="checkbox" name="product"></td>
-                <td><button>X</button></td>
+            <tr v-for="(item,index) in productList" @click="toggleClass(item.price,$event)">
+                <td><input type="checkbox" v-bind:value="item.name" :name="item.name" v-model="selectedArr"></td>
+                <td><button @click="deleteSelected(item.name)">X</button></td>
                 <td>{{item.name}}</td>
                 <td>{{item.price}}</td>
             </tr>
+            <tr>
+                <td><button @click="deleteAllSelected">删除选中</button></td>
+                <td rowspan="3">sum: {{sum}}</td>
+            </tr>
+            {{selectedArr}}
         </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -51,42 +57,83 @@
         new Vue({
             el: "#app",
             data: {
+                selectedArr: [],
                 name: "",
                 price: 0,
                 queryName: "",
-                // isActive: true,
-                productList:[
+                // isActive: false,
+                sum: 0,
+                productList: [
                     {
                         name: "衣服",
-                        price: 1231
+                        price: 1200
                     },
                     {
                         name: "鞋子",
-                        price: 1231
+                        price: 800
                     },
                     {
                         name: "裤子",
-                        price: 1231
+                        price: 1800
                     },
                     {
                         name: "电脑",
-                        price: 1231
+                        price: 2000
                     },
                 ]
             },
             methods: {
+                // 添加数据
                 add() {
-                    let productObj={
+                    let productObj = {
                         name: this.name,
                         price: this.price
                     };
                     this.productList.push(productObj);
                 },
+                // 查询数据
                 query() {
-                    let arr=this.productList.filter((item)=>{
-                        return this.queryName===item.name;
+                    let arr = this.productList.filter((item) => {
+                        return this.queryName === item.name;
                     });
-                    this.productList=arr;
+                    this.productList = arr;
+                },
+                // 删除单条数据
+                // arrayObject.splice(index,howmany,item1,.....,itemX)
+                // index	必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+                // howmany	必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+                // item1, ..., itemX	可选。向数组添加的新项目。
+                deleteSelected(name){
+                    this.productList.forEach((item,index)=>{
+                        if(item.name===name){
+                            this.productList.splice(index,1);
+                        }
+                    });
+                },
+                // 删除多条数据
+                deleteAllSelected(){
+                    //console.log(this.productList);
+                    this.selectedArr.forEach((item1)=>{
+                        this.productList.forEach((item,index)=>{
+                            if(item1===item.name){
+                                this.productList.splice(index,1);
+                                // 因为上面每一个if判断中执行splice()后，原数组变化，原数组的中每一项的下标是会改变的
+                                // 所以使用的index--的方法来解决这个问题
+                                index--;
+                            }
+                        });
+                    });
+                },
+                // 切换样式
+                toggleClass(price,e){
+                    // console.log(e.currentTarget);
+                    if(e.currentTarget.className){
+                        e.currentTarget.className="";
+                        this.sum-=price;
+                    }else{
+                        e.currentTarget.className="active";
+                        this.sum+=price;
+                    }
                 }
             }
         });
