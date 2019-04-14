@@ -70,7 +70,11 @@
         <input type="checkbox" name="2" id="" value="222" v-model="arr">
         <input type="checkbox" name="3" id="" value="333" v-model="arr">
         <input type="checkbox" name="4" id="" value="444" v-model="arr">
-
+        <hr>
+        <div v-for="(item,index) in testArr">
+            {{item.name}}:{{item.age}}: {{index}}
+        </div>
+        <button @click="sort">对象sort</button>
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -89,7 +93,25 @@
                 num: 0,
                 age: 100,
                 name: "张三",
-                arr:[]
+                arr:[],
+                testArr: [
+                    {
+                        name: "zhansan",
+                        age: 12
+                    },
+                    {
+                        name: "lisi",
+                        age: 41
+                    },
+                    {
+                        name: "wangwu",
+                        age: 44
+                    },
+                    {
+                        name: "zhaoliu",
+                        age: 32
+                    }
+                ]
             },
             methods:{
                 add(a,e){
@@ -98,6 +120,15 @@
                 },
                 back(a){
                     this.num-=a;
+                },
+                sort(){
+                    // 注意通过对象中的属性的大小进行排序
+                    this.testArr=this.testArr.sort((item1,item2)=>{
+                        // console.log(item1,item2);
+                        // return item1.age-item2.age;
+                        // 随机对对象进行排序
+                        return Math.random()-0.5;
+                    });
                 }
             }
         });
