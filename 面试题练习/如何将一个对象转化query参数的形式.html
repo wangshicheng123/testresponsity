@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>如何将一个对象转化为一个query参数的形式</title>
+</head>
+<body>
+    
+    <script>
+        let obj={
+            name: "wangshicheng",
+            age: 123,
+            sex: "man",
+            weight: 124
+        }
+        let query='';
+        let arr=[];
+
+        // 首先需要遍历对象的每个属性，
+        //  把所有的属性值放在一个数组中；
+        //  然后使用join方法得到一个query字符串
+        for(item in obj){
+            console.log(item);
+            arr.push(obj[item]);
+        };
+        query=arr.join("&");
+        console.log(query);
+    </script>
+</body>
+</html>
