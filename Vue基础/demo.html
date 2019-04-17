@@ -40,7 +40,7 @@
             </tr>
             <!-- v-bind:class="{isActive?actvie:'', selected}" -->
             <tr v-for="(item,index) in productList" @click="toggleClass(item.price,$event)">
-                <td><input type="checkbox" v-bind:value="item.name" :name="item.name" v-model="selectedArr"></td>
+                <td><input type="checkbox" v-bind:value="item.name"  v-model="selectedArr"></td>
                 <td><button @click.stop="deleteSelected(item.name)">X</button></td>
                 <td>{{item.name}}</td>
                 <td>{{item.price}}</td>
