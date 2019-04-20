@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <div>
+            时候需要额外的付费设施
+            <input type="checkbox" v-model="isChecked" @click="refresh">
+            <ul>
+                <li v-for="obj in proList" v-if="isChecked">
+                    {{obj.name}} ({{obj.price}})
+                    <input type="checkbox" :value="obj"  v-model="list">
+                </li>
+            </ul>
+        </div>
+        <div>
+            订单费用信息
+            <ul>
+                <li v-for="obj in list">
+                    {{obj.name}} ({{obj.price}})
+                </li>
+            </ul>
+        </div>
+        <div>
+            总金额：{{sum}}
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data: {
+                isChecked: false,
+                proList: [
+                    {
+                        name: "沙发",
+                        price: 100
+                    },
+                    {
+                        name: "wifi",
+                        price: 50
+                    },
+                    {
+                        name: "电脑",
+                        price: 1000
+                    }
+                ],
+                list: [
+                    {
+                        name: "群力花园豪华型",
+                        price: 4000
+                    }
+                ]
+
+            },
+            methods:{
+                refresh(){
+                    // 数组中的splice方法，可以删除制定数组位置的项
+                    // 第一个参数是起始删除数组的位置，
+                    // 第二个参数是删除数组的数目
+                    // 剩下的是在删除数组的位置补的项
+                    this.list.splice(1);
+                }
+            },
+            computed: {
+                sum(){
+                    let sum=0;
+                    this.list.forEach((obj)=>{
+                        sum+=obj.price;
+                    });
+                    return sum;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

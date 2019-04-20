@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            isFocus: true,
+            itemId: 100
+        };
+        (function a(e) {
+            var that = this;
+            var isFocus = that.data.isFocus;
+            console.log("isFocus", isFocus)
+            var itemId = that.data.itemId;
+            if (isFocus) {
+                favoriteService.cancel(that, itemId).then((res) => {
+                    wx.showToast({
+                        title: "取消收藏",
+                        icon: 'success',
+                        duration: 1000
+                    });
+                    this.setData({ isFocus: false, });
+                })
+            }
+            else {
+                favoriteService.add(that, itemId)
+                    .then((res) => {
+                        wx.showToast({
+                            title: res.data == 1 ? "收藏成功" : "收藏失败",
+                            icon: 'success', duration: 1000
+                        });
+                        this.setData({ isFocus: true, });
+                    });
+            }
+        }).bind(obj, e);
+    </script>
+</body>
+
+</html>
