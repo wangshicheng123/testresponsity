@@ -1,13 +1,38 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      <router-link to="/test">test页面</router-link>
+      <!-- 重定向的router-view -->
+      <router-link to="/">home</router-link>
+      <router-link to="/redi/lishc/6878434">reditoabout</router-link> |
+      <router-link to="/about/zhan/4654">About</router-link>
+      <router-link to="/test/110">test页面</router-link>
     </div>
+    <!-- 编程式导航到下一页 -->
+    <button @click="go">go</button>
+    <!-- 编程式导航到上一页 -->
+    <button @click="back">back</button>
+    <!-- 编程式导航到首页 -->
+    <button @click="home">home</button>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    go(){
+      this.$router.go(1);
+    },
+    back(){
+      this.$router.go(-1);
+    },
+    home(){
+      this.$router.push("/");
+    }
+  }
+
+}
+</script>
 
 <style>
 #app {

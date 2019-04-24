@@ -1,12 +1,8 @@
 <template>
-  <div class="home">
-    <h1>home页面</h1>
-  </div>
+    <h1>这是一个404页面</h1>
 </template>
-
 <script>
-
 export default {
-
+    
 }
 </script>
