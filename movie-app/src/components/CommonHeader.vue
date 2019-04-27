@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div class="classfy">
             <span>首页</span>
             <span>电影</span>
         </div>
@@ -13,5 +13,4 @@
     }
 </script>
 <style>
-
 </style>
