@@ -1,4 +1,4 @@
-# vuecli3-app
+# movie-app
 
 ## Project setup
 ```

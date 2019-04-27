@@ -5,6 +5,7 @@ import Test from "./views/Test.vue"
 import Test2 from "./views/Test2.vue"
 import Test3 from "./views/Test3.vue"
 import Error from "./views/Error.vue"
+import Count from "./views/Count.vue"
 
 Vue.use(Router)
 
@@ -47,6 +48,10 @@ export default new Router({
           component: Test3
         }
       ]
+    },
+    {
+      path: "/count",
+      component: Count
     },
     {
       path: "*",

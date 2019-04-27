@@ -6,6 +6,7 @@
       <router-link to="/redi/lishc/6878434">reditoabout</router-link> |
       <router-link to="/about/zhan/4654">About</router-link>
       <router-link to="/test/110">test页面</router-link>
+      <router-link to="/count">count</router-link>
     </div>
     <!-- 编程式导航到下一页 -->
     <button @click="go">go</button>

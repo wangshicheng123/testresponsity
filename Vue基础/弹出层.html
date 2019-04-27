@@ -8,7 +8,7 @@
     <title>弹出层</title>
     <style>
         .dialog {
-            background: #ccc;
+            background: rgba(0, 0, 0, 0.05);
             border: 1px solid red;
             width: 200px;
             height: 200px;
@@ -20,15 +20,16 @@
 
     <div id="app">
         <div>
-            <my-dialog title="注册" class="dialog">
+            <!-- <my-dialog title="注册" class="dialog">
                 <div slot="content">这是一段描述这是一段描述这是一段描述</div>
-            </my-dialog>
-            <my-dialog title="登陆" class="dialog">
+            </my-dialog> -->
+            <my-dialog title="登陆" class="dialog" @close="fn">
                 <div slot="content">
-                    <label for="username">用户名：</label>
-                    <input type="text" id="username" placeholder="请输入用户名">
-                    <label for="password">密码：</label>
-                    <input type="text" id="password" placeholder="请输入密码">
+                        <label for="username">用户名：</label>
+                        <input type="text" id="username" placeholder="请输入用户名" v-model="name"><br>
+                        <label for="password">密码：</label>
+                        <input type="text" id="password" placeholder="请输入密码" v-model="age">
+                        {{name}}
                 </div>
             </my-dialog>
         </div>
@@ -37,24 +38,39 @@
     <template id="my-dialog">
         <div>
             <span>{{title}}</span>
-            <span>[X]</span>
             <slot name="content"></slot>
+            {{name}}------{{bbb}}
+            <span @click="$emit('close',name)">[X]</span>
         </div>
     </template>
     <script src="./vue.js"></script>
     <script>
 
-
-
-        new Vue({
+        var vm = new Vue({
             el: "#app",
             data: {
-
+                // user: {
+                //     name: "",
+                //     password: ""
+                // }
+                name: "",
+                age: ""
+            },
+            methods:{
+                fn(msg){
+                    console.log(msg);
+                }
             },
             components: {
                 "my-dialog": {
                     template: "#my-dialog",
-                    props: ["title"]
+                    props: ["title"],
+                    data:function(){
+                        return {
+                            name:'',
+                            bbb:'jfjkkjdfjk'
+                        }
+                    }
                 }
             }
         });
