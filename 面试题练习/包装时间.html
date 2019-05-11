@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let date=new Date();
+        // console.log(date.getTime());
+        let str = "1552619625992";
+        // let dealtime=function(time){
+        //     let date=new Date(time);
+        //     console.log(date.getDay(),date.getMonth());
+        // }
+
+        let format=(timestamp)=>{
+            var date = new Date(timestamp*1); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            var M =
+                (date.getMonth() + 1 < 10
+                    ? "0" + (date.getMonth() + 1)
+                    : date.getMonth() + 1);
+            var D = date.getDate() + " ";
+            return M +"月"+ D+ "日" ;
+        }
+        console.log(format(str));
+    </script>
+</body>
+
+</html>
