@@ -28,7 +28,8 @@ export default {
           name: "音乐",
           path: "/music",
           bg: "#0f0"
-        },{
+        },
+        {
           name: "书籍",
           path: "/book",
           bg: "#00f"
@@ -58,6 +59,10 @@ export default {
         this.selectMenu=this.menu[index];
       }
     });
+    // 当进入的时候是音乐列表页面的时候，就改变相应的头和尾
+    if(this.$route.path=="/musicList"){
+      this.selectMenu=this.menu[1]
+    }
   }
 }
 </script>

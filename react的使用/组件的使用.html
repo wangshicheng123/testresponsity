@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+    <script src="./browser.min.js"></script>
+
+    <script type="text/babel">
+        // 无状态组件
+        // 箭头函数定义组件的方式
+        // 箭头函数的参数是父组件传来的参数（props）
+        // props.children来获取父组件向子组件传来的html参数
+        // 主props的位置，放在哪里就在那里进行显示 
+
+        // let PrintHello=(props)=>{
+        //     return (
+        //         <div>
+        //             <p>{props.content}</p>
+        //             23456789-wang事成-666666
+        //             {props.children}
+        //         </div>)
+        // }
+        // ReactDOM.render(
+        //     <PrintHello content="今天天空中有很多毛毛">
+        //         <h1>今天是个坏天气</h1>
+        //     </PrintHello>,
+        //     document.getElementById("app")
+        // )
+
+        // 使用类的方式定义一个组件
+        // 是用一个类定义的组件传入参数的方式：
+        // this.props.attri进行使用
+        // 同上也有this.props.children进行对html进行插值
+
+        // 有状态组件
+
+        // class WarnBtn extends React.Component{
+        //     constructor(params){
+        //         super(params);
+        //     }
+
+        //     render(){
+        //         return (
+        //             <div>
+        //                 <button>这是一个警告按钮</button>
+        //                 {this.props.children}
+        //             </div>
+        //         )
+        //     }
+        // }
+
+        // ReactDOM.render(
+        //     <WarnBtn><span>千万不要点</span></WarnBtn>,
+        //     document.getElementById("app")
+        // );
+
+        class MyComponent extends React.Component{
+            constructor(params){
+                super();
+                this.state={
+                    num: 0
+                }
+                this.little=this.little.bind(this);
+
+            }
+
+            // 类自定义的方法
+            add(para){
+                // 通过this.state.num获取num的值
+                let num1=this.state.num;
+                num1=num1+para;
+                // 通过this.setState()方法进行对状态值的修改
+                this.setState({
+                    num: num1
+                });
+            }
+            little(para){
+                let num1=this.state.num;
+                num1=num1+para;
+
+                this.setState({
+                    num: num1
+                });
+            }
+
+            // 类自带的方法
+            // 其this指向是使用组件时创建的对象
+            render(){
+                return (
+                    <div>
+                        <h1>{this.state.num}</h1>
+                        <button onClick={this.add.bind(this,10)}>这是一个警告按钮</button>
+                        <button onClick={()=>{
+                            this.little(-20);
+                        }}>这是一个真的不能点的按钮</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <MyComponent></MyComponent>,
+            document.getElementById("app")
+        )
+
+    </script>
+</body>
+
+</html>
