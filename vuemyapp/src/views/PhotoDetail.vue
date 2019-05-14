@@ -1,10 +1,14 @@
 <template>
     <div class="img-detail">
+        <!-- <v-touch v-on:swipeleft="onSwipeLeft" :src="src"></v-touch> -->
         <img :src="src" alt="">
     </div>
 </template>
 
 <script>
+import Vue from "vue"
+import Vuetouch from "vue-touch"
+// Vue.use(VueTouch, {name: 'v-touch'})
 export default {
     data(){
         return{
@@ -12,11 +16,20 @@ export default {
         }
     },
     created(){
-        // console.log(this.index);
+        console.log("图片索引");
+        console.log(this.index);
     },
     computed:{
         src(){
             return this.$store.state.photoData[this.index].src
+        }
+    },
+    components:{
+        Vuetouch
+    },
+    methods:{
+        onSwipeLeft(){
+            console.log("asfgfh");
         }
     }
 }
