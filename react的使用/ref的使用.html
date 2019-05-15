@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ref的使用</title>
+</head>
+<body>
+    
+    <div id="app">
+
+    </div>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+    <script src="./browser.min.js"></script>
+
+    <script type="text/babel">
+        class MyCom extends React.Component{
+            constructor(params){
+                super(params);
+                this.show=this.show.bind(this);
+                this.state={
+                    name: "小王",
+                    password: "123456"
+                }
+            }
+            show(event){
+                // this.refs.name 获取输入用户名的标签
+                // this.refs.name.value 获取input标签的用户名
+                console.log(this.refs.name.value);
+                // this.myInput.value直接获取input标签的value
+                console.log(this.myInput.value);
+
+                // 使用事件对象获取触发事件的元素
+                console.log(event.target);
+
+                // 当用户点击按钮的时候对状态值进行更新，然后渲染页面
+                this.setState({
+                    name: this.refs.name.value,
+                    password: this.myInput.value
+                });
+            }  
+            render(){
+                return (
+                    <div>
+                        name: <input type="text" ref="name"/>
+                        passsword: <input type="password" ref={input=>this.myInput=input}/>
+                        <button onClick={this.show}>submit</button> <br/>
+                        name: {this.state.name},
+                        password: {this.state.password}
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <MyCom></MyCom>,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+</html>
