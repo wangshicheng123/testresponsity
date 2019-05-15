@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表的使用 </title>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+
+    <script type="text/babel">
+
+        class Main extends React.Component{
+            constructor(params){
+                super(params);
+                this.addOnePro=this.addOnePro.bind(this);
+                this.state={
+                    productList: [
+                        {
+                            name: "鞋子",
+                            price: 1000
+                        },
+                        {
+                            name: "裤子",
+                            price: 400
+                        },
+                        {
+                            name: "衬衫",
+                            price: 900
+                        }
+                    ]
+                }
+            }
+            addOnePro(name,price){  
+                let obj={name:name,price: price};
+                this.state.productList.push(obj);
+                this.setState({
+                    productList: this.state.productList
+                });
+            }
+            render(){
+                return (
+                    <div>
+                        <h1>Simple TODO List</h1>
+                        <AddProduct addOnePro={this.addOnePro}></AddProduct>
+                        <ul>
+                        {
+                            this.state.productList.map((item,index)=>{
+                                return <li key={index}>{item.name}---{item.price}</li>
+                            })
+                        }
+                        </ul>
+                    </div>
+                )
+            }
+        }
+
+        class AddProduct extends React.Component{
+            constructor(params){
+                super(params);
+
+            }
+            render(){
+                return (
+                    <div>
+                        商品名：<input type="text" ref="productName"/><br/>
+                        商品价格： <input type="text" ref="productPrice"/><br/>
+                        <button onClick={()=>{
+                                this.props.addOnePro(this.refs.productName.value,this.refs.productPrice.value);
+                                this.refs.productName.value="";
+                                this.refs.productPrice.value="";
+                        }}>添加商品</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <Main></Main>,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+
+</html>
