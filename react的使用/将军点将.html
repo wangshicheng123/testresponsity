@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>将军点将</title>
+</head>
+
+<body>
+
+    <div id="app"></div>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+
+    <script type="text/babel">
+        
+        class Main extends React.Component{
+            constructor(params){
+                super(params);
+                this.addSoldier=this.addSoldier.bind(this);
+                this.state={
+                    soldierCount: 200,
+                    historyList: [
+                        {
+                            name: "",
+                            time: "",
+                            number: ""
+                        }
+                    ]
+                }
+            }
+            addSoldier(num,name){
+                // console.log(num);
+                let myNum=parseInt(num);
+                if(this.state.soldierCount-myNum<0){
+                    alert("剩余士兵数量不足");
+                    return;
+                }else{
+                    this.setState({
+                        soldierCount: this.state.soldierCount-num
+                    });
+                    let obj={
+                        name: name,
+                        number: num,
+                        time: new Date().toLocaleString()
+                    }
+                    let arr = this.state.historyList;
+                    arr.push(obj)
+                    this.setState({
+                        historyList: arr
+                    });
+                }
+            }
+            render(){
+                return (
+                    <div>
+                        <h1>剩余士兵数量：{this.state.soldierCount}</h1>
+                        <CompoOne addSoldier={this.addSoldier} name="李将军" count={this.state.soldierCount}></CompoOne>
+                        <CompoOne addSoldier={this.addSoldier} name="赵将军" count={this.state.soldierCount}></CompoOne>
+
+                        <ul>
+                            {
+                                this.state.historyList.map((item,index)=>{
+                                    return <li key={index}>{item.name}于{item.time}调取了{item.number}个士兵</li>
+                                })
+                            }
+                        </ul>
+                    </div>
+                )
+            }
+        }
+        class CompoOne extends React.Component{
+            constructor(params){
+                super(params);
+                this.state={
+                    soldierCount1: 0
+                }
+            }
+            render(){
+                return (
+                    <div>
+                        <div>{this.props.name}有士兵： {this.state.soldierCount1}</div>
+                        <input type="number" ref="count"/>
+                        <button onClick={()=>{
+                            // 判断输入的士兵数量是否合格
+                            if(!this.refs.count.value||parseInt(this.refs.count.value)<=0){
+                                this.refs.count.value="";
+                                alert("请输入调取士兵的数量");
+                                return;
+                            }
+                            // 调用函数
+                            this.props.addSoldier(this.refs.count.value,this.props.name);
+                            // 判断剩余士兵数是否是大于零
+                            if(this.props.count-parseInt(this.refs.count.value)>=0){
+                                this.setState({
+                                    soldierCount1: this.state.soldierCount1+parseInt(this.refs.count.value)
+                                });
+                                this.refs.count.value="";    
+                            }
+                            this.refs.count.value="";
+                        }}>调兵</button>
+                    </div>
+                )
+            }
+        }
+
+
+        ReactDOM.render(
+            <Main></Main>,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+
+</html>
