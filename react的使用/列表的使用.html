@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>列表的使用 </title>
+    <style>
+        .red{
+            background-color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,39 +29,123 @@
             constructor(params){
                 super(params);
                 this.addOnePro=this.addOnePro.bind(this);
+                this.searchPro=this.searchPro.bind(this);
+                this.changeColor=this.changeColor.bind(this);
                 this.state={
                     productList: [
                         {
+                            id: 0,
                             name: "鞋子",
-                            price: 1000
+                            price: 1000,
+                            isActive: false
                         },
                         {
+                            id: 1,
                             name: "裤子",
-                            price: 400
+                            price: 400,
+                            isActive: false
                         },
                         {
+                            id: 2,
                             name: "衬衫",
-                            price: 900
+                            price: 900,
+                            isActive: false
+                        }
+                    ],
+                    showList: [
+                    {
+                            id: 0,
+                            name: "鞋子",
+                            price: 1000,
+                            isActive: false
+                        },
+                        {
+                            id: 1,
+                            name: "裤子",
+                            price: 400,
+                            isActive: false
+                        },
+                        {
+                            id: 2,
+                            name: "衬衫",
+                            price: 900,
+                            isActive: false
                         }
                     ]
                 }
             }
             addOnePro(name,price){  
-                let obj={name:name,price: price};
+                let obj={id: new Date().getTime(),name:name,price: price, sty: { backgroundColor: ""},isActive: false};
                 this.state.productList.push(obj);
+
+                // 同时修改显示的数组和数据库中的数据
                 this.setState({
-                    productList: this.state.productList
+                    productList: this.state.productList,
+                    showList: this.state.showList
+                });
+
+            }
+
+            searchPro(proName){
+                // 我们在搜索数据的时候理论上不能去删除数据的；
+                // 可以控制数据的显示或者隐藏
+
+                // 目前的解决办法是每次在搜索之前更新一下数据
+                let arr1=[...this.state.productList];
+                this.setState({
+                    showList: arr1
+                });
+
+                let searchName=proName;
+                // 从数据库中去过滤数据
+                let arr=this.state.productList.filter((item,index)=>{
+                    let reg=new RegExp(searchName);
+                    return reg.test(item.name)
+                });
+                // 只修改showList数组中显示的数据， 不修改productList数组中的数据
+                this.setState({
+                    showList: arr
+                });
+            }
+            changeColor(num){
+                // 判断当前点击的是哪一条数据
+                let arr=[...this.state.showList];
+                arr[num].isActive=!arr[num].isActive;
+
+                this.setState({
+                    showList: arr,
+                    productList: arr
+                });
+            }
+
+            delePro(num){
+                let arr=[...this.state.showList];
+                // 使用数组的splice方法进行删除
+                arr.splice(num, 1);
+                this.setState({
+                    showList: arr,
+                    productList: arr
                 });
             }
             render(){
                 return (
                     <div>
                         <h1>Simple TODO List</h1>
+                        <SerchProduct searchPro={this.searchPro}></SerchProduct>
                         <AddProduct addOnePro={this.addOnePro}></AddProduct>
                         <ul>
                         {
-                            this.state.productList.map((item,index)=>{
-                                return <li key={index}>{item.name}---{item.price}</li>
+                            this.state.showList.map((item,index)=>{
+                                // 注意index会改变，但是id不会改变
+                                return <li key={item.id} className={item.isActive?"red":""}>
+                                            <input type="checkbox" onClick={()=>{
+                                                                                this.changeColor(index);
+                                                                            }}/>
+                                            {item.name}---{item.price} 
+                                            <button onClick={()=>{
+                                                this.delePro(index);
+                                            }}>delete</button>
+                                       </li>
                             })
                         }
                         </ul>
@@ -80,6 +169,27 @@
                                 this.refs.productName.value="";
                                 this.refs.productPrice.value="";
                         }}>添加商品</button>
+                        <hr/>
+                    </div>
+                )
+            }
+        }
+
+        class SerchProduct extends React.Component{
+            constructor(params){
+                super(params);
+
+            }
+            render(){
+                return (
+                    <div>
+                        搜索商品：<input type="text" ref={input=>this.myPro=input}/>
+                        <button onClick={()=>{
+                            this.props.searchPro(this.myPro.value);
+
+                            this.myPro.value=""
+                        }}>search</button>
+                        <hr/>
                     </div>
                 )
             }
