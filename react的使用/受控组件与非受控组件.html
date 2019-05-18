@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .bg{
+            background-color: #f0f;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="app"></div>
+    <script src="./react.development.js"></script>
+    <script src="./react-dom.development.js"></script>
+    <script src="./browser.min.js"></script>
+
+    <script type="text/babel">
+
+        class MyComponent extends React.Component{
+            constructor(params){
+                super(params);
+                this.state={
+                    myPass: "请输入密码"
+                };
+                this.change=this.change.bind(this);
+                this.show=this.show.bind(this);
+            }
+
+            show(){
+                alert("用户名： "+this.myName.value+", 密码： "+this.state.myPass);
+            }
+            change(e){
+                // 通过事件对象去获得表单元素的value值
+                this.setState({
+                    myPass: e.target.value
+                });
+            }
+            render(){
+                let sty={
+                    'backgroundColor': "#0ff"
+                }
+                return(
+                    <div>
+                        <input className="bg" type="text" ref={input=>this.myName=input}/><br/>
+                        <input style={sty} type="password" onChange={this.change}/><br/>
+                        <button onClick={this.show}>提交</button>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <MyComponent></MyComponent>,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+</html>
