@@ -15,21 +15,22 @@ export default class LeftNav extends Component {
         return menuList.map((item) => {
             if(item.children){
                 return (
-                    <SubMenu title={item.title} key={item.path}>
+                    <SubMenu title={<span><Icon type={item.icon}></Icon><span>{item.title}</span></span>} key={item.path}>
                         {this.createMenu(item.children)}
                     </SubMenu>
                 )
             }
+
             return (
                 <Menu.Item key={item.path}>
-                    <Icon type={item.icon}></Icon>
+                    <Icon type={item.icon?item.icon: "bulb"}></Icon>
                     {item.title}
                 </Menu.Item>
             )
         });
 
     }
-
+    // 在组件将要挂载之前执行
     componentWillMount = () => {
         let list = this.createMenu(menuList);
         this.setState({
@@ -39,7 +40,7 @@ export default class LeftNav extends Component {
 
     render() {
         return (
-            <Menu theme="dark" mode="inline">
+            <Menu theme="dark" mode="inline" defaultOpenKeys={["/admin/teacher"]}>
                 {this.state.list}
             </Menu>
         )

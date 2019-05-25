@@ -1,3 +1,14 @@
+.left-nav{
+  height: 100vh;
+  background: #001529;
+}
+.img-container{
+  text-align: center;
+}
+.img-container img{
+  width: 80%;
+  height: 100%;
+}
 /*.App {
   text-align: center;
 }

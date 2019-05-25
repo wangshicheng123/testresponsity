@@ -1,0 +1,15 @@
+.header-content{
+    text-align: right;
+    height: 50px;
+    line-height: 50px;
+    padding: 0px 20px;
+    border-bottom: 1px solid #001529;
+}
+.header-content span{
+    margin-right: 10px;
+}
+
+.header-time{
+    padding: 0px 20px;
+    text-align: right;
+}
