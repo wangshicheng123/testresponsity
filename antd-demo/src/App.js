@@ -4,11 +4,12 @@ import { Button, Icon ,Row, Col} from 'antd';
 import LeftNav from "./component/LeftNav";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import Home from "./Home";
+// import Home from "./pages/Home";
 
-function App() {
+function App(props) {
   // 设置图标的样式
   // let sty={ fontSize: '16px', color: '#f00' };
+  console.log(props);
   return (
     <div className="App">
       {/* <h1>首页</h1>
@@ -28,7 +29,9 @@ function App() {
         </Col>
         <Col span={19}>
           <Header></Header>
-          <Home></Home>
+          <div className="home-content">
+            {props.children}
+          </div>
           <Footer></Footer>
         </Col>
       </Row>

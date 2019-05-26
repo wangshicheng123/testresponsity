@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "./index.css"
 export default class Footer extends Component{
     constructor(params){
         super(params);
@@ -7,8 +7,8 @@ export default class Footer extends Component{
 
     render(){
         return (
-            <div>
-                this is footer
+            <div className="footer-content">
+                唯创网讯版权所有
             </div>
         )
     }

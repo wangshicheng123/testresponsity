@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Menu, Icon } from "antd";
 import menuList from "../../config/menuconfig";
+import { Link } from "react-router-dom";
 
-const {SubMenu} =Menu;
+const { SubMenu } = Menu;
 export default class LeftNav extends Component {
     constructor(params) {
         super(params);
@@ -13,7 +14,7 @@ export default class LeftNav extends Component {
     }
     createMenu = (menuList) => {
         return menuList.map((item) => {
-            if(item.children){
+            if (item.children) {
                 return (
                     <SubMenu title={<span><Icon type={item.icon}></Icon><span>{item.title}</span></span>} key={item.path}>
                         {this.createMenu(item.children)}
@@ -23,8 +24,10 @@ export default class LeftNav extends Component {
 
             return (
                 <Menu.Item key={item.path}>
-                    <Icon type={item.icon?item.icon: "bulb"}></Icon>
-                    {item.title}
+                    <Link to={item.path}>
+                        <Icon type={item.icon ? item.icon : "bulb"}></Icon>
+                        {item.title}
+                    </Link>
                 </Menu.Item>
             )
         });
