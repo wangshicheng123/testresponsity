@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="browser.min.js"></script>
+
+    <script type="text/babel">
+        class MyCom extends React.Component{
+            constructor(params){
+                super(params);
+                // 注意改变自定义函数的this指向是重要的；
+                this.add=this.add.bind(this);
+                this.state={
+                    num: ""
+                }
+            }
+            // 当不传参数的时候
+            // 注意所有默认的自定义函数都有一个默认的参数是事件对象
+            add(a){
+                console.log(a);
+                this.setState({
+                    num: a.target.value
+                })
+                // console.log();
+            }
+            render(){
+                return(
+                    <div>
+                        <input type="text" onChange={this.add}/><br/>
+                        <h1>{this.state.num}</h1>
+                    </div>
+                )
+            }
+
+        }
+
+        ReactDOM.render(
+            <MyCom></MyCom>,
+            document.getElementById("app")
+        )
+    </script>
+</body>
+</html>
