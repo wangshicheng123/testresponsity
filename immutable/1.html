@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script src="./immutable.js"></script>
+    <script>
+        let map1 = Immutable.Map({ a: 1, b: 2, c: 3 });
+        console.log(map1.get("b"));
+        let map3=map1.set("b",200); // 对象不是引用，返回一个新的对象
+        console.log(map3.get("b"));
+        let map2 = Immutable.Map({ a: 1, b: 2, c: 3 });
+        console.log(map2);
+
+        // 判断两个immutable对象是否相等
+        console.log(Immutable.is(map1, map2)); // true
+
+        // List1 = Immutable.List([1, 2, Immutable.List[3, 4]]);
+        let List1 = Immutable.fromJS([1, 2, [3, 4]]);
+        console.log(List1);
+        let List2 = Immutable.fromJS([1, 2, [3, 4]]);
+        console.log(List2);
+        console.log(Immutable.is(List1, List2)); // true
+
+        console.log("换行");
+        let obj1={"b":21}
+        let obj3=obj1;
+        let obj2={"b":21}
+        // obj1和obj2只是值相等，但是两个不同的对象，不相等的，
+        // 如果只要看值是否相等，可以使用immutable
+        console.log(obj1===obj2);
+        // obj3是obj1的一个引用
+        console.log(obj1===obj3);
+    </script>
+</body>
+
+</html>
