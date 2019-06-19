@@ -17,10 +17,10 @@ exports.query=function(sql,params,callback){
 
         // 进行连接之后的操作
         connection.query(sql,params,function(error,results,fields){
-            
             if(error){
                 throw error;
             }
+            console.log(results);
             callback(error,results);  // 调用回调函数
             connection.release();  // 断开数据库连接
         })

@@ -1,9 +1,17 @@
 var db=require("./db.js");
 
-exports.insert_data=function(name,pass,flag=0,callback){
-    var sql="insert into user(uname,pass,flag) values(?,?,?)";
-    db.query(sql,[name,pass,flag],callback);
+exports.insert_data=function(name,pass,callback){
+    var sql="insert into user(uname,pass,flag) values(?,?,0)";
+    console.log(sql);
+    db.query(sql,[name,pass],callback);
 }
+
+exports.checkLogin=function(name,pass,callback){
+    var sql="select * from user where uname=? and pass= ?";
+    db.query(sql,[name,pass],callback);
+}
+
+
 
 
 /*var mysql = require('mysql');

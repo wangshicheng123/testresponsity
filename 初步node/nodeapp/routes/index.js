@@ -9,4 +9,7 @@ router.get('/', function(req, res, next) {
 router.get("/reg",users.reg);
 router.post("/do_reg",users.do_reg);
 
+router.get("/login",users.login);
+router.post("/login",users.do_login);
+
 module.exports = router;
