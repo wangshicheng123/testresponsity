@@ -11,6 +11,7 @@ exports.getBlogClass=function(id,callback){
 }
 
 exports.go_index=function(id,callback){
-    var sql="SELECT * FROM t_users, t_blogs, t_blog_catalogs WHERE t_users.USER_ID=? AND t_users.USER_ID=t_blogs.WRITER AND t_users.USER_ID=t_blog_catalogs.USER_ID";
+    // var sql="SELECT * FROM t_users, t_blogs, t_blog_catalogs WHERE t_users.USER_ID=? AND t_users.USER_ID=t_blogs.WRITER AND t_users.USER_ID=t_blog_catalogs.USER_ID";
+    var sql="select * from t_users,t_blogs,t_blog_catalogs where t_users.USER_ID=t_blogs.WRITER and t_blogs.CATALOG_ID=t_blog_catalogs.CATALOG_ID and t_blogs.WRITER=?"
     db.query(sql,[id],callback);
 }
