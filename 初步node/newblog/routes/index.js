@@ -52,4 +52,8 @@ router.post("/checkname",User.checkname);
 // 退出登录
 router.get("/unlogin",Blog.unlogin);
 
+// 发表博客
+router.get("/add",Blog.add);
+router.post("/add",Blog.do_add);
+
 module.exports = router;

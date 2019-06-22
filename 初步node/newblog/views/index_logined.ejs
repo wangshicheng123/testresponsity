@@ -88,9 +88,16 @@
 <div class="catalogs SpaceModule">
   <strong>博客分类</strong>
   <ul class="LinkLine">
-    	<li><a href="#">工作日志(3)</a></li>
-		<li><a href="#">日常记录(0)</a></li>
-		<li><a href="#">转贴的文章(0)</a></li>
+		<% catalogs.forEach(function(catalog,index){%>
+			<li>
+				<a href="#">
+					<%= catalog.NAME%>(<%= catalog.BLOG_COUNT %>)
+				</a>
+			</li>
+		  <% })%>
+    	<!-- <li><a href="#">工作日志(3)</a></li> -->
+		<!-- <li><a href="#">日常记录(0)</a></li> -->
+		<!-- <li><a href="#">转贴的文章(0)</a></li> -->
 	  </ul>
 </div>
 <div class="comments SpaceModule">
