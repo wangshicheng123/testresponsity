@@ -1,0 +1,23 @@
+<!-- // 节流在点赞中的应用 -->
+<script src="">
+    function throttle(fn,delay){
+        var startTime=0;
+        return function(){
+            var nowTime=new Date();
+            if(startTime-nowTime>delay){
+                // console.log(new Date());
+                // 改变了this的指向
+                fn().call(this);
+                startTime=nowTime;
+            }
+        }
+    }
+
+    // 注意this指向改变了
+
+    document.onmousemove=throttle(function(){
+        console.log(Date.now());
+        // 注意使用闭包的时候this指向改变了
+        console.log(this);
+    },3000);
+</script>

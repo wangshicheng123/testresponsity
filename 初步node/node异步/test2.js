@@ -38,7 +38,10 @@ process.nextTick(function(){
  * new promise里面的代码是同步的（resolve之前）
  * promise的then方法在settimeout之前执行
  * 
- * 同步代码--promise同步跟随代码--有同步代码执行（没有进入异步）--process.nexttick---
+ * --同步代码
+ * --promise同步跟随代码
+ * --有同步代码执行（没有进入异步）
+ * --process.nexttick---
  * 
  * 5: async/await
  * callback可以是同步的，也可以是异步的（ajax callback）

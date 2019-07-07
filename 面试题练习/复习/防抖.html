@@ -1,0 +1,14 @@
+<script src="">
+    // 一个需要频繁匹配触发的函数，在规定的时间内只让最后一次生效，前面的不生效
+    function debounce(fn ,delay){
+        var timer=null;
+        return function(){
+            clearTimeout(timer);
+            timer=setTimeout(fn,delay);
+        }
+    }
+    document.getElementById("#btn");
+    oBtn.onclick=debounce(function(){
+        console.log((new Date()).getTime());
+    },300);
+</script>
