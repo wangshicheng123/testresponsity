@@ -56,4 +56,18 @@ router.get("/unlogin",Blog.unlogin);
 router.get("/add",Blog.add);
 router.post("/add",Blog.do_add);
 
+// 分类管理
+router.get("/catalog",Blog.catalog);
+router.post("/addBlogCatalog",Blog.do_catalog);
+
+// 更新博客文章
+router.get("/update",Blog.updateBlog);
+router.post("/update",Blog.do_updateBlog);
+
+// 删除博客文章
+router.get("/del",Blog.delete);
+
+// 预览博客全文
+router.get("/viewPost",Blog.viewPost);
+
 module.exports = router;

@@ -1,5 +1,26 @@
 var db=require("./db.js");
 
+
+exports.delete=function(blogid,callback){
+    var sql="delete from t_blogs where BLOG_ID=?";
+    db.query(sql,[blogid],callback);
+}
+
+exports.do_updateBlog=function(blogid,title, content,callback){
+    var sql="update t_blogs set TITLE=?,CONTENT=? where BLOG_ID=?";
+    db.query(sql,[title,content,blogid],callback);
+}
+
+exports.getBlogInfor=function(blogid,callback){
+    var sql="select * from t_blogs where BLOG_ID=?";
+    db.query(sql,[blogid],callback);
+}
+
+exports.addCatalog=function(userid,name,count,callback){
+    var sql="insert into t_blog_catalogs(NAME,USER_ID,BLOG_COUNT) values(?,?,?)";
+    db.query(sql,[name,userid,count],callback);
+}
+
 exports.insertBlog=function(userid,title,content,time, catalogid,callback){
     var sql="insert into t_blogs(CATALOG_ID,WRITER,TITLE,CONTENT,ADD_TIME) values(?,?,?,?,?)";
     db.query(sql,[catalogid,userid,title,content,time],callback);
