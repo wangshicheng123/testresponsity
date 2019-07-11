@@ -5,6 +5,7 @@ exports.login=function(name,pass,callback){
     db.query(sql,[name,pass],callback);
 }
 
+
 exports.do_reg=function(name,pass,callback){
     var sql="insert into t_users(ACCOUNT,PASSWORD) values(?,?)";
     db.query(sql,[name,pass],callback);

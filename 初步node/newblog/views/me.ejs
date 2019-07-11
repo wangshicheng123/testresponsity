@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="stylesheets/space2011.css" type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/jquery.css" media="screen">
+    <script type="text/javascript" src="javascripts/jquery-1.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.js"></script>
+    <script type="text/javascript" src="javascripts/jquery_002.js"></script>
+    <script type="text/javascript" src="javascripts/oschina.js"></script>
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>这是一个假的登陆页面</h1>
+
+    <button id="btn">第一次post登陆提交</button>
+    <br>
+    <button id="btn2">第二次post登陆提交</button>
+    
+    <script>
+        // 相当于一次登陆请求，（服务器段会把token发到前台）
+        // 我们前台可以把这个token存入到localStorege(本地存储中)
+        var token=""
+        $("#btn").click(function () {
+            var val = "xiaowang";
+            $.post("/testLogin", { 'value': val }, function (data) {
+                console.log("第二次返回结果："+data.message);
+                console.log("第一次返回数据：" + data.tok);
+                token=data.tok;
+            });
+        })
+
+        // 相当于一次简单的表单数据提交，但是在提交的时候要
+        // 判断用户是否是登陆的，故要把前台的token发到后台去检测
+        $("#btn2").click(function(){
+            // console.log(token);
+            $.post("/testToken", {"value": token},function(data) {
+                console.log("第二次返回结果："+data.message);
+            });
+        });
+
+        // 目前的问题就是我们如何使用token判断用户登录以后，
+        // 判断用户的角色
+        // 根据我们已有的数据库去判断吗
+        // 就是当我们登陆后
+        // 拿着我们的userid去角色表中在去查找当前user的角色
+    </script>
+</body>
+
+</html>
