@@ -70,4 +70,10 @@ router.get("/del",Blog.delete);
 // 预览博客全文
 router.get("/viewPost",Blog.viewPost);
 
+// 管理文章（所有）
+router.get("/manageBlog", Blog.manageBlog);
+
+// 管理网友留言
+router.get("/manageComments",Blog.manageComments);
+
 module.exports = router;

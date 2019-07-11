@@ -1,5 +1,29 @@
 var db=require("./db.js");
 
+exports.getUserComments=function(userid,callback){
+    var sql="select * from t_comments where COMMENTATOR=?";
+    db.query(sql,[userid],callback);
+}
+
+exports.getUserBlogs=function(userid,callback){
+    var sql="select * from t_blogs where WRITER=?";
+    db.query(sql,[userid],callback);
+}
+
+exports.updateBlogCount=function(catalogid,callback){
+    var sql ="update t_blog_catalogs set BLOG_COUNT=BLOG_COUNT+1 where CATALOG_ID= ?";
+    db.query(sql,[catalogid],callback);
+}
+
+exports.getNextBlog=function(blogid,callback){
+    var sql="SELECT * FROM t_blogs WHERE BLOG_ID> ? ORDER BY BLOG_ID LIMIT 1";
+    db.query(sql,[blogid],callback);
+}
+
+exports.getPreBlog=function(blogid,callback){
+    var sql="SELECT * FROM t_blogs WHERE BLOG_ID< ? ORDER BY BLOG_ID DESC LIMIT 1";
+    db.query(sql,[blogid],callback);
+}
 
 exports.delete=function(blogid,callback){
     var sql="delete from t_blogs where BLOG_ID=?";
@@ -32,7 +56,6 @@ exports.getBlogClass=function(id,callback){
 }
 
 exports.go_index=function(id,callback){
-    // var sql="SELECT * FROM t_users, t_blogs, t_blog_catalogs WHERE t_users.USER_ID=? AND t_users.USER_ID=t_blogs.WRITER AND t_users.USER_ID=t_blog_catalogs.USER_ID";
     var sql="select * from t_users,t_blogs,t_blog_catalogs where t_users.USER_ID=t_blogs.WRITER and t_blogs.CATALOG_ID=t_blog_catalogs.CATALOG_ID and t_blogs.WRITER=?"
     db.query(sql,[id],callback);
 }
