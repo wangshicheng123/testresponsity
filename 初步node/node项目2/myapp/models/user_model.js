@@ -14,3 +14,5 @@ exports.insertToken=function(token,userid,callback){
     var sql="update t_user set token=? where userid=?";
     db.query(sql,[token,userid],callback);
 }
+
+// exports.postMemberData=function(){}

@@ -21,6 +21,12 @@ router.post("/login",User.do_login);
 router.get("/getMemberIndex", User.getMemberIndex);
 router.get("/getAdminIndex",User.getAdminIndex);
 
+router.post("/postMemberData",User.postMemberData);
 
+router.get("/test",function(req,res,next){
+  res.json({
+    "message": "test接口"
+  });
+});
 
 module.exports = router;

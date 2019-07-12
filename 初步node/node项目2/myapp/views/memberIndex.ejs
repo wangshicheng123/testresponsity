@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,26 @@
     <title>普通用户首页</title>
     <script type="text/javascript" src="javascripts/jquery.min.js"></script>
 </head>
+
 <body>
     <h1>这是普通用户的首页（角色： member）</h1>
     <p>这个页面只要是用户基本上都能打开</p>
+    <br>
+    <hr>
+    age: <input type="text" name="age" id="age"><br>
+    weight: <input type="text" name="weight" id="weight"><br>
+    <input id="postData"  type="submit" value="postMemberData">
+    <script>
+        var token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFhIiwicGFzcyI6ImFhIiwiaWF0IjoxNTYyOTE1OTA4LCJleHAiOjE1NjI5MTYzODh9.kdyncMpnlcfTlbeIRvnZWTlpYbMNPaeeMfj40awOeC8";
+        $("#postData").click(function(){
+            var age=$("#age").val();
+            var weight=$("#weight").val();
+            $.post("/postMemberData",{"age":age,"weight":weight,"token":token},function(data){
+                console.log(data.message);
+            });
+        });
+    </script>
+
 </body>
+
 </html>
