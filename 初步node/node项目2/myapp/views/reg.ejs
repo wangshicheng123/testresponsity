@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+</head>
+<body>
+
+    <h1>这是注册页面</h1>
+    name: <input type="text" name="name" id="name"><br>
+    pass: <input type="password" name="pass" id="pass"><br>
+    <input type="submit" value="注册" id="reg">
+
+    <script>
+
+        $("#reg").click(function(){
+            var name=$("#name").val();
+            var pass=$("#pass").val();
+            $.post("/reg",{"name":name, "pass": pass},function(data){
+                console.log(data.message);
+            });
+        });
+    </script>
+</body>
+</html>
