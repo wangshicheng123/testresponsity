@@ -2,12 +2,12 @@
   <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <h1>这是用户的注册页面</h1>
-    <form action="">
-      name: <input type="text" name="name" v-model="name"><br>
-      pass: <input type="text" name="pass" v-model="pass"><br>
-      <button type="text" @click="reg">注册</button>
-    </form>
+    <h1>这是用户的注册页面</h1>name:
+    <input type="text" name="name" v-model="name" />
+    <br />pass:
+    <input type="text" name="pass" v-model="pass" />
+    <br>
+    <button type="text" @click="reg">注册</button>
   </div>
 </template>
 
@@ -16,24 +16,24 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  data(){
-    return{
+  data() {
+    return {
       name: "",
-      pass: ""
-    }
+      pass: "",
+      result: ""
+    };
   },
-  methods:{
-    reg(){
-      console.log(this.name);
-      console.log(this.pass);
-      this.$axios.get("http://localhost:3000/test").then((res)=>{
-        console.log(res);
+  methods: {
+    reg() {
+      this.$axios.post("/api/reg",{"name":this.name,"pass":this.pass}).then(res => {
+        this.result = res.data.message;
+        console.log(this.result);  // 返回注册结果（可以进行页面的跳转）
       });
     }
   },
-  name: 'home',
+  name: "home",
   components: {
     // HelloWorld
   }
-}
+};
 </script>
