@@ -20,7 +20,6 @@ exports.query=function(sql,params,callback){
             if(error){
                 throw error;
             }
-            // console.log(results);
             callback(error,results);  // 调用回调函数
             connection.release();  // 断开数据库连接
         })
