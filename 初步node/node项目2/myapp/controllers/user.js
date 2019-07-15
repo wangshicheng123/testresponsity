@@ -141,6 +141,7 @@ exports.do_login = async function (req, res1, next) {
     // 首先连接mongodb数据库
     await new Promise((resolve, reject) => {
         if (mongoose.connection.readyState == 0) {
+            console.log("test1");
             mongoose.connect("mongodb://127.0.0.1:27017/testManage", { useNewUrlParser: true }).then(function () {
                 acl = new acl(new acl.mongodbBackend(mongoose.connection.db, "acl_"));
                 acl.allow([
@@ -169,6 +170,7 @@ exports.do_login = async function (req, res1, next) {
                 resolve();
             });
         } else {
+            console.log("test2");
             acl = new acl(new acl.mongodbBackend(mongoose.connection.db, "acl_"));
             acl.allow([
                 {
@@ -204,12 +206,13 @@ exports.do_login = async function (req, res1, next) {
             if (err) {
                 throw err;
             }
-            monUserid = result[0]._id;   
+            monUserid = result[0]._id;
             var _id = result[0]._id.toString();    // _id是object 类型，转化为string类型
 
             if (result.length > 0) {
-                req.session = result[0];   // 把存储在mongodb用户的数据存储在session中提供以后使用
+                // req.session = result[0];   // 把存储在mongodb用户的数据存储在session中提供以后使用
                 token = jwt.sign({ username: name, pass: pass, userid: monUserid }, secretkey, { expiresIn: 60 * 8 });
+
 
                 // 给用户添加角色
                 //  其实在登陆的时候需要进行判断，
@@ -237,7 +240,7 @@ exports.do_login = async function (req, res1, next) {
             { $set: { "token": token } },
             function (err, res) {
                 if (err) { throw err }
-                console.log(res);
+                // console.log(res);
                 resolve();
             })
     });
@@ -247,6 +250,7 @@ exports.do_login = async function (req, res1, next) {
         User_model.do_login(name, pass, function (err, data) {
             if (err) { throw err; }
             sqlUserid = data[0].userid;
+            req.session = { token: token, sqlUserid: sqlUserid, username: name, pass: pass, monUserid: monUserid };   // 把存储在mongodb用户的数据存储在session中提供以后使用
             resolve();
         })
     })
@@ -272,34 +276,190 @@ exports.do_login = async function (req, res1, next) {
 }
 
 
-exports.getMemberIndex = function (req, res, next) {
-    // 拿到session之后里面的用户信息可以服务端的全局进行使用
+// 分别拿到两个数据库中的userid, 一个id用于访问mongodb数据库权限认证，一个用于id访问mysql数据库
+// 访问每一个接口的时候是否需要进行jwt认证，
+// 其实不需要，因为没登陆他是没有任何权限的
+// 判断接口是否存在权限
+// {token: token, sqlUserid: sqlUserid, username: name, pass: pass, monUserid: monUserid }
+exports.do_viewFree = function (req, res, next) {
     // console.log(req.session);
-
-    res.render("memberIndex");
-}
-exports.getAdminIndex = function (req, res, next) {
-    res.render("adminIndex");
-}
-
-exports.postMemberData = function (req, res, next) {
-    // var age=req.body.age;
-    // var weight=req.body.weight;
     // console.log(req.body);
-    var token = req.body.token;
-    // 验证是否是当前用户 
-    jwt.verify(token, secretkey, function (err, decode) {
+    console.log(req.url);
+
+    acl.isAllowed(req.session.monUserid, req.url, '*', function (err, allowed) {
         if (err) {
-            res.json({
-                message: 'token过期，请重新登录，有错',
-                resultCode: '403'
-            })
+            console.log(err);
         }
-        else {
-            res.json({
-                message: "成功返回页面",
-                tok: token
+        if (allowed) {
+            User_model.do_viewFree(req.session.sqlUserid, function (err, data) {
+                if (err) {
+                    console.log(err);
+                }
+                res.json({
+                    data: data[0],
+                    status: 200,
+                    message: "/video/viewFree post接口请求成功，数据正常"
+                });
             });
         }
+    });
+
+}
+
+
+exports.do_viewVip = function (req, res, next) {
+    acl.isAllowed(req.session.monUserid, req.url, '*', function (err, allowed) {
+        if (err) {
+            console.log(err);
+        }
+
+        if (allowed) {
+            User_model.do_viewFree(req.session.monUserid, function (err, data) {
+                if (err) {
+                    console.log(err);
+                }
+                console.log("数据正常");
+                res.json({
+                    data: data[0],
+                    status: 200,
+                    message: "/video/viewVip post接口请求成功，数据正常"
+                });
+            });
+        } else {
+            console.log("权限不足");
+            res.json({
+                status: 500,
+                message: "/video/viewVip post接口请求失败，数据错误, 权限不足"
+            });
+        }
+
     })
+}
+
+exports.do_deleteVideo = function (req, res, next) {
+    acl.isAllowed(req.session.monUserid, req.url, '*', function (err, allowed) {
+        if (err) {
+            console.log(err);
+        }
+
+        if (allowed) {
+            User_model.do_viewFree(req.session.monUserid, function (err, data) {
+                if (err) {
+                    console.log(err);
+                }
+                console.log("数据正常");
+                res.json({
+                    data: data[0],
+                    status: 200,
+                    message: "/video/do_deleteVideo post接口请求成功，数据正常"
+                });
+            });
+        } else {
+            console.log("权限不足");
+            res.json({
+                status: 500,
+                message: "/video/do_deleteVideo post接口请求失败，数据错误, 权限不足"
+            });
+        }
+
+    })
+}
+
+exports.do_addVideo = function (req, res, next) {
+    acl.isAllowed(req.session.monUserid, req.url, '*', function (err, allowed) {
+        if (err) {
+            console.log(err);
+        }
+
+        if (allowed) {
+            User_model.do_viewFree(req.session.monUserid, function (err, data) {
+                if (err) {
+                    console.log(err);
+                }
+                console.log("数据正常");
+                res.json({
+                    data: data[0],
+                    status: 200,
+                    message: "/video/do_addVideo post接口请求成功，数据正常"
+                });
+            });
+        } else {
+            console.log("权限不足");
+            res.json({
+                status: 500,
+                message: "/video/do_addVideo post接口请求失败，数据错误, 权限不足"
+            });
+        }
+
+    })
+}
+
+// session: {token: token, sqlUserid: sqlUserid, username: name, pass: pass, monUserid: monUserid }
+// 首先我们假设这个功能只要点击就能够起作用，
+// 但是实际上不是这样的，
+// 不能随便就给添加角色，
+// 应该是加入这个用户付费了，
+// 我们就给他使用这个方法添加角色
+exports.do_addVipRole = function (req, res, next) {
+    acl.addUserRoles(req.session.monUserid, ["vip"], function (err) {
+        if (err) {
+            console.log(err);
+            res.json({
+                message: "/video/addVipRole post接口请求失败",
+                status: 500
+            });
+        }
+        res.json({
+            message: "/video/addVipRole post接口请求成功",
+            status: 200
+        });
+    });
+}
+
+exports.do_addAdminRole = function (req, res, next) {
+    acl.addUserRoles(req.session.monUserid, ["admin"], function (err) {
+        if (err) {
+            console.log(err);
+            res.json({
+                message: "/video/do_addAdminRole post接口请求失败",
+                status: 500
+            });
+        }
+        res.json({
+            message: "/video/do_addAdminRole post接口请求成功",
+            status: 200
+        });
+    });
+}
+
+exports.do_deleteVipRole = function (req, res, next) {
+    acl.removeUserRoles(req.session.monUserid, ["vip"], function (err) {
+        if (err) {
+            console.log(err);
+            res.json({
+                message: "/video/do_deleteVipRole post接口请求失败",
+                status: 500
+            });
+        }
+        res.json({
+            message: "/video/do_deleteVipRole post接口请求成功",
+            status: 200
+        });
+    });
+}
+
+exports.do_deleteAdminRole = function (req, res, next) {
+    acl.removeUserRoles(req.session.monUserid, ["admin"], function (err) {
+        if (err) {
+            console.log(err);
+            res.json({
+                message: "/video/do_deleteAdminRole post接口请求失败",
+                status: 500
+            });
+        }
+        res.json({
+            message: "/video/do_deleteAdminRole post接口请求成功",
+            status: 200
+        });
+    });
 }

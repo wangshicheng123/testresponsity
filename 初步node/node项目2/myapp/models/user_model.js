@@ -15,4 +15,8 @@ exports.updateUserToken=function(token,userid,callback){
     db.query(sql,[token,userid],callback);
 }
 
-// exports.postMemberData=function(){}
+exports.do_viewFree=function(sqlUserid,callback){
+    var sql="select * from t_user where userid = ?";
+    db.query(sql,[sqlUserid],callback);
+}
+

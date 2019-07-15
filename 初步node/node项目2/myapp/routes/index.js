@@ -4,26 +4,70 @@ var User = require("../controllers/user.js");
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-// 获取注册登录页面
-// router.get("/reg",User.reg);
-// router.get("/login",User.login);
+// router.get('/', function(req, res, next) {
+//   res.render('index', { title: 'Express' });
+// });
 
 // 处理注册登录逻辑
 router.post("/reg", User.do_reg);
 router.post("/login",User.do_login);
 
+router.post("/video/viewFree",User.do_viewFree);  // 免费课接口
+router.post("/video/viewVip",User.do_viewVip);    // 付费课接口
+router.post("/video/delete", User.do_deleteVideo);  // 删除已上架的视频
+router.post("/video/add", User.do_addVideo);        // 添加上架视频
 
-// （目标）是可以根据用户的角色得到不同的页面（so hard for me）
-router.get("/getMemberIndex", User.getMemberIndex);
-router.get("/getAdminIndex",User.getAdminIndex);
-
-router.post("/postMemberData",User.postMemberData);
+router.post("/video/addVipRole", User.do_addVipRole);   // 添加Vip角色
+router.post("/video/addAdminRole", User.do_addAdminRole);   // 添加管理员角色
+router.post("/video/deleteVipRole", User.do_deleteVipRole);   // 删除Vip角色
+router.post("/video/deleteAdminRole", User.do_deleteAdminRole);   // 删除管理员角色
 
 module.exports = router;
+
+
+/**
+ * 
+ * // 认证中间件
+var authentication = (req, res, next) => {
+    var userId =req.session.userId || ''
+
+    if(userId) {
+        acl.isAllowed(userId, req.path, '*')
+        .then(allowed => {
+            if(allowed) {
+                next()
+            }else {
+                next('权限不足')
+            }
+        })
+        .catch((e) => {
+            next(e.message)
+        })
+    }else {
+        next('请登录')
+    }
+
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**
