@@ -1,39 +1,145 @@
 <template>
-  <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <h1>这是用户的注册页面</h1>name:
-    <input type="text" name="name" v-model="name" />
-    <br />pass:
-    <input type="text" name="pass" v-model="pass" />
-    <br>
-    <button type="text" @click="reg">注册</button>
+  <div id="home">
+    <p>普通用户权限：/viewFree</p>
+    <p>VIP用户权限：/viewVip</p>
+    <p>管理员用户权限：/delete , /add</p>
+    <hr />
+    用户状态： {{userStatus}}
+    <br />
+    用户名： {{userName}}
+    <hr />
+    <ol class="list">
+      <li>
+        <p @click="viewFree">访问"/video/viewFree"</p>
+        <hr>
+      </li>
+      <li>
+        <p @click="viewVip">访问"/video/viewVip"</p>
+        <hr>
+      </li>
+      <li>
+        <p @click="deleteVideo">访问"/video/delete"</p>
+        <hr>
+      </li>
+      <li>
+        <p @click="addVideo">访问"/video/add"</p>
+        <hr>
+      </li>
+      <li>
+        <p @click="addVipRole">添加用户Vip角色</p>
+        <hr>
+      </li>
+      <li>
+        <p @click="addAdminRole">添加用户admin角色</p>
+        <hr>
+      </li>
+      <li>
+        <p @click="deleteVipRole">删除用户Vip角色</p>
+        <hr>
+      </li>
+      <li>
+        <p @click="deleteAdminRole">删除用户admin角色</p>
+        <hr>
+      </li>
+    </ol>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   data() {
     return {
-      name: "",
-      pass: "",
-      result: ""
+      userStatus: "用户未登录",
+      userName: "默认用户名"
     };
   },
-  methods: {
-    reg() {
-      this.$axios.post("/api/reg",{"name":this.name,"pass":this.pass}).then(res => {
-        this.result = res.data.message;
-        console.log(this.result);  // 返回注册结果（可以进行页面的跳转）
-      });
-    }
+  created(){
+
   },
-  name: "home",
-  components: {
-    // HelloWorld
+  methods: {
+    viewFree() {
+      this.$axios
+        .post("/api/video/viewFree", {
+          token: this.$store.state.token,
+          func: "viewFree"
+        })
+        .then(res => {
+          console.log(res.data);
+        });
+    },
+    viewVip() {
+      this.$axios
+        .post("/api/video/viewVip", {
+          token: this.$store.state.token,
+          func: "viewVip"
+        })
+        .then(res => {
+          console.log(res.data);
+        });
+    },
+    deleteVideo() {
+      this.$axios
+        .post("/api/video/delete", {
+          token: this.$store.state.token,
+          func: "deleteVideo"
+        })
+        .then(res => {
+          console.log(res.data);
+        });
+    },
+    addVideo() {
+      this.$axios
+        .post("/api/video/add", {
+          token: this.$store.state.token,
+          func: "addVideo"
+        })
+        .then(res => {
+          console.log(res.data);
+        });
+    },
+    addVipRole() {
+      this.$axios
+        .post("/api/video/addVipRole", {
+          token: this.$store.state.token,
+          func: "addVipRole"
+        })
+        .then(res => {
+          console.log(res.data);
+        });
+    },
+    addAdminRole() {
+      this.$axios
+        .post("/api/video/addAdminRole", {
+          token: this.$store.state.token,
+          func: "addAdminRole"
+        })
+        .then(res => {
+          console.log(res.data);
+        });
+    },
+    deleteVipRole() {
+      this.$axios
+        .post("/api/video/deleteVipRole", {
+          token: this.$store.state.token,
+          func: "deleteVipRole"
+        })
+        .then(res => {
+          console.log(res.data);
+        });
+    },
+    deleteAdminRole() {
+      this.$axios
+        .post("/api/video/deleteAdminRole", {
+          token: this.$store.state.token,
+          func: "deleteAdminRole"
+        })
+        .then(res => {
+          console.log(res.data);
+        });
+    }
   }
 };
 </script>
+
+<style scoped>
+</style>

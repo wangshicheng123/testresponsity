@@ -21,7 +21,9 @@ export default {
     login(){
       this.$axios.post("/api/login",{"name":this.name,"pass":this.pass}).then((res)=>{
         console.log(res.data.message);
-        console.log(res);        
+        console.log(res); 
+        this.$store.state.token=res.data.token;
+        console.log(this.$store.state.token);       
       });
     }
   }
