@@ -106,7 +106,6 @@ exports.do_reg = async function (req, res, next) {
         // 使用readyState来判断mongodb数据库是否已经连接
         if (mongoose.connection.readyState == 0) {
             mongoose.connect("mongodb://127.0.0.1:27017/testManage", { useNewUrlParser: true }).then(function () {
-                // acl = new acl(new acl.mongodbBackend(mongoose.connection.db, "acl_"));
                 resolve();
             });
         } else {
@@ -130,7 +129,7 @@ exports.do_reg = async function (req, res, next) {
     });
 }
 
-//  在这里没有验证是否已经登陆，简约一些（如果要判断，可以直接那req.session进行判断）
+//  在这里没有验证是否已经登陆，简约一些
 exports.do_login = async function (req, res1, next) {
     var name = req.body.name;
     var pass = req.body.pass;
@@ -141,9 +140,10 @@ exports.do_login = async function (req, res1, next) {
     // 首先连接mongodb数据库
     await new Promise((resolve, reject) => {
         if (mongoose.connection.readyState == 0) {
-            console.log("test1");
             mongoose.connect("mongodb://127.0.0.1:27017/testManage", { useNewUrlParser: true }).then(function () {
                 acl = new acl(new acl.mongodbBackend(mongoose.connection.db, "acl_"));
+                console.log("acl2: ");
+                console.log(acl);
                 acl.allow([
                     {
                         roles: 'member',
@@ -170,8 +170,9 @@ exports.do_login = async function (req, res1, next) {
                 resolve();
             });
         } else {
-            console.log("test2");
             acl = new acl(new acl.mongodbBackend(mongoose.connection.db, "acl_"));
+            console.log("acl2: ");
+            console.log(acl);
             acl.allow([
                 {
                     roles: 'member',
@@ -240,7 +241,6 @@ exports.do_login = async function (req, res1, next) {
             { $set: { "token": token } },
             function (err, res) {
                 if (err) { throw err }
-                // console.log(res);
                 resolve();
             })
     });
@@ -274,7 +274,6 @@ exports.do_login = async function (req, res1, next) {
         });
     });
 }
-
 
 // 分别拿到两个数据库中的userid, 一个id用于访问mongodb数据库权限认证，一个用于id访问mysql数据库
 // 访问每一个接口的时候是否需要进行jwt认证，
