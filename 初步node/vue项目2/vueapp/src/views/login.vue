@@ -19,10 +19,11 @@ export default {
   },
   methods:{
     login(){
-      this.$axios.post("/api/login",{"name":this.name,"pass":this.pass}).then((res)=>{
+      this.$axios.post("http://localhost:3000/login",{"name":this.name,"pass":this.pass, token: this.$store.state.token }).then((res)=>{
         console.log(res.data.message);
         console.log(res); 
         this.$store.state.token=res.data.token;
+        localStorage.setItem("token",JSON.stringify(res.data.token));
         console.log(this.$store.state.token);       
       });
     }

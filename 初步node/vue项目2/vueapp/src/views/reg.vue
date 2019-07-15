@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     reg() {
-      this.$axios.post("/api/reg",{"name":this.name,"pass":this.pass}).then(res => {
+      this.$axios.post("http://localhost:3000/reg",{"name":this.name,"pass":this.pass}).then(res => {
         this.result = res.data.message;
         console.log(this.result);  // 返回注册结果（可以进行页面的跳转）
       });

@@ -59,7 +59,7 @@ export default {
   methods: {
     viewFree() {
       this.$axios
-        .post("/api/video/viewFree", {
+        .post("http://localhost:3000/video/viewFree", {
           token: this.$store.state.token,
           func: "viewFree"
         })
@@ -69,7 +69,7 @@ export default {
     },
     viewVip() {
       this.$axios
-        .post("/api/video/viewVip", {
+        .post("http://localhost:3000/video/viewVip", {
           token: this.$store.state.token,
           func: "viewVip"
         })
@@ -79,7 +79,7 @@ export default {
     },
     deleteVideo() {
       this.$axios
-        .post("/api/video/delete", {
+        .post("http://localhost:3000/video/delete", {
           token: this.$store.state.token,
           func: "deleteVideo"
         })
@@ -89,7 +89,7 @@ export default {
     },
     addVideo() {
       this.$axios
-        .post("/api/video/add", {
+        .post("http://localhost:3000/video/add", {
           token: this.$store.state.token,
           func: "addVideo"
         })
@@ -99,7 +99,7 @@ export default {
     },
     addVipRole() {
       this.$axios
-        .post("/api/video/addVipRole", {
+        .post("http://localhost:3000/video/addVipRole", {
           token: this.$store.state.token,
           func: "addVipRole"
         })
@@ -109,7 +109,7 @@ export default {
     },
     addAdminRole() {
       this.$axios
-        .post("/api/video/addAdminRole", {
+        .post("http://localhost:3000/video/addAdminRole", {
           token: this.$store.state.token,
           func: "addAdminRole"
         })
@@ -119,7 +119,7 @@ export default {
     },
     deleteVipRole() {
       this.$axios
-        .post("/api/video/deleteVipRole", {
+        .post("http://localhost:3000/video/deleteVipRole", {
           token: this.$store.state.token,
           func: "deleteVipRole"
         })
@@ -129,7 +129,7 @@ export default {
     },
     deleteAdminRole() {
       this.$axios
-        .post("/api/video/deleteAdminRole", {
+        .post("http://localhost:3000/video/deleteAdminRole", {
           token: this.$store.state.token,
           func: "deleteAdminRole"
         })
