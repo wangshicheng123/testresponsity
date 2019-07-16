@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 var secretkey = 'secretkey';
 var acl = require("acl");
 var request = require("request");
+var axios=require("axios");
 
 
 
@@ -465,20 +466,67 @@ exports.do_deleteAdminRole = function (req, res, next) {
     });
 }
 
+// 使用axios模块进行服务端请求,正常拿到数据
+exports.deal_oauth2Login_test = async function (req, res, next) {
+    // 获取授权码
+    var requestToken = req.query.code;
+    console.log(requestToken);
+    // 客户端ID(标识客户端身份)
+    var clientID = "7b42a88712cd9fd024b9";
+    // 客户端密匙
+    var clientSecret = "cbebd4aedca1873d7cac0ae12327573ccf900e96";
 
+    // 用于保存令牌
+    var accessToken = "";
+
+    var tokenResponse = await axios({
+        method: "post",
+        url: 'https://github.com/login/oauth/access_token?' +
+            `client_id=${clientID}&` +
+            `client_secret=${clientSecret}&` +
+            `code=${requestToken}`,
+        headers: {
+            accept: "application/json"
+        }
+    });
+    accessToken = tokenResponse.data.access_token;
+    console.log(`access token: ${accessToken}`);
+
+    var result = await axios({
+        method: 'get',
+        url: `https://api.github.com/user`,
+        headers: {
+            accept: 'application/json',
+            Authorization: `token ${accessToken}`
+        }
+    });
+    console.log(result.data);
+
+    // res.json({
+    //     message: "第三方登录成功",
+    //     data: result.data
+    // });
+
+}
+
+
+// request模块 最后一步已经拿到了access-token,但是获取不到用户的数据
 exports.deal_oauth2Login = async function (req, res, next) {
     var code = req.query.code;
-    var client_id = "a46a656a08701ba7b5e0";
-    var client_secret = "ff1a9a6efbcb4962b86ac75f81c16a606a1ba6b9";
+    console.log(code);
+    var client_id = "7b42a88712cd9fd024b9";
+    var client_secret = "cbebd4aedca1873d7cac0ae12327573ccf900e96";
     var access_token = "";
     await new Promise((resolve, reject) => {
         var url = "https://github.com/login/oauth/access_token";
         var requestData = { client_id: client_id, client_secret: client_secret, code: code };
+        console.log(requestData);
 
         request.post({ url: url, formData: requestData }, function optionalCallback(err, httpResponse, body) {
             if (err) {
                 return console.error('upload failed:', err);
             }
+            // console.log(body);
             var result = [];
             body.split("&").forEach((item) => {
                 var it = item.split("=")[1];
@@ -488,20 +536,12 @@ exports.deal_oauth2Login = async function (req, res, next) {
             resolve();
         });
     });
-
     await new Promise((resolve, reject) => {
         var url1 = "https://github.com/user";
-
-        request({
-            url: url1,//请求路径
-            method: "GET",//请求方式，默认为get
-            headers: {//设置请求头
-                "content-type": "application/json",
-                Authorization: access_token
-            }
-        }, function (error, response, body) {
-            console.log(body);
-            resolve();
+        console.log("测试输出：" + access_token);
+        var str = "https://api.github.com/user?access_token=" + access_token
+        request(str, function (err, res, body) {
+            console.log(res.data);
         });
     });
 
