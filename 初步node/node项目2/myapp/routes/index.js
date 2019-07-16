@@ -22,10 +22,7 @@ router.post("/video/addAdminRole", User.do_addAdminRole);   // 添加管理员�
 router.post("/video/deleteVipRole", User.do_deleteVipRole);   // 删除Vip角色
 router.post("/video/deleteAdminRole", User.do_deleteAdminRole);   // 删除管理员角色
 
-router.get("/oauth/redirect",function(req,res,next){
-    console.log("接口被请i去");
-    console.log(req.query);
-});
+router.get("/oauth/redirect",User.deal_oauth2Login);
 
 module.exports = router;
 

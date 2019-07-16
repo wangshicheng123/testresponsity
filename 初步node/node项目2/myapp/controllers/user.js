@@ -4,7 +4,7 @@ var mongodb = require("mongodb");
 var mongoose = require("mongoose");
 var secretkey = 'secretkey';
 var acl = require("acl");
-var request= require("request");
+var request = require("request");
 
 
 
@@ -466,9 +466,43 @@ exports.do_deleteAdminRole = function (req, res, next) {
 }
 
 
-exports.deal_oauth2Login = function (req, res, next) {
-    console.log(req.query);
-    res.send({
-        message: "返回结果"
+exports.deal_oauth2Login = async function (req, res, next) {
+    var code = req.query.code;
+    var client_id = "a46a656a08701ba7b5e0";
+    var client_secret = "ff1a9a6efbcb4962b86ac75f81c16a606a1ba6b9";
+    var access_token = "";
+    await new Promise((resolve, reject) => {
+        var url = "https://github.com/login/oauth/access_token";
+        var requestData = { client_id: client_id, client_secret: client_secret, code: code };
+
+        request.post({ url: url, formData: requestData }, function optionalCallback(err, httpResponse, body) {
+            if (err) {
+                return console.error('upload failed:', err);
+            }
+            var result = [];
+            body.split("&").forEach((item) => {
+                var it = item.split("=")[1];
+                result.push(it);
+            });
+            access_token = result[0];
+            resolve();
+        });
     });
+
+    await new Promise((resolve, reject) => {
+        var url1 = "https://github.com/user";
+
+        request({
+            url: url1,//请求路径
+            method: "GET",//请求方式，默认为get
+            headers: {//设置请求头
+                "content-type": "application/json",
+                Authorization: access_token
+            }
+        }, function (error, response, body) {
+            console.log(body);
+            resolve();
+        });
+    });
+
 }
