@@ -4,6 +4,8 @@ var mongodb = require("mongodb");
 var mongoose = require("mongoose");
 var secretkey = 'secretkey';
 var acl = require("acl");
+var request= require("request");
+
 
 
 // 如何判断用户是否已经注册过了呢，
@@ -460,5 +462,13 @@ exports.do_deleteAdminRole = function (req, res, next) {
             message: "/video/do_deleteAdminRole post接口请求成功",
             status: 200
         });
+    });
+}
+
+
+exports.deal_oauth2Login = function (req, res, next) {
+    console.log(req.query);
+    res.send({
+        message: "返回结果"
     });
 }
