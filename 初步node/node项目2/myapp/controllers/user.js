@@ -8,81 +8,6 @@ var request = require("request");
 var axios=require("axios");
 
 
-
-// 如何判断用户是否已经注册过了呢，
-// 我们也可以通过req.session来判断
-// exports.do_reg = function (req, res, next) {
-//     var name = req.body.name;
-//     var pass = req.body.pass;
-// console.log(name, pass);
-// 理论上我们需要注册之前查询用户是否已经注册过了
-// 为了方便再次就不进行此项操作
-
-// User_model.do_reg(name, pass, function (err, data) {
-//     if (err) {
-//         console.log(err);
-//         res.json({
-//             "message": "reg的post请求失败",
-//             "status": 404
-//         });
-//     }
-//     if (data.affectedRows > 0) {
-// *********************
-// 后期把这段代码进行模块化
-//**********************
-// var acl=require("acl");
-
-// 注意如果使用mongodb连接数据库的时候会出现错误，所欲我们使用mongoose连接数据库
-// 感觉下面几行代码只用一次就行，把数据库进行创建，
-// 插入数据可以使用mongodb连接数据库
-// mongoose.connect("mongodb://127.0.0.1:27017/testManage", { useNewUrlParser: true }).then(function () {
-// acl = new acl(new acl.mongodbBackend(mongoose.connection.db, "acl_"));
-// console.log();
-// console.log("连接数据库之后：" + mongoose.connection.readyState);
-// acl.allow([
-//     {
-//         roles: 'member',
-//         allows: [
-//             { resources: '/video/viewFree', permissions: '*' },
-//         ],
-//     },
-//     {
-//         roles: 'vip',
-//         allows: [
-//             { resources: '/video/viewVip', permissions: '*' },
-//         ],
-//     },
-//     {
-//         roles: 'admin',
-//         allows: [
-//             { resources: '/video/delete', permissions: '*' },
-//             { resources: '/video/add', permissions: '*' },
-//         ],
-//     }
-// ])
-// acl.addRoleParents('vip', 'member')// teacher角色拥有student角色所有的权限
-// acl.addRoleParents('admin', 'vip')// admin角色拥有teacher角色所有的权限
-
-// 注意我们在注册的时候不分配角色，在登陆的时候进行分配
-// var userObj = { name: name, pass: pass, token: "" };
-// 虽然写法很怪，但是也可以进行修改
-// mongoose.connection.db.collection("users").insertOne(userObj, function (err, result) {
-//                     if (err) {
-//                         throw err;
-//                     }
-//                     console.log("用户信息插入成功");
-//                     res.json({
-//                         "message": "reg接口,post请求成功，注册成功",
-//                         "status": 200
-//                     });
-//                 });
-
-//             });
-//         }
-//     });
-// }
-
-
 // 可以通过req.session来判断用户是否已经注册，并提醒用户去登陆
 exports.do_reg = async function (req, res, next) {
     var name = req.body.name;
@@ -174,8 +99,8 @@ exports.do_login = async function (req, res1, next) {
             });
         } else {
             acl = new acl(new acl.mongodbBackend(mongoose.connection.db, "acl_"));
-            console.log("acl2: ");
-            console.log(acl);
+            // console.log("acl2: ");
+            // console.log(acl);
             acl.allow([
                 {
                     roles: 'member',
@@ -214,7 +139,6 @@ exports.do_login = async function (req, res1, next) {
             var _id = result[0]._id.toString();    // _id是object 类型，转化为string类型
 
             if (result.length > 0) {
-                // req.session = result[0];   // 把存储在mongodb用户的数据存储在session中提供以后使用
                 token = jwt.sign({ username: name, pass: pass, userid: monUserid }, secretkey, { expiresIn: 60 * 8 });
 
 
@@ -254,6 +178,7 @@ exports.do_login = async function (req, res1, next) {
             if (err) { throw err; }
             sqlUserid = data[0].userid;
             req.session = { token: token, sqlUserid: sqlUserid, username: name, pass: pass, monUserid: monUserid };   // 把存储在mongodb用户的数据存储在session中提供以后使用
+            // console.log(req.session);
             resolve();
         })
     })
@@ -282,21 +207,23 @@ exports.do_login = async function (req, res1, next) {
 // 访问每一个接口的时候是否需要进行jwt认证，
 // 其实不需要，因为没登陆他是没有任何权限的
 // 判断接口是否存在权限
-// {token: token, sqlUserid: sqlUserid, username: name, pass: pass, monUserid: monUserid }
 exports.do_viewFree = function (req, res, next) {
-    // console.log(req.session);
     // console.log(req.body);
+    console.log(req.session);
     console.log(req.url);
+    // console.log(req.session.monUserid);
 
     acl.isAllowed(req.session.monUserid, req.url, '*', function (err, allowed) {
         if (err) {
             console.log(err);
         }
+        console.log(allowed);
         if (allowed) {
             User_model.do_viewFree(req.session.sqlUserid, function (err, data) {
                 if (err) {
                     console.log(err);
                 }
+                console.log(data[0]);
                 res.json({
                     data: data[0],
                     status: 200,
