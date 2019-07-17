@@ -29,8 +29,8 @@ export default {
       pass: "",
       authorize_uri:"https://github.com/login/oauth/authorize",
       redirect_uri: "http://localhost:3000/oauth/redirect",
-      client_id: "a46a656a08701ba7b5e0",
-      client_secret: "ff1a9a6efbcb4962b86ac75f81c16a606a1ba6b9"
+      client_id: "7b42a88712cd9fd024b9",
+      client_secret: "cbebd4aedca1873d7cac0ae12327573ccf900e96"
     };
   },
   computed: {
@@ -41,7 +41,7 @@ export default {
   methods: {
     login() {
       this.$axios
-        .post("http://localhost:3000/login", {
+        .post("/api/login", {
           name: this.name,
           pass: this.pass,
           token: this.$store.state.token
