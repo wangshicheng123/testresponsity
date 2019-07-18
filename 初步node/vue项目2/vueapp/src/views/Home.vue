@@ -99,7 +99,7 @@ export default {
     },
     addVipRole() {
       this.$axios
-        .post("http/api/addVipRole", {
+        .post("/api/video/addVipRole", {
           token: this.$store.state.token,
           func: "addVipRole"
         })
@@ -109,7 +109,7 @@ export default {
     },
     addAdminRole() {
       this.$axios
-        .post("/api/addAdminRole", {
+        .post("/api/video/addAdminRole", {
           token: this.$store.state.token,
           func: "addAdminRole"
         })
@@ -119,7 +119,7 @@ export default {
     },
     deleteVipRole() {
       this.$axios
-        .post("/api/deleteVipRole", {
+        .post("/api/video/deleteVipRole", {
           token: this.$store.state.token,
           func: "deleteVipRole"
         })
@@ -129,7 +129,7 @@ export default {
     },
     deleteAdminRole() {
       this.$axios
-        .post("/api/deleteAdminRole", {
+        .post("/api/video/deleteAdminRole", {
           token: this.$store.state.token,
           func: "deleteAdminRole"
         })

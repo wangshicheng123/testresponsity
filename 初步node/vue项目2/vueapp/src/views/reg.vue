@@ -6,7 +6,7 @@
     <input type="text" name="name" v-model="name" />
     <br />pass:
     <input type="text" name="pass" v-model="pass" />
-    <br>
+    <br />
     <button type="text" @click="reg">注册</button>
   </div>
 </template>
@@ -25,10 +25,15 @@ export default {
   },
   methods: {
     reg() {
-      this.$axios.post("/api/reg",{"name":this.name,"pass":this.pass}).then(res => {
-        this.result = res.data.message;
-        console.log(this.result);  // 返回注册结果（可以进行页面的跳转）
-      });
+      this.$axios
+        .post("/api/reg", {
+          name: this.name,
+          pass: this.pass
+        })
+        .then(res => {
+          this.result = res.data.message;
+          console.log(this.result); // 返回注册结果（可以进行页面的跳转）
+        });
     }
   },
   name: "home",
