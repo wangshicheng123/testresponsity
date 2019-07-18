@@ -1,17 +1,64 @@
 var User_model = require("../models/user_model.js");
 var jwt = require("jsonwebtoken");
 var mongodb = require("mongodb");
-var mongoose = require("mongoose");
+var mongoose = require("../models/mongoose.js");   // 连接mongodb数据库
 var secretkey = 'secretkey';
 var acl = require("acl");
 var request = require("request");
-var axios=require("axios");
+var axios = require("axios");
+
+// // 认证中间件
+// var authentication = (req, res, next) => {
+//     var userId = req.session.userId || ''
+
+//     if (userId) {
+//         acl.isAllowed(userId, req.path, '*')
+//             .then(allowed => {
+//                 if (allowed) {
+//                     next()
+//                 } else {
+//                     next('权限不足')
+//                 }
+//             })
+//             .catch((e) => {
+//                 next(e.message)
+//             })
+//     } else {
+//         next('请登录')
+//     }
+
+// }
 
 
 // 可以通过req.session来判断用户是否已经注册，并提醒用户去登陆
 exports.do_reg = async function (req, res, next) {
     var name = req.body.name;
     var pass = req.body.pass;
+
+    // 验证用户是否已经注册过
+    await new Promise((resolve,reject)=>{
+        if(!name || !pass){
+            res.json({
+                message: '用户名或密码错误，请重新注册'
+            })
+        }
+
+        var whereStr1 = { "name": name, "pass": pass };
+        mongoose.connection.db.collection("users").find(whereStr1).toArray(function (err, result) {
+            if (err) {
+                throw err;
+            }
+            if (result.length > 0) {
+                res.json({
+                    message: "用户已经存在，请直接登陆"
+                });
+                reject();
+            } else {
+                resolve();
+            }
+        })
+        
+    });
 
     // 把用户注册信息插入到mysql数据库中
     await new Promise((resolve, reject) => {
@@ -29,19 +76,9 @@ exports.do_reg = async function (req, res, next) {
         })
     });
 
-    // 连接mongodb数据库
-    await new Promise((resolve, reject) => {
-        // 使用readyState来判断mongodb数据库是否已经连接
-        if (mongoose.connection.readyState == 0) {
-            mongoose.connect("mongodb://127.0.0.1:27017/testManage", { useNewUrlParser: true }).then(function () {
-                resolve();
-            });
-        } else {
-            resolve();
-        }
-    });
-
     // 在mongodb数据库中插入数据
+    // 使用readyState来判断mongodb数据库是否已经连接
+    // if (mongoose.connection.readyState == 0) 
     await new Promise((resolve, reject) => {
         var userObj = { name: name, pass: pass, token: "" };
         mongoose.connection.db.collection("users").insertOne(userObj, function (err, result) {
@@ -61,71 +98,52 @@ exports.do_reg = async function (req, res, next) {
 exports.do_login = async function (req, res1, next) {
     var name = req.body.name;
     var pass = req.body.pass;
-    var token = "";
+    var token="";
     var monUserid = "";
     var sqlUserid = "";
 
-    // 首先连接mongodb数据库
-    await new Promise((resolve, reject) => {
-        if (mongoose.connection.readyState == 0) {
-            mongoose.connect("mongodb://127.0.0.1:27017/testManage", { useNewUrlParser: true }).then(function () {
-                acl = new acl(new acl.mongodbBackend(mongoose.connection.db, "acl_"));
-                console.log("acl2: ");
-                console.log(acl);
-                acl.allow([
-                    {
-                        roles: 'member',
-                        allows: [
-                            { resources: '/video/viewFree', permissions: '*' },
-                        ],
-                    },
-                    {
-                        roles: 'vip',
-                        allows: [
-                            { resources: '/video/viewVip', permissions: '*' },
-                        ],
-                    },
-                    {
-                        roles: 'admin',
-                        allows: [
-                            { resources: '/video/delete', permissions: '*' },
-                            { resources: '/video/add', permissions: '*' },
-                        ],
-                    }
-                ])
-                acl.addRoleParents('vip', 'member')// teacher角色拥有student角色所有的权限
-                acl.addRoleParents('admin', 'vip')// admin角色拥有teacher角色所有的权限
-                resolve();
+    // 一种方法：我们可以拿req.session.mongodbUserid进行jwt验证, 去判断用户是否已经登录了
+    // session: {token: token, sqlUserid: sqlUserid, username: name, pass: pass, monUserid: monUserid }，
+    // 二种方法： 直接拿req.body.token进行判断
+    // 因为只有用户登录之后，我才会给vue端的state.token进行赋值
+    await new Promise((resolve,reject)=>{
+        if(req.body.token){
+            res1.json({
+                message: "您已经登陆了，无需重复登陆"
             });
-        } else {
-            acl = new acl(new acl.mongodbBackend(mongoose.connection.db, "acl_"));
-            // console.log("acl2: ");
-            // console.log(acl);
-            acl.allow([
-                {
-                    roles: 'member',
-                    allows: [
-                        { resources: '/video/viewFree', permissions: '*' },
-                    ],
-                },
-                {
-                    roles: 'vip',
-                    allows: [
-                        { resources: '/video/viewVip', permissions: '*' },
-                    ],
-                },
-                {
-                    roles: 'admin',
-                    allows: [
-                        { resources: '/video/delete', permissions: '*' },
-                        { resources: '/video/add', permissions: '*' },
-                    ],
-                }
-            ])
-            acl.addRoleParents('vip', 'member')// teacher角色拥有student角色所有的权限
-            acl.addRoleParents('admin', 'vip')// admin角色拥有teacher角色所有的权限
+        }else{
             resolve();
         }
+    });
+
+    // 初始化用户角色
+    await new Promise((resolve, reject) => {
+        acl = new acl(new acl.mongodbBackend(mongoose.connection.db, "acl_"));
+        // console.log("acl2: ")
+        acl.allow([
+            {
+                roles: 'member',
+                allows: [
+                    { resources: '/video/viewFree', permissions: '*' },
+                ],
+            },
+            {
+                roles: 'vip',
+                allows: [
+                    { resources: '/video/viewVip', permissions: '*' },
+                ],
+            },
+            {
+                roles: 'admin',
+                allows: [
+                    { resources: '/video/delete', permissions: '*' },
+                    { resources: '/video/add', permissions: '*' },
+                ],
+            }
+        ])
+        acl.addRoleParents('vip', 'member')// teacher角色拥有student角色所有的权限
+        acl.addRoleParents('admin', 'vip')// admin角色拥有teacher角色所有的权限
+        resolve();
     })
 
     // 在mongodb数据库中是否存在这个登陆的用户
@@ -141,15 +159,9 @@ exports.do_login = async function (req, res1, next) {
             if (result.length > 0) {
                 token = jwt.sign({ username: name, pass: pass, userid: monUserid }, secretkey, { expiresIn: 60 * 8 });
 
-
                 // 给用户添加角色
-                //  其实在登陆的时候需要进行判断，
-                // 如果用户是第一次进行登陆，我们就给其分配默认角色
-                // 如果是已经是老用户了，我们不进行分配角色，这时候应该如何进行判断
-                // 我们可以使用： hasRole这个方法进行判断**********************
-                // 其实下面这个方法不影响老用户的角色
+                //  其实在登陆的时候需要进行判断，如果用户是第一次进行登陆，我们就给其分配默认角色
                 acl.addUserRoles(_id, ["member"]);
-
                 resolve();
             } else {
                 res1.json({
@@ -178,7 +190,6 @@ exports.do_login = async function (req, res1, next) {
             if (err) { throw err; }
             sqlUserid = data[0].userid;
             req.session = { token: token, sqlUserid: sqlUserid, username: name, pass: pass, monUserid: monUserid };   // 把存储在mongodb用户的数据存储在session中提供以后使用
-            // console.log(req.session);
             resolve();
         })
     })
@@ -209,10 +220,8 @@ exports.do_login = async function (req, res1, next) {
 // 判断接口是否存在权限
 exports.do_viewFree = function (req, res, next) {
     // console.log(req.body);
-    console.log(req.session);
-    console.log(req.url);
-    // console.log(req.session.monUserid);
-
+    // console.log(req.session);
+    // console.log(req.url);
     acl.isAllowed(req.session.monUserid, req.url, '*', function (err, allowed) {
         if (err) {
             console.log(err);
@@ -323,12 +332,9 @@ exports.do_addVideo = function (req, res, next) {
     })
 }
 
-// session: {token: token, sqlUserid: sqlUserid, username: name, pass: pass, monUserid: monUserid }
-// 首先我们假设这个功能只要点击就能够起作用，
-// 但是实际上不是这样的，
+// session: {token: token, sqlUserid: sqlUserid, username: name, pass: pass, monUserid: monUserid }，
 // 不能随便就给添加角色，
 // 应该是加入这个用户付费了，
-// 我们就给他使用这个方法添加角色
 exports.do_addVipRole = function (req, res, next) {
     acl.addUserRoles(req.session.monUserid, ["vip"], function (err) {
         if (err) {

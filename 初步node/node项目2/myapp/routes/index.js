@@ -29,27 +29,7 @@ module.exports = router;
 
 /**
  * 
- * // 认证中间件
-var authentication = (req, res, next) => {
-    var userId =req.session.userId || ''
-
-    if(userId) {
-        acl.isAllowed(userId, req.path, '*')
-        .then(allowed => {
-            if(allowed) {
-                next()
-            }else {
-                next('权限不足')
-            }
-        })
-        .catch((e) => {
-            next(e.message)
-        })
-    }else {
-        next('请登录')
-    }
-
-}
+ * 
  */
 
 
