@@ -2,7 +2,7 @@
 
 const Controller = require('egg').Controller;
 
-class getConsultInfor extends Controller {
+class ConsultController extends Controller {
   async getConsultInfor() {
     const { ctx } = this;
     var results=await this.service.consult.getConsultInfor();
@@ -11,4 +11,4 @@ class getConsultInfor extends Controller {
   }
 }
 
-module.exports = getConsultInfor;
+module.exports = ConsultController;
