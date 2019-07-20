@@ -4,8 +4,10 @@ class UserService extends Service {
   async create() {
  
     const { ctx} = this;
+
+    const client1=this.app.mysql.get("db1");
  
-    const result = await this.app.mysql.select('user');
+    const result = client1.select('t_user');
     return result;
   }
 }

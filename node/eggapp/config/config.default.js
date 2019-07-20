@@ -19,16 +19,26 @@ module.exports = appInfo => {
   config.middleware = [];
 
   config.mysql = {
-    client: {
-      host: 'localhost',
-      port: '3306',
-      user: 'root',
-      password: '',
-      database: 'myblog',
+
+    clients: {
+      db1: {
+        host: 'localhost',
+        port: '3306',
+        user: 'root',
+        password: '',
+        database: 'exercise',
+      },
+      db2: {
+        host: 'localhost',
+        port: '3306',
+        user: 'root',
+        password: '',
+        database: 'qingmeng',
+      },
     },
     app: true,
     agent: false,
-  }
+  };
 
   // add your user config here
   const userConfig = {
