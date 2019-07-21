@@ -58,6 +58,17 @@ class BlogController extends Controller {
     }
   }
 
+  async deleteComment(){
+    const {ctx}=this;
+    var res=await this.service.blog.deleteComment();
+    if(res.length>0){
+      ctx.body=res;
+    }else{
+      ctx.body={
+        message: "该评论删除失败"
+      }
+    }
+  }
 }
 
 module.exports = BlogController;

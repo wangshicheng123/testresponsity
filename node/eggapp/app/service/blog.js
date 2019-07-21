@@ -37,6 +37,14 @@ class BlogService extends Service {
     const res=client1.select("t_comment",{blog_id: 3});
     return res;
   }
+
+  async deleteComment(){
+    const client1=this.app.mysql.get("db2");
+    const res=client1.delete("t_comment",{comm_id: 3});
+    return res;
+  }
+
+
 }
  
 module.exports = BlogService;

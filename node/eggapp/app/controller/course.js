@@ -69,6 +69,17 @@ class CourseController extends Controller {
         }
     }
 
+    async deleteCourseComment(){
+        var res= await this.service.course.deleteCourseComment();
+        if(res.length>0){
+            this.ctx.body=res;
+        }else{
+            this.ctx.body={
+                message: "文章评论删除失败"
+            }
+        }
+    }
+
     async courseUpdate(){
         var res= await this.service.course.courseUpdate();
         if(res.affectedRows>0){

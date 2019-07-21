@@ -36,9 +36,9 @@ class CourseService extends Service {
     return res;
   }
 
-  async courseComment(){
+  async deleteCourseComment(){
     const client1=this.app.mysql.get("db2");
-    const res= client1.select("t_course_comment",{course_id: 1});
+    const res= client1.delete("t_course_comment",{comm_id: 1});
     return res;
   }
 
